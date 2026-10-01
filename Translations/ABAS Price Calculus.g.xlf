@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="en-US" original="ABAS Price Calculus">
+    <body>
+      <group id="body">
+        <trans-unit id="Report 2155886970 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ABAS Update Item Standard Costs (Prod/Assembly)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report BatchUpdateStandardCosts - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1104936830 - Control 4236602011 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
+          <source>Markup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemCardCalculusFields - Control COMP Markup - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1104936830 - Control 93464285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
+          <source>Suggested Net Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemCardCalculusFields - Control COMP Net Price - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1104936830 - Control 3961945352 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
+          <source>Suggested Sales Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemCardCalculusFields - Control COMP Sales Price - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 4100265751 - Field 4236602011 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
+          <source>Overhead Markup %</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension ItemsCalculusFields - Field COMP Markup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 4100265751 - Field 93464285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
+          <source>Net Price (Calc.)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension ItemsCalculusFields - Field COMP Net Price - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 4100265751 - Field 3961945352 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
+          <source>Sales Price (Calc.)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension ItemsCalculusFields - Field COMP Sales Price - Property Caption</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
