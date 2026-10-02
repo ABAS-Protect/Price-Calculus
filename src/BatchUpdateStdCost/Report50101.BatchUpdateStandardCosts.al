@@ -35,6 +35,11 @@ report 50101 BatchUpdateStandardCosts
                 BOMComponent: Record "BOM Component";
             begin
                 if Item."Replenishment System" = Enum::"Replenishment System"::"Prod. Order" then begin
+                    if not TryCheckBomHeader(Item."Production BOM No.") then begin
+                        ClearLastError();
+                        CurrReport.Skip();
+                    end;
+
                     if Item."Production BOM No." = '' then
                         CurrReport.Skip();
 
@@ -114,5 +119,13 @@ report 50101 BatchUpdateStandardCosts
 
             Commit();
         end;
+    end;
+
+    [TryFunction]
+    local procedure TryCheckBomHeader(BomNo: Code[20])
+    var
+        ProdBomHeader: Record "Production BOM Header";
+    begin
+        ProdBomHeader.Get(BomNo);
     end;
 }

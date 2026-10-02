@@ -3,6 +3,91 @@
   <file datatype="xml" source-language="en-US" target-language="en-US" original="ABAS Price Calculus">
     <body>
       <group id="body">
+        <trans-unit id="Table 2786183315 - Field 126676326 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Mode</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Worksheet Header - Field Comparison Baseline - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2786183315 - Field 126676326 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Price (Calc.),Net Price (Calc.)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Worksheet Header - Field Comparison Baseline - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 2786183315 - Field 1737091078 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price List Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Worksheet Header - Field Price List Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2786183315 - Field 1621610075 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price List Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Worksheet Header - Field Price List Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2786183315 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Worksheet Header - Field Primary Key - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2760247076 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Control Panel</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2760247076 - Action 3904309618 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Net Price ➡️ Unit Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action ApplyNetPrice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2760247076 - Action 3094577355 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Price ➡️ Unit Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action ApplySalesPrice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2760247076 - Action 287911372 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Close</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action CloseWorksheet - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2760247076 - Action 3355619282 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Publish Updates to Price List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action CommitPriceList - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 1634501393 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control Asset No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 64142375 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Overhead Markup %</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemMarkup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 2266327937 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Net Price (Calc.)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemNetPrice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 1725357500 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Price (Calc.)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemSalesPrice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 2851143062 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Diff.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control PriceDifference - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 1592189799 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Diff. (%)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control PriceDifferencePct - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 2155886970 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ABAS Update Item Standard Costs (Prod/Assembly)</source>
           <note from="Developer" annotates="general" priority="2"></note>
