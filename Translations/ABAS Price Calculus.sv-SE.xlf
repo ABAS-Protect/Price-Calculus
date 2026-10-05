@@ -1,180 +1,215 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="en-US" original="ABAS Price Calculus">
+  <file datatype="xml" source-language="en-US" target-language="sv-SE" original="ABAS Price Calculus.g.xlf">
     <body>
       <group id="body">
         <trans-unit id="Table 2786183315 - Field 126676326 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Mode</source>
+          <target>Läge</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Worksheet Header - Field Comparison Baseline - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2786183315 - Field 126676326 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Price (Calc.),Net Price (Calc.)</source>
+          <target>Försäljningspris (kalkyl),Nettopris (kalkyl)</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Worksheet Header - Field Comparison Baseline - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Table 2786183315 - Field 1737091078 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Price List Code</source>
+          <target>Kod för prislista</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Worksheet Header - Field Price List Code - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2786183315 - Field 1621610075 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Price List Description</source>
+          <target>Beskrivning av prislista</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Worksheet Header - Field Price List Description - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2786183315 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Primary Key</source>
+          <target>Primärnyckel</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Worksheet Header - Field Primary Key - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2760247076 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Control Panel</source>
+          <target>Kontrollpanel</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Control General - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2760247076 - Action 3904309618 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Net Price ➡️ Unit Price</source>
+          <target>Nettopris ➡️ Enhetspris</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action ApplyNetPrice - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2760247076 - Action 3094577355 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Price ➡️ Unit Price</source>
+          <target>Försäljningspris ➡️ Enhetspris</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action ApplySalesPrice - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2760247076 - Action 287911372 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Close</source>
+          <target>Stäng</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action CloseWorksheet - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2760247076 - Action 3355619282 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Publish Updates to Price List</source>
+          <target>Publicera uppdatering till prislista</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action CommitPriceList - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Method 316912780 - NamedType 1048221670" size-unit="char" translate="yes" xml:space="preserve">
           <source>Price lines successfully published.</source>
+          <target>Prisrader publicerades.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Method UpdateActualPriceList - NamedType PublishMessage</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Control 1634501393 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Item No.</source>
+          <target>Artikelnr</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control Asset No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Control 2798413794 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Comment</source>
+          <target>Kommentar</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemComment - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Control 64142375 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overhead Markup %</source>
+          <target>Affo %</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemMarkup - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Control 2266327937 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Net Price (Calc.)</source>
+          <target>Nettopris (kalkyl)</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemNetPrice - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Control 1725357500 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Price (Calc.)</source>
+          <target>Försäljningspris (kalkyl)</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemSalesPrice - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Control 2851143062 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Diff.</source>
+          <target>Diff.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control PriceDifference - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Control 1592189799 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Diff. (%)</source>
+          <target>Diff. (%)</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control PriceDifferencePct - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 2155886970 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ABAS Update Item Standard Costs (Prod/Assembly)</source>
+          <target>ABAS Uppdatera standardkostnad (tillv./detaljsats)</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report BatchUpdateStandardCosts - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 4237020421 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ABAS Check SKU BOM References</source>
+          <target>ABAS Kontrollera lagerställes-BOM:ar</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Check SKU BOM References - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 4237020421 - Method 1544076788 - NamedType 2584114778" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cleanup Complete.\\Checked %1 SKUs.\\No ghost Production BOM references found to clear.</source>
+          <target>Rensning färdig.\\Kontrollerad %1 lagerställen.\\Inga lösa BOM-referense funna.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Check SKU BOM References - Method OnPreReport - NamedType CheckCompleteMsg</note>
         </trans-unit>
         <trans-unit id="Report 4237020421 - Method 1544076788 - NamedType 2029391097" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cleanup Complete.\\Checked %1 SKUs.\\Successfully erased %2 ghost references.\\Fixed SKU Keys: %3</source>
+          <target>Rensning färdig.\\Kontrollerad %1 lagerställen.\\Raderade %2 lösa referenser.\\Fixade LSE-nycklar: %3</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Check SKU BOM References - Method OnPreReport - NamedType FixCompleteMsg</note>
         </trans-unit>
         <trans-unit id="Report 4237020421 - Control 2731845899 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>About This Utility</source>
+          <target>Om detta verktyg</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Check SKU BOM References - Control DescriptionGroup - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
           <source>Scan lists and count conflicting lines.</source>
+          <target>Avsök listor och räkna rader med konflikt.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action AnalyzeConflicts - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
           <source>Analyze Conflicting Prices</source>
+          <target>Analysera priskonflikter</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action AnalyzeConflicts - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Method 1377591017 - NamedType 2954980686" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
           <source>%1 conflicting lines would be deleted from Price List "%2".</source>
+          <target>%1 rader med konflikt skulle raderas från prislista "%2".</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action AnalyzeConflicts - Method OnAction - NamedType LinesFoundMsg</note>
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Method 1377591017 - NamedType 1113046263" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
           <source>No conflicting lines found for Price List "%1".</source>
+          <target>Inga rader med konflikt funna för prislista "%1".</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action AnalyzeConflicts - Method OnAction - NamedType NoLinesMsg</note>
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3825344675 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
           <source>Permanently delete lines from standard price list that clash with other lists.</source>
+          <target>Radera rader med konflikt från standardprislista.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action ExcludeSpecialPrices - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3825344675 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
           <source>Remove Conflicting Prices</source>
+          <target>Radera priser med konflikt</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action ExcludeSpecialPrices - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3825344675 - Method 1377591017 - NamedType 2909256695" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
           <source>Permanently delete conflicting lines from Price List "%1"?</source>
+          <target>Radera rader med konflikt från prislista "%1"?</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action ExcludeSpecialPrices - Method OnAction - NamedType ConfirmRunQst</note>
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3825344675 - Method 1377591017 - NamedType 3628567239" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
           <source>%1 lines successfully removed from Price List "%2".</source>
+          <target>%1 rader raderades från prislistan "%2".</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action ExcludeSpecialPrices - Method OnAction - NamedType RemoveMessage</note>
         </trans-unit>
         <trans-unit id="TableExtension 4100265751 - Field 3368186230 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
           <source>Comment</source>
+          <target>Kommentar</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension ItemsCalculusFields - Field COMP Comment - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 4100265751 - Field 4236602011 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
           <source>Overhead Markup %</source>
+          <target>Affo %</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension ItemsCalculusFields - Field COMP Markup - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 4100265751 - Field 93464285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
           <source>Net Price (Calc.)</source>
+          <target>Nettopris (kalkyl)</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension ItemsCalculusFields - Field COMP Net Price - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 4100265751 - Field 3961945352 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
           <source>Sales Price (Calc.)</source>
+          <target>Försäljningspris (kalkyl)</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension ItemsCalculusFields - Field COMP Sales Price - Property Caption</note>
         </trans-unit>

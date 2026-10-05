@@ -10,7 +10,7 @@ page 50105 "Worksheet Price Lines Subpart"
     SourceTable = "Price List Line";
     InsertAllowed = false;
     DeleteAllowed = false;
-    Caption = ' ';
+    Caption = ' ', Locked = true;
 
     layout
     {
@@ -202,6 +202,7 @@ page 50105 "Worksheet Price Lines Subpart"
         DuplicatePriceLine: Record "Duplicate Price Line";
         PriceListManagement: Codeunit "Price List Management";
         OriginalStatus: Enum "Price Status";
+        PublishMessage: Label 'Price lines successfully published.';
     begin
         if PriceListHeader.Get(PriceListCode) then begin
             OriginalStatus := PriceListHeader.Status;
@@ -249,7 +250,7 @@ page 50105 "Worksheet Price Lines Subpart"
                 PriceListHeader.Modify(false);
             end;
 
-            Message('Price lines successfully published.', PriceListCode);
+            Message(PublishMessage, PriceListCode);
         end;
     end;
 }

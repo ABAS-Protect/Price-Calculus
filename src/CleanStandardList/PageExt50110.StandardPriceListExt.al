@@ -7,8 +7,8 @@ pageextension 50110 "StandardPriceListExt" extends "Sales Price Lists"
             action(AnalyzeConflicts)
             {
                 ApplicationArea = All;
-                Caption = 'Analyze Price Conflicts (Dry Run)';
-                ToolTip = 'Scan lists and count conflicting lines. Will NOT modify any data.';
+                Caption = 'Analyze Conflicting Prices';
+                ToolTip = 'Scan lists and count conflicting lines.';
                 Image = ViewCheck;
                 Promoted = true;
                 PromotedCategory = Process;
@@ -50,12 +50,13 @@ pageextension 50110 "StandardPriceListExt" extends "Sales Price Lists"
                     SalesPriceMgt: Codeunit "Filter Standard Price List";
                     LinesFound: Integer;
                     ConfirmRunQst: Label 'Permanently delete conflicting lines from Price List "%1"?';
+                    RemoveMessage: Label '%1 lines successfully removed from Price List "%2".';
                 begin
                     PriceListHeader.Reset();
                     if Page.RunModal(Page::"Sales Price Lists", PriceListHeader) = Action::LookupOK then begin
                         if Confirm(StrSubstNo(ConfirmRunQst, PriceListHeader.Code), false) then begin
                             LinesFound := SalesPriceMgt.FilterStandardPriceList(PriceListHeader.Code, false);
-                            Message('%1 lines successfully removed from Price List "%2".', LinesFound, PriceListHeader.Code);
+                            Message(RemoveMessage, LinesFound, PriceListHeader.Code);
                             CurrPage.Update(false);
                         end;
                     end;

@@ -43,6 +43,8 @@ report 50102 "Check SKU BOM References"
         TotalSKUsChecked: Integer;
         FixedBOMsCount: Integer;
         ClearedKeysList: Text;
+        CheckCompleteMsg: Label 'Cleanup Complete.\\Checked %1 SKUs.\\No ghost Production BOM references found to clear.';
+        FixCompleteMsg: Label 'Cleanup Complete.\\Checked %1 SKUs.\\Successfully erased %2 ghost references.\\Fixed SKU Keys: %3';
     begin
         SKU.SetFilter("Production BOM No.", '<>%1', '');
 
@@ -65,8 +67,8 @@ report 50102 "Check SKU BOM References"
             until SKU.Next() = 0;
 
         if FixedBOMsCount = 0 then
-            Message('Cleanup Complete.\\Checked %1 SKUs.\\No ghost Production BOM references found to clear.', TotalSKUsChecked)
+            Message(CheckCompleteMsg, TotalSKUsChecked)
         else
-            Message('Cleanup Complete.\\Checked %1 SKUs.\\Successfully erased %2 ghost references.\\Fixed SKU Keys: %3', TotalSKUsChecked, FixedBOMsCount, ClearedKeysList);
+            Message(FixCompleteMsg, TotalSKUsChecked, FixedBOMsCount, ClearedKeysList);
     end;
 }
