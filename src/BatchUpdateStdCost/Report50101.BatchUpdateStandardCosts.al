@@ -35,13 +35,13 @@ report 50101 BatchUpdateStandardCosts
                 BOMComponent: Record "BOM Component";
             begin
                 if Item."Replenishment System" = Enum::"Replenishment System"::"Prod. Order" then begin
+                    if Item."Production BOM No." = '' then
+                        CurrReport.Skip();
+
                     if not TryCheckBomHeader(Item."Production BOM No.") then begin
                         ClearLastError();
                         CurrReport.Skip();
                     end;
-
-                    if Item."Production BOM No." = '' then
-                        CurrReport.Skip();
 
                     if ProdBOMHeader.Get(Item."Production BOM No.") then begin
                         if ProdBOMHeader.Status <> ProdBOMHeader.Status::Certified then
@@ -87,6 +87,13 @@ report 50101 BatchUpdateStandardCosts
     var
         Window: Dialog;
         ItemNoCollection: List of [Code[20]];
+
+    trigger OnPreReport()
+    var
+        SKU: Record "Stockkeeping Unit";
+    begin
+        Report.Run(Report::"Check SKU BOM References", false, false, SKU);
+    end;
 
     local procedure ExecuteHeadlessTransaction(ItemNo: Code[20])
     var

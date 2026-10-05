@@ -1,7 +1,7 @@
 /*
     Author: Niklas Dougherty <nd@abas.se>
     Date: 2026-10-01
-    Description: Add price calculus fields to Item Card.
+    Description: Add fields to Item table.
 */
 
 tableextension 50102 ItemsCalculusFields extends Item
@@ -29,6 +29,12 @@ tableextension 50102 ItemsCalculusFields extends Item
             Caption = 'Net Price (Calc.)';
             DataClassification = CustomerContent;
             Editable = false;
+        }
+
+        field(50107; "COMP Comment"; Text[100])
+        {
+            Caption = 'Comment';
+            DataClassification = CustomerContent;
         }
 
         modify("Standard Cost")

@@ -1,3 +1,9 @@
+/*
+    Author: Niklas Dougherty <nd@abas.se>
+    Date: 2026-10-02
+    Description: Calculate work sheet lines, update Price List lines.
+*/
+
 page 50105 "Worksheet Price Lines Subpart"
 {
     PageType = ListPart;
@@ -38,6 +44,21 @@ page 50105 "Worksheet Price Lines Subpart"
                 }
                 field(ItemSalesPrice; ItemSalesPrice) { ApplicationArea = All; Caption = 'Sales Price (Calc.)'; Editable = false; }
                 field(ItemNetPrice; ItemNetPrice) { ApplicationArea = All; Caption = 'Net Price (Calc.)'; Editable = false; }
+                field(ItemComment; ItemComment)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Comment';
+
+                    trigger OnValidate()
+                    var
+                        Item: Record Item;
+                    begin
+                        if IsItemAsset and Item.Get(Rec."Asset No.") then begin
+                            Item."COMP Comment" := ItemComment;
+                            Item.Modify(true);
+                        end;
+                    end;
+                }
 
                 field("Unit Price"; Rec."Unit Price")
                 {
@@ -58,6 +79,7 @@ page 50105 "Worksheet Price Lines Subpart"
         ItemMarkup: Integer;
         ItemSalesPrice: Decimal;
         ItemNetPrice: Decimal;
+        ItemComment: Text[100];
         PriceDifference: Decimal;
         PriceDifferencePct: Decimal;
         IsItemAsset: Boolean;
@@ -78,6 +100,7 @@ page 50105 "Worksheet Price Lines Subpart"
             ItemMarkup := Item."COMP Markup";
             ItemSalesPrice := Item."COMP Sales Price";
             ItemNetPrice := Item."COMP Net Price";
+            ItemComment := Item."COMP Comment";
             CalculateDifferences();
         end;
     end;

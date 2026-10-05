@@ -1,3 +1,9 @@
+/*
+    Author: Niklas Dougherty <nd@abas.se>
+    Date: 2026-10-02
+    Description: Custom worksheet header.
+*/
+
 table 50103 "Worksheet Header"
 {
     DataClassification = ToBeClassified;

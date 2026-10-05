@@ -1,3 +1,9 @@
+/*
+    Author: Niklas Dougherty <nd@abas.se>
+    Date: 2026-10-01
+    Description: Add fields to Item Card.
+*/
+
 pageextension 50109 ItemCardCalculusFields extends "Item Card"
 {
     layout
@@ -7,18 +13,19 @@ pageextension 50109 ItemCardCalculusFields extends "Item Card"
             field("COMP Markup"; Rec."COMP Markup")
             {
                 ApplicationArea = All;
-                ToolTip = 'Markup';
                 Style = Subordinate;
             }
             field("COMP Sales Price"; Rec."COMP Sales Price")
             {
                 ApplicationArea = All;
-                ToolTip = 'Suggested Sales Price';
             }
             field("COMP Net Price"; Rec."COMP Net Price")
             {
                 ApplicationArea = All;
-                ToolTip = 'Suggested Net Price';
+            }
+            field("COMP Comment"; Rec."COMP Comment")
+            {
+                ApplicationArea = All;
             }
         }
     }

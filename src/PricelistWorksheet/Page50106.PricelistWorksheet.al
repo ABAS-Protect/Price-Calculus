@@ -1,3 +1,9 @@
+/*
+    Author: Niklas Dougherty <nd@abas.se>
+    Date: 2026-10-02
+    Description: Handle price lines in custom worksheet.
+*/
+
 page 50106 "ABAS Price List Worksheet"
 {
     PageType = Worksheet;
