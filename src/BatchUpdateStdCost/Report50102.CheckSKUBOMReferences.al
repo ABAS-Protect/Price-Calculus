@@ -1,7 +1,7 @@
 /*
     Author: Niklas Dougherty <nd@abas.se>
     Date: 2026-10-05
-    Description: Clean out ghost BOMs before running the batch update.
+    Description: Clean out ghost BOMs.
 */
 
 report 50102 "Check SKU BOM References"

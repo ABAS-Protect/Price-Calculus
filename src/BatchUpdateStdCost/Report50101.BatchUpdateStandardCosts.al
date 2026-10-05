@@ -88,13 +88,6 @@ report 50101 BatchUpdateStandardCosts
         Window: Dialog;
         ItemNoCollection: List of [Code[20]];
 
-    trigger OnPreReport()
-    var
-        SKU: Record "Stockkeeping Unit";
-    begin
-        Report.Run(Report::"Check SKU BOM References", false, false, SKU);
-    end;
-
     local procedure ExecuteHeadlessTransaction(ItemNo: Code[20])
     var
         HeadlessStdCostRunner: Codeunit "HeadlessStdCostRunner";

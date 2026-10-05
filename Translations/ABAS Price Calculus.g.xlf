@@ -93,20 +93,20 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control PriceDifferencePct - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Report 820546318 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Purge Broken SKU BOM References</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report ABAS Check SKU BOM References - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 820546318 - Control 2731845899 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>About This Utility</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report ABAS Check SKU BOM References - Control DescriptionGroup - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Report 2155886970 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ABAS Update Item Standard Costs (Prod/Assembly)</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report BatchUpdateStandardCosts - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 4237020421 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ABAS Check SKU BOM References</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Check SKU BOM References - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 4237020421 - Control 2731845899 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>About This Utility</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Check SKU BOM References - Control DescriptionGroup - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 4100265751 - Field 3368186230 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
           <source>Comment</source>
