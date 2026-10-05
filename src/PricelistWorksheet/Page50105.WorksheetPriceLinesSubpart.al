@@ -18,7 +18,21 @@ page 50105 "Worksheet Price Lines Subpart"
         {
             repeater(Lines)
             {
-                field("Asset No."; Rec."Asset No.") { ApplicationArea = All; Editable = false; Caption = 'Item No.'; }
+                field("Asset No."; Rec."Asset No.")
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                    Caption = 'Item No.';
+                    DrillDown = true;
+
+                    trigger OnDrillDown()
+                    var
+                        Item: Record Item;
+                    begin
+                        if Item.Get(Rec."Asset No.") then
+                            Page.Run(Page::"Item Card", Item);
+                    end;
+                }
                 field(Description; Rec.Description) { ApplicationArea = All; Editable = false; }
                 field("Variant Code"; Rec."Variant Code") { ApplicationArea = All; Editable = false; }
 

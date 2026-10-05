@@ -108,6 +108,41 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Check SKU BOM References - Control DescriptionGroup - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
+          <source>Scan lists and count conflicting lines. Will NOT modify any data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action AnalyzeConflicts - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
+          <source>Analyze Price Conflicts (Dry Run)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action AnalyzeConflicts - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Method 1377591017 - NamedType 2954980686" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
+          <source>%1 conflicting lines would be deleted from Price List "%2".</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action AnalyzeConflicts - Method OnAction - NamedType LinesFoundMsg</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Method 1377591017 - NamedType 1113046263" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
+          <source>No conflicting lines found for Price List "%1".</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action AnalyzeConflicts - Method OnAction - NamedType NoLinesMsg</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3147209063 - Action 3825344675 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
+          <source>Permanently delete lines from standard price list that clash with other lists.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action ExcludeSpecialPrices - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3147209063 - Action 3825344675 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
+          <source>Remove Conflicting Prices</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action ExcludeSpecialPrices - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3147209063 - Action 3825344675 - Method 1377591017 - NamedType 2909256695" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
+          <source>Permanently delete conflicting lines from Price List "%1"?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action ExcludeSpecialPrices - Method OnAction - NamedType ConfirmRunQst</note>
+        </trans-unit>
         <trans-unit id="TableExtension 4100265751 - Field 3368186230 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
           <source>Comment</source>
           <note from="Developer" annotates="general" priority="2"></note>

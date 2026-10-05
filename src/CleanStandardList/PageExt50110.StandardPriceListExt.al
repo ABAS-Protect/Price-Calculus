@@ -1,0 +1,66 @@
+pageextension 50110 "StandardPriceListExt" extends "Sales Price Lists"
+{
+    actions
+    {
+        addlast(processing)
+        {
+            action(AnalyzeConflicts)
+            {
+                ApplicationArea = All;
+                Caption = 'Analyze Price Conflicts (Dry Run)';
+                ToolTip = 'Scan lists and count conflicting lines. Will NOT modify any data.';
+                Image = ViewCheck;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedOnly = true;
+
+                trigger OnAction()
+                var
+                    PriceListHeader: Record "Price List Header";
+                    SalesPriceMgt: Codeunit "Filter Standard Price List";
+                    LinesFound: Integer;
+                    LinesFoundMsg: Label '%1 conflicting lines would be deleted from Price List "%2".';
+                    NoLinesMsg: Label 'No conflicting lines found for Price List "%1".';
+                begin
+                    PriceListHeader.Reset();
+                    if Page.RunModal(Page::"Sales Price Lists", PriceListHeader) = Action::LookupOK then begin
+                        LinesFound := SalesPriceMgt.FilterStandardPriceList(PriceListHeader.Code, true);
+
+                        if LinesFound > 0 then
+                            Message(LinesFoundMsg, LinesFound, PriceListHeader.Code)
+                        else
+                            Message(NoLinesMsg, PriceListHeader.Code);
+                    end;
+                end;
+            }
+
+            action(ExcludeSpecialPrices)
+            {
+                ApplicationArea = All;
+                Caption = 'Remove Conflicting Prices';
+                ToolTip = 'Permanently delete lines from standard price list that clash with other lists.';
+                Image = DeleteRow;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedOnly = true;
+
+                trigger OnAction()
+                var
+                    PriceListHeader: Record "Price List Header";
+                    SalesPriceMgt: Codeunit "Filter Standard Price List";
+                    LinesFound: Integer;
+                    ConfirmRunQst: Label 'Permanently delete conflicting lines from Price List "%1"?';
+                begin
+                    PriceListHeader.Reset();
+                    if Page.RunModal(Page::"Sales Price Lists", PriceListHeader) = Action::LookupOK then begin
+                        if Confirm(StrSubstNo(ConfirmRunQst, PriceListHeader.Code), false) then begin
+                            LinesFound := SalesPriceMgt.FilterStandardPriceList(PriceListHeader.Code, false);
+                            Message('%1 lines successfully removed from Price List "%2".', LinesFound, PriceListHeader.Code);
+                            CurrPage.Update(false);
+                        end;
+                    end;
+                end;
+            }
+        }
+    }
+}
