@@ -1,3 +1,9 @@
+/*
+    Author: Niklas Dougherty <nd@abas.se>
+    Date: 2026-10-06
+    Description: Keep items from other price lists off the standard price list.
+*/
+
 pageextension 50110 "StandardPriceListExt" extends "Sales Price Lists"
 {
     actions

@@ -12,6 +12,9 @@ page 50106 "ABAS Price List Worksheet"
     SourceTable = "Worksheet Header";
     InsertAllowed = false;
     DeleteAllowed = false;
+    Caption = 'ABAS Price List Worksheet';
+
+    AccessByPermission = TableData "Worksheet Header" = RM;
 
     layout
     {

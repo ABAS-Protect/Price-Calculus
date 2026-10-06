@@ -1,3 +1,9 @@
+/*
+    Author: Niklas Dougherty <nd@abas.se>
+    Date: 2026-10-06
+    Description: Keep items from other price lists off the standard price list.
+*/
+
 codeunit 50107 "Filter Standard Price List"
 {
     procedure FilterStandardPriceList(SelectedPriceListCode: Code[20]; DryRun: Boolean) DeletedCount: Integer

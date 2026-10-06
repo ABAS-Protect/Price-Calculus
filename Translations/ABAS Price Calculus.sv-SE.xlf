@@ -3,6 +3,30 @@
   <file datatype="xml" source-language="en-US" target-language="sv-SE" original="ABAS Price Calculus.g.xlf">
     <body>
       <group id="body">
+        <trans-unit id="Table 460930530 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <target>Primärnyckel</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price Calculus Setup Table - Field Primary Key - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 460930530 - Field 1769291354 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Production Markup %</source>
+          <target>Produktionspåslag %</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price Calculus Setup Table - Field Production Markup % - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 460930530 - Field 3899130866 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchase Markup %</source>
+          <target>Inköpspåslag %</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price Calculus Setup Table - Field Purchase Markup % - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 460930530 - Field 3114755967 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rebate Base %</source>
+          <target>Rabattbas %</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price Calculus Setup Table - Field Rebate Base % - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2786183315 - Field 126676326 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Mode</source>
           <target>Läge</target>
@@ -32,6 +56,42 @@
           <target>Primärnyckel</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Worksheet Header - Field Primary Key - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3460745835 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ABAS Price Calculus Setup</source>
+          <target>ABAS Priskalkylinställningar</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price Calculus Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3460745835 - Control 2260900478 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Calculation Setup</source>
+          <target>Kalkylinställningar</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price Calculus Setup - Control Calculations - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3460745835 - Control 1769291354 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the markup percentage applied to production costs (default 5%).</source>
+          <target>Anger påslag i procent med avseende på produktionskostnader (standardvärde 5 %)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price Calculus Setup - Control Production Markup % - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3460745835 - Control 3899130866 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the markup percentage applied to purchase costs (default 0%).</source>
+          <target>Anger påslag i procent med avseende på inköpskostnader (standardvärde 0 %)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price Calculus Setup - Control Purchase Markup % - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3460745835 - Control 3114755967 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the base percentage used for rebate calculations (default 52%).</source>
+          <target>Anger max rabattsats i procent med avseende på rabattkalkyl (standardvärde 52 %)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price Calculus Setup - Control Rebate Base % - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2760247076 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ABAS Price List Worksheet</source>
+          <target>ABAS Priskalkyl</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2760247076 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Control Panel</source>
@@ -212,6 +272,12 @@
           <target>Försäljningspris (kalkyl)</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension ItemsCalculusFields - Field COMP Sales Price - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 3496883096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ABAS Price Calculus Permissions, Admin Rights</source>
+          <target>ABAS priskalkyl, adminrättigheter</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet ABAS Calculus Admin - Property Caption</note>
         </trans-unit>
       </group>
     </body>
