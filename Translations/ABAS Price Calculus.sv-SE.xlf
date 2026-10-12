@@ -171,6 +171,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control PriceDifferencePct - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 314389214 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>New Unit Price (Draft)</source>
+          <target>Nytt enhetspris (prel.)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control WorkingUnitPrice - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1786770511 - Action 2714439911 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Net Price ➡️ Unit Price</source>
           <target>Nettopris ➡️ Enhetspris</target>
