@@ -143,6 +143,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control PriceDifferencePct - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1786770511 - Action 2714439911 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Net Price ➡️ Unit Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Action CopyRowNetPrice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Action 935294406 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Price ➡️ Unit Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Action CopyRowSalesPrice - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 2155886970 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ABAS Update Item Standard Costs (Prod/Assembly)</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -169,7 +179,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report Check SKU BOM References - Control DescriptionGroup - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
-          <source>Scan lists and count conflicting lines.</source>
+          <source>Scan lists and count conflicting lines with standard price list.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action AnalyzeConflicts - Property ToolTip</note>
         </trans-unit>

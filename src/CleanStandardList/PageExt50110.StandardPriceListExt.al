@@ -14,7 +14,7 @@ pageextension 50110 "StandardPriceListExt" extends "Sales Price Lists"
             {
                 ApplicationArea = All;
                 Caption = 'Analyze Conflicting Prices';
-                ToolTip = 'Scan lists and count conflicting lines.';
+                ToolTip = 'Scan lists and count conflicting lines with standard price list.';
                 Image = ViewCheck;
                 Promoted = true;
                 PromotedCategory = Process;
@@ -23,19 +23,28 @@ pageextension 50110 "StandardPriceListExt" extends "Sales Price Lists"
                 trigger OnAction()
                 var
                     PriceListHeader: Record "Price List Header";
+                    SalesReceivablesSetup: Record "Sales & Receivables Setup";
                     SalesPriceMgt: Codeunit "Filter Standard Price List";
+                    TargetPriceListCode: Code[20];
                     LinesFound: Integer;
                     LinesFoundMsg: Label '%1 conflicting lines would be deleted from Price List "%2".';
                     NoLinesMsg: Label 'No conflicting lines found for Price List "%1".';
                 begin
-                    PriceListHeader.Reset();
-                    if Page.RunModal(Page::"Sales Price Lists", PriceListHeader) = Action::LookupOK then begin
-                        LinesFound := SalesPriceMgt.FilterStandardPriceList(PriceListHeader.Code, true);
+                    SalesReceivablesSetup.Get();
+                    TargetPriceListCode := SalesReceivablesSetup."Default Price List Code";
 
+                    if TargetPriceListCode = '' then begin
+                        PriceListHeader.Reset();
+                        if Page.RunModal(Page::"Sales Price Lists", PriceListHeader) = Action::LookupOK then
+                            TargetPriceListCode := PriceListHeader.Code;
+                    end;
+
+                    if TargetPriceListCode <> '' then begin
+                        LinesFound := SalesPriceMgt.FilterStandardPriceList(TargetPriceListCode, true);
                         if LinesFound > 0 then
-                            Message(LinesFoundMsg, LinesFound, PriceListHeader.Code)
+                            Message(LinesFoundMsg, LinesFound, TargetPriceListCode)
                         else
-                            Message(NoLinesMsg, PriceListHeader.Code);
+                            Message(NoLinesMsg, TargetPriceListCode);
                     end;
                 end;
             }
@@ -53,16 +62,26 @@ pageextension 50110 "StandardPriceListExt" extends "Sales Price Lists"
                 trigger OnAction()
                 var
                     PriceListHeader: Record "Price List Header";
+                    SalesReceivablesSetup: Record "Sales & Receivables Setup";
                     SalesPriceMgt: Codeunit "Filter Standard Price List";
+                    TargetPriceListCode: Code[20];
                     LinesFound: Integer;
                     ConfirmRunQst: Label 'Permanently delete conflicting lines from Price List "%1"?';
                     RemoveMessage: Label '%1 lines successfully removed from Price List "%2".';
                 begin
-                    PriceListHeader.Reset();
-                    if Page.RunModal(Page::"Sales Price Lists", PriceListHeader) = Action::LookupOK then begin
-                        if Confirm(StrSubstNo(ConfirmRunQst, PriceListHeader.Code), false) then begin
-                            LinesFound := SalesPriceMgt.FilterStandardPriceList(PriceListHeader.Code, false);
-                            Message(RemoveMessage, LinesFound, PriceListHeader.Code);
+                    SalesReceivablesSetup.Get();
+                    TargetPriceListCode := SalesReceivablesSetup."Default Price List Code";
+
+                    if TargetPriceListCode = '' then begin
+                        PriceListHeader.Reset();
+                        if Page.RunModal(Page::"Sales Price Lists", PriceListHeader) = Action::LookupOK then
+                            TargetPriceListCode := PriceListHeader.Code;
+                    end;
+
+                    if TargetPriceListCode <> '' then begin
+                        if Confirm(StrSubstNo(ConfirmRunQst, TargetPriceListCode), false) then begin
+                            LinesFound := SalesPriceMgt.FilterStandardPriceList(TargetPriceListCode, false);
+                            Message(RemoveMessage, LinesFound, TargetPriceListCode);
                             CurrPage.Update(false);
                         end;
                     end;

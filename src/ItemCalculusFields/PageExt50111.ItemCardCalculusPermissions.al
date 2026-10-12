@@ -30,7 +30,7 @@ pageextension 50111 "Item Card Permission Lock" extends "Item Card"
         if UserPermissions.IsSuper(UserSecurityId()) then
             IsCalculationAdmin := true
         else
-            IsCalculationAdmin := CheckUserHasRole('ABAS Price Calculus');
+            IsCalculationAdmin := CheckUserHasRole('D365 BUS PREMIUM');
     end;
 
     local procedure CheckUserHasRole(PermissionSetID: Code[20]): Boolean

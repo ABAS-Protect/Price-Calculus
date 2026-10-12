@@ -8,6 +8,7 @@ page 50105 "Worksheet Price Lines Subpart"
 {
     PageType = ListPart;
     SourceTable = "Price List Line";
+    SourceTableTemporary = true;
     InsertAllowed = false;
     DeleteAllowed = false;
     Caption = ' ', Locked = true;
@@ -89,6 +90,40 @@ page 50105 "Worksheet Price Lines Subpart"
         }
     }
 
+    actions
+    {
+        area(Processing)
+        {
+            action(CopyRowSalesPrice)
+            {
+                ApplicationArea = All;
+                Caption = 'Sales Price ➡️ Unit Price';
+                Image = CopyFromTask;
+                Scope = Repeater;
+
+                trigger OnAction()
+                begin
+                    Rec.Validate("Unit Price", ItemSalesPrice);
+                    Rec.Modify();
+                end;
+            }
+
+            action(CopyRowNetPrice)
+            {
+                ApplicationArea = All;
+                Caption = 'Net Price ➡️ Unit Price';
+                Image = CopyFromTask;
+                Scope = Repeater;
+
+                trigger OnAction()
+                begin
+                    Rec.Validate("Unit Price", ItemNetPrice);
+                    Rec.Modify();
+                end;
+            }
+        }
+    }
+
     var
         ItemMarkup: Integer;
         ItemSalesPrice: Decimal;
@@ -130,6 +165,7 @@ page 50105 "Worksheet Price Lines Subpart"
         DifferenceStyle := 'None';
     end;
 
+    // Calculate difference between calculated and actual price, using sales or net price.
     local procedure CalculateDifferences()
     var
         TargetBaselinePrice: Decimal;
@@ -155,63 +191,93 @@ page 50105 "Worksheet Price Lines Subpart"
             DifferenceStyle := 'None';
     end;
 
+    // Baseline sales/net price for difference comparisons.
     procedure SetComparisonBaseline(NewBaseline: Option "Sales Price","Net Price")
     begin
         CurrentBaseline := NewBaseline;
         CurrPage.Update(false);
     end;
 
+    // Copy calculated sales price to price list unit price (worksheet only).
     procedure CopySalesPriceToUnitPrice(PriceListCode: Code[20])
     var
-        PriceListLine: Record "Price List Line";
         Item: Record Item;
     begin
-        PriceListLine.SetRange("Price List Code", PriceListCode);
-        PriceListLine.SetRange("Asset Type", PriceListLine."Asset Type"::Item);
-        if PriceListLine.FindSet(true) then begin
+        Rec.Reset();
+        if Rec.FindSet(true) then
             repeat
-                if Item.Get(PriceListLine."Asset No.") and (Item."COMP Sales Price" <> 0) then begin
-                    PriceListLine.Validate("Unit Price", Item."COMP Sales Price");
-                    PriceListLine.Modify(true);
+                if (Rec."Asset Type" = Rec."Asset Type"::Item) and
+                   Item.Get(Rec."Asset No.") and
+                   (Item."COMP Sales Price" <> 0) then begin
+
+                    Rec.Validate("Unit Price", Item."COMP Sales Price");
+                    Rec.Modify();
                 end;
-            until PriceListLine.Next() = 0;
-        end;
+            until Rec.Next() = 0;
+
+        CurrPage.Update(false);
     end;
 
+    // Copy calculated net price to price list unit price (worksheet only).
     procedure CopyNetPriceToUnitPrice(PriceListCode: Code[20])
     var
-        PriceListLine: Record "Price List Line";
         Item: Record Item;
     begin
-        PriceListLine.SetRange("Price List Code", PriceListCode);
-        PriceListLine.SetRange("Asset Type", PriceListLine."Asset Type"::Item);
-        if PriceListLine.FindSet(true) then begin
+        Rec.Reset();
+        if Rec.FindSet(true) then
             repeat
-                if Item.Get(PriceListLine."Asset No.") and (Item."COMP Net Price" <> 0) then begin
-                    PriceListLine.Validate("Unit Price", Item."COMP Net Price");
-                    PriceListLine.Modify(true);
+                if (Rec."Asset Type" = Rec."Asset Type"::Item) and
+                   Item.Get(Rec."Asset No.") and
+                   (Item."COMP Net Price" <> 0) then begin
+
+                    Rec.Validate("Unit Price", Item."COMP Net Price");
+                    Rec.Modify();
                 end;
-            until PriceListLine.Next() = 0;
-        end;
+            until Rec.Next() = 0;
+
+        CurrPage.Update(false);
     end;
 
+    // Publish changes to price list.
     procedure UpdateActualPriceList(PriceListCode: Code[20])
     var
         PriceListHeader: Record "Price List Header";
         PriceListLine: Record "Price List Line";
+        ActualPriceListLine: Record "Price List Line";
         DuplicatePriceLine: Record "Duplicate Price Line";
         PriceListManagement: Codeunit "Price List Management";
+        Item: Record Item;
         OriginalStatus: Enum "Price Status";
         PublishMessage: Label 'Price lines successfully published.';
     begin
+        Rec.Reset();
+        if Rec.FindSet() then
+            repeat
+                if ActualPriceListLine.Get(Rec."Price List Code", Rec."Line No.") then begin
+                    // Update Price List Unit Price.
+                    ActualPriceListLine.Validate("Unit Price", Rec."Unit Price");
+                    ActualPriceListLine.Modify(true);
+
+                    // Update Item Card Unit Price accordingly.
+                    if (Rec."Asset Type" = Rec."Asset Type"::Item) and (Rec."Asset No." <> '') then begin
+                        if Item.Get(Rec."Asset No.") then begin
+                            Item.Validate("Unit Price", Rec."Unit Price");
+                            Item.Modify(true);
+                        end;
+                    end;
+                end;
+            until Rec.Next() = 0;
+
         if PriceListHeader.Get(PriceListCode) then begin
             OriginalStatus := PriceListHeader.Status;
 
+            // Set Pricelist to Draft if necessary.
             if PriceListHeader.Status = PriceListHeader.Status::Active then begin
                 PriceListHeader.Status := PriceListHeader.Status::Draft;
                 PriceListHeader.Modify(false);
             end;
 
+            // Remove blanks.
             PriceListLine.SetRange("Price List Code", PriceListCode);
             PriceListLine.SetRange("Asset No.", '');
             if not PriceListLine.IsEmpty() then
@@ -221,6 +287,7 @@ page 50105 "Worksheet Price Lines Subpart"
             PriceListLine.SetRange("Price List Code", PriceListCode);
             PriceListLine.SetRange(Status, PriceListLine.Status::Draft);
 
+            // Remove duplicates.
             if PriceListManagement.FindDuplicatePrices(PriceListHeader, PriceListLine, true, DuplicatePriceLine) then begin
                 DuplicatePriceLine.Reset();
                 DuplicatePriceLine.SetRange("Price List Code", PriceListCode);
@@ -234,8 +301,10 @@ page 50105 "Worksheet Price Lines Subpart"
                 end;
             end;
 
+            // Reactivate lines.
             PriceListManagement.ActivateDraftLines(PriceListHeader, true);
 
+            // Reactivate price list.
             if OriginalStatus = OriginalStatus::Active then begin
                 PriceListHeader.Status := PriceListHeader.Status::Active;
                 PriceListHeader.Modify(false);
@@ -251,6 +320,29 @@ page 50105 "Worksheet Price Lines Subpart"
             end;
 
             Message(PublishMessage, PriceListCode);
+            LoadLines(PriceListCode);
         end;
+    end;
+
+    // Actual pricelist lines, rather than temp table.
+    procedure LoadLines(PriceListCode: Code[20])
+    var
+        ActualPriceListLine: Record "Price List Line";
+    begin
+        Rec.Reset();
+        Rec.DeleteAll();
+
+        if PriceListCode = '' then
+            exit;
+
+        ActualPriceListLine.SetRange("Price List Code", PriceListCode);
+        if ActualPriceListLine.FindSet() then
+            repeat
+                Rec.Copy(ActualPriceListLine);
+                Rec.Insert();
+            until ActualPriceListLine.Next() = 0;
+
+        if Rec.FindFirst() then;
+        CurrPage.Update(false);
     end;
 }

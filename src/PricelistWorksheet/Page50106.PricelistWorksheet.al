@@ -147,9 +147,9 @@ page 50106 "ABAS Price List Worksheet"
         end;
     end;
 
-    trigger OnAfterGetRecord()
+    trigger OnAfterGetCurrRecord()
     begin
-        SyncSubpageState();
+        CurrPage.PriceLines.PAGE.LoadLines(Rec."Price List Code");
     end;
 
     local procedure SyncSubpageState()
