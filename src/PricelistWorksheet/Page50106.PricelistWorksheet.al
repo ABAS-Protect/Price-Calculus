@@ -139,6 +139,20 @@ page 50106 "ABAS Price List Worksheet"
                     CurrPage.Close();
                 end;
             }
+
+            action(OpenCatalogBuilder)
+            {
+                Caption = 'Print Price List';
+                ApplicationArea = All;
+                Image = Report;
+                Promoted = true;
+                PromotedCategory = Process;
+
+                trigger OnAction()
+                begin
+                    Page.Run(Page::"Price List Selection Worksheet");
+                end;
+            }
         }
     }
 

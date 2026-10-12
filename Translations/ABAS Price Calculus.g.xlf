@@ -23,6 +23,36 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Price Calculus Setup Table - Field Rebate Base % - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2254797092 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ABAS Print Price List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Print Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2254797092 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Print Line - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2254797092 - Field 3320823955 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Print Line - Field Line No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2254797092 - Field 1737091078 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price List Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Print Line - Field Price List Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2254797092 - Field 4154341761 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sequence Order</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Print Line - Field Sequence - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2254797092 - Field 2708250016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>User ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Print Line - Field User ID - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2786183315 - Field 126676326 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Mode</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -103,6 +133,41 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action CommitPriceList - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2760247076 - Action 205341522 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Print Price List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action OpenCatalogBuilder - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3440184819 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ABAS Print Pricelist</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3440184819 - Action 4258429956 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fetch Active Price Lists</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Action FetchPriceLists - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3440184819 - Action 3987590790 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Generate PDF Catalog</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Action PrintCatalog - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2063830941 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Selection Lines Subpart - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2063830941 - Action 3069824669 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Move Down</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Selection Lines Subpart - Action MoveDown - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2063830941 - Action 2816622752 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Move Up</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Selection Lines Subpart - Action MoveUp - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1786770511 - Method 316912780 - NamedType 1048221670" size-unit="char" translate="yes" xml:space="preserve">
           <source>Price lines successfully published.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -182,6 +247,11 @@
           <source>About This Utility</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Check SKU BOM References - Control DescriptionGroup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1987354672 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Combined System Price Catalog</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
           <source>Scan lists and count conflicting lines with standard price list.</source>
