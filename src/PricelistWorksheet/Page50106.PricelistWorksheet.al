@@ -76,6 +76,7 @@ page 50106 "ABAS Price List Worksheet"
     {
         area(Processing)
         {
+            // Copy calculated sales prices to price list unit prices (worksheet only).
             action(ApplySalesPrice)
             {
                 Caption = 'Sales Price ➡️ Unit Price';
@@ -91,6 +92,7 @@ page 50106 "ABAS Price List Worksheet"
                     CurrPage.Update(false);
                 end;
             }
+            // Copy calculated net prices to price list unit prices (worksheet only).
             action(ApplyNetPrice)
             {
                 Caption = 'Net Price ➡️ Unit Price';
@@ -106,6 +108,7 @@ page 50106 "ABAS Price List Worksheet"
                     CurrPage.Update(false);
                 end;
             }
+            // Commit price list unit prices (worksheet) to actual price list lines.
             action(CommitPriceList)
             {
                 Caption = 'Publish Updates to Price List';
@@ -147,6 +150,7 @@ page 50106 "ABAS Price List Worksheet"
         end;
     end;
 
+    // Fetch price list lines.
     trigger OnAfterGetCurrRecord()
     begin
         CurrPage.PriceLines.PAGE.LoadLines(Rec."Price List Code");

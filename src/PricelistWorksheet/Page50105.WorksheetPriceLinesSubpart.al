@@ -26,6 +26,7 @@ page 50105 "Worksheet Price Lines Subpart"
                     Caption = 'Item No.';
                     DrillDown = true;
 
+                    // Make Item Card link from Item No.
                     trigger OnDrillDown()
                     var
                         Item: Record Item;
@@ -37,6 +38,7 @@ page 50105 "Worksheet Price Lines Subpart"
                 field(Description; Rec.Description) { ApplicationArea = All; Editable = false; }
                 field("Variant Code"; Rec."Variant Code") { ApplicationArea = All; Editable = false; }
 
+                // Main calculus parameter, triggers changes in sales and net prices on validation.
                 field(ItemMarkup; ItemMarkup)
                 {
                     ApplicationArea = All;
@@ -94,6 +96,7 @@ page 50105 "Worksheet Price Lines Subpart"
     {
         area(Processing)
         {
+            // Copy calculated sales price to price list unit price, row only.
             action(CopyRowSalesPrice)
             {
                 ApplicationArea = All;
@@ -108,6 +111,7 @@ page 50105 "Worksheet Price Lines Subpart"
                 end;
             }
 
+            // Copy calculated net price to price list unit price, row only.
             action(CopyRowNetPrice)
             {
                 ApplicationArea = All;
