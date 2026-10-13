@@ -1,4 +1,4 @@
-report 50125 "Combined Price List Report"
+report 50100 "Combined Price List Report"
 {
     UsageCategory = None;
     DefaultLayout = RDLC;

@@ -1,4 +1,4 @@
-table 50120 "Price List Print Line"
+table 50105 "Price List Print Line"
 {
     Caption = 'ABAS Print Price List';
     DataClassification = ToBeClassified;

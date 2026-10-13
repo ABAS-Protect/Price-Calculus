@@ -12,12 +12,16 @@ permissionset 50100 "ABAS Calculus Admin"
     Permissions =
         tabledata "Price Calculus Setup Table" = RIMD,
         tabledata "Worksheet Header" = RIMD,
+        tabledata "Price List Print Line" = RIMD,
         page "ABAS Price Calculus Setup" = X,
         page "ABAS Price List Worksheet" = X,
         page "Worksheet Price Lines Subpart" = X,
+        page "Price List Selection Worksheet" = X,
+        page "Price Selection Lines Subpart" = X,
         codeunit "Filter Standard Price List" = X,
         codeunit SilenceStdCostDialog = X,
         codeunit HeadlessStdCostRunner = X,
         report BatchUpdateStandardCosts = X,
-        report "Check SKU BOM References" = X;
+        report "Check SKU BOM References" = X,
+        report "Combined Price List Report" = X;
 }

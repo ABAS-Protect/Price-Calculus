@@ -1,4 +1,4 @@
-page 50123 "Price Selection Lines Subpart"
+page 50109 "Price Selection Lines Subpart"
 {
     PageType = ListPart;
     SourceTable = "Price List Print Line";
