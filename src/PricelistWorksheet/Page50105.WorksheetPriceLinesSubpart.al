@@ -261,7 +261,6 @@ page 50105 "Worksheet Price Lines Subpart"
                    Item.Get(PriceListLineLoop."Asset No.") and
                    (Item."COMP Net Price" <> 0) then begin
 
-                    // Save directly to our isolated execution memory map
                     SavePriceToMemory(PriceListLineLoop."Line No.", Item."COMP Net Price");
                 end;
             until PriceListLineLoop.Next() = 0;

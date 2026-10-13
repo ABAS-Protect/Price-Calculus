@@ -183,6 +183,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Action PrintCatalog - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2063830941 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source> Sorting</source>
+          <target>Sortering</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Selection Lines Subpart - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 2063830941 - Action 3069824669 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Move Down</source>
           <target>Flytta ned</target>
@@ -296,6 +302,36 @@
           <target>Kombinerad systempriskatalog</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1987354672 - ReportLabel 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target>Beskrivning</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - ReportLabel DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1987354672 - ReportLabel 3938104762" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item No.</source>
+          <target>Artikelnr</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - ReportLabel ItemNoLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1987354672 - ReportLabel 3790346625" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unit Price</source>
+          <target>A-pris</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - ReportLabel PriceLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1987354672 - ReportLabel 3040577680" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Combined Price Catalog</source>
+          <target>Kombinerad priskatalog</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - ReportLabel ReportTitleLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1987354672 - ReportLabel 3631226591" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Variant</source>
+          <target>Variant</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - ReportLabel VariantLbl</note>
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
           <source>Scan lists and count conflicting lines with standard price list.</source>
