@@ -1,3 +1,9 @@
+/*
+    Author: Niklas Dougherty <nd@abas.se>
+    Date: 2026-10-12
+    Description: Table definitions for price list worksheet.
+*/
+
 table 50105 "Price List Print Line"
 {
     Caption = 'ABAS Print Price List';

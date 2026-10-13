@@ -1,3 +1,9 @@
+/*
+    Author: Niklas Dougherty <nd@abas.se>
+    Date: 2026-10-12
+    Description: Worksheet to select pricelists for inclusion in PDF printout.
+*/
+
 page 50108 "Price List Selection Worksheet"
 {
     PageType = Worksheet;

@@ -1,3 +1,9 @@
+/*
+    Author: Niklas Dougherty <nd@abas.se>
+    Date: 2026-10-12
+    Description: Sorting price lists.
+*/
+
 page 50109 "Price Selection Lines Subpart"
 {
     PageType = ListPart;

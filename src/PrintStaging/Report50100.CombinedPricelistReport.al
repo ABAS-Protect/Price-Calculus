@@ -1,3 +1,9 @@
+/*
+    Author: Niklas Dougherty <nd@abas.se>
+    Date: 2026-10-12
+    Description: PDF printout RDLC data structure.
+*/
+
 report 50100 "Combined Price List Report"
 {
     UsageCategory = None;
