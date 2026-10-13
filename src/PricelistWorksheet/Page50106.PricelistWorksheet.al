@@ -156,8 +156,13 @@ page 50106 "ABAS Price List Worksheet"
         }
     }
 
+    var
+        LastPriceListCode: Code[20];
+
+
     trigger OnOpenPage()
     begin
+        Clear(LastPriceListCode);
         if not Rec.Get() then begin
             Rec.Init();
             Rec.Insert();
@@ -167,6 +172,11 @@ page 50106 "ABAS Price List Worksheet"
     // Fetch price list lines.
     trigger OnAfterGetRecord()
     begin
+        if (Rec."Price List Code" <> LastPriceListCode) then begin
+            CurrPage.PriceLines.PAGE.ClearStagedPrices();
+            LastPriceListCode := Rec."Price List Code";
+        end;
+
         SyncSubpageState();
     end;
 

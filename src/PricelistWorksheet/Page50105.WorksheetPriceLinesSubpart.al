@@ -56,6 +56,8 @@ page 50105 "Worksheet Price Lines Subpart"
                             ItemSalesPrice := Item."COMP Sales Price";
                             ItemNetPrice := Item."COMP Net Price";
                             CalculateDifferences();
+
+                            CurrPage.Update(false);
                         end;
                     end;
                 }
@@ -73,6 +75,8 @@ page 50105 "Worksheet Price Lines Subpart"
                         if IsItemAsset and Item.Get(Rec."Asset No.") then begin
                             Item."COMP Comment" := ItemComment;
                             Item.Modify(true);
+
+                            CurrPage.Update(false);
                         end;
                     end;
                 }
@@ -279,6 +283,12 @@ page 50105 "Worksheet Price Lines Subpart"
         LineNo: Integer;
         StagedPrice: Decimal;
     begin
+        CurrPage.Update(true);
+
+        if PriceListCode = '' then
+            exit;
+
+
         foreach LineNo in StagedPricesMap.Keys() do begin
             StagedPricesMap.Get(LineNo, StagedPrice);
             if StagedPrice <> 0 then begin
@@ -296,6 +306,9 @@ page 50105 "Worksheet Price Lines Subpart"
                 end;
             end;
         end;
+
+        Clear(StagedPricesMap);
+        Clear(WorkingUnitPrice);
 
         if PriceListHeader.Get(PriceListCode) then begin
             OriginalStatus := PriceListHeader.Status;
@@ -349,6 +362,9 @@ page 50105 "Worksheet Price Lines Subpart"
             end;
 
             Message(PublishMessage, PriceListCode);
+
+            Clear(StagedPricesMap);
+            Clear(WorkingUnitPrice);
             CurrPage.Update(false);
         end;
     end;
@@ -365,5 +381,12 @@ page 50105 "Worksheet Price Lines Subpart"
     local procedure TryGetPriceFromMemory(LineNo: Integer; var Price: Decimal): Boolean
     begin
         exit(StagedPricesMap.Get(LineNo, Price));
+    end;
+
+    procedure ClearStagedPrices()
+    begin
+        Clear(StagedPricesMap);
+        Clear(WorkingUnitPrice);
+        CurrPage.Update(false);
     end;
 }

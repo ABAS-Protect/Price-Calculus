@@ -153,11 +153,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Action PrintCatalog - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 2063830941 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source></source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Price Selection Lines Subpart - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 2063830941 - Action 3069824669 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Move Down</source>
           <note from="Developer" annotates="general" priority="2"></note>

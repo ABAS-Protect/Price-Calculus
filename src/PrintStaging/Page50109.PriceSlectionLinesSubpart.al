@@ -3,7 +3,7 @@ page 50109 "Price Selection Lines Subpart"
     PageType = ListPart;
     SourceTable = "Price List Print Line";
     SourceTableView = sorting("User ID", "Sequence");
-    Caption = '';
+    Caption = ' ', Locked = true;
 
     layout
     {
