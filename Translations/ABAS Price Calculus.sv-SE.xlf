@@ -166,8 +166,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action OpenCatalogBuilder - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3440184819 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>ABAS Print Pricelist</source>
-          <target>ABAS skriv ut prislista</target>
+          <source>ABAS Print Price List</source>
+          <target>ABAS Skriv ut prislista</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Property Caption</note>
         </trans-unit>
@@ -303,33 +303,45 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 1987354672 - ReportLabel 3425271162" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description 2</source>
+          <target>Benämning 2</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - ReportLabel Description2Lbl</note>
+        </trans-unit>
         <trans-unit id="Report 1987354672 - ReportLabel 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Description</source>
-          <target>Beskrivning</target>
+          <target>Benämning</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - ReportLabel DescriptionLbl</note>
         </trans-unit>
         <trans-unit id="Report 1987354672 - ReportLabel 3938104762" size-unit="char" translate="yes" xml:space="preserve">
           <source>Item No.</source>
-          <target>Artikelnr</target>
+          <target>Artikel</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - ReportLabel ItemNoLbl</note>
         </trans-unit>
         <trans-unit id="Report 1987354672 - ReportLabel 3790346625" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Unit Price</source>
-          <target>A-pris</target>
+          <source>Price</source>
+          <target>Pris</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - ReportLabel PriceLbl</note>
         </trans-unit>
         <trans-unit id="Report 1987354672 - ReportLabel 3040577680" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Combined Price Catalog</source>
-          <target>Kombinerad priskatalog</target>
+          <source>ABAS Price List</source>
+          <target>ABAS Prislista</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - ReportLabel ReportTitleLbl</note>
         </trans-unit>
+        <trans-unit id="Report 1987354672 - ReportLabel 3379024013" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unit</source>
+          <target>Enhet</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - ReportLabel UnitCode</note>
+        </trans-unit>
         <trans-unit id="Report 1987354672 - ReportLabel 3631226591" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Variant</source>
-          <target>Variant</target>
+          <source>Code</source>
+          <target>Kod</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - ReportLabel VariantLbl</note>
         </trans-unit>

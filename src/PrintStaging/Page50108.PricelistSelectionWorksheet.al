@@ -11,7 +11,7 @@ page 50108 "Price List Selection Worksheet"
     SourceTableView = sorting("User ID", "Sequence");
     UsageCategory = Tasks;
     ApplicationArea = All;
-    Caption = 'ABAS Print Pricelist';
+    Caption = 'ABAS Print Price List';
 
     layout
     {

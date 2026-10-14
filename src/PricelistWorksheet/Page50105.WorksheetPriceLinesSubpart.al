@@ -287,7 +287,6 @@ page 50105 "Worksheet Price Lines Subpart"
         if PriceListCode = '' then
             exit;
 
-
         foreach LineNo in StagedPricesMap.Keys() do begin
             StagedPricesMap.Get(LineNo, StagedPrice);
             if StagedPrice <> 0 then begin
