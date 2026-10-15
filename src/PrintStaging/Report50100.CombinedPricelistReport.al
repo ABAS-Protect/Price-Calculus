@@ -16,7 +16,7 @@ report 50100 "Combined Price List Report"
     {
         dataitem(SelectionLine; "Price List Print Line")
         {
-            DataItemTableView = sorting("User ID", "Sequence");
+            DataItemTableView = sorting("Worksheet Code", "Sequence");
             column(PriceListCode; "Price List Code") { }
             column(PriceListDescription; Description) { }
             column(SelectionLine_Sequence; "Sequence") { }

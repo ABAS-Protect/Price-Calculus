@@ -8,7 +8,7 @@ page 50109 "Price Selection Lines Subpart"
 {
     PageType = ListPart;
     SourceTable = "Price List Print Line";
-    SourceTableView = sorting("User ID", "Sequence");
+    SourceTableView = sorting("Worksheet Code", "Sequence");
     Caption = ' Sorting';
 
     layout
@@ -49,9 +49,9 @@ page 50109 "Price Selection Lines Subpart"
                     PreviousLine: Record "Price List Print Line";
                     CurrentSequence: Integer;
                 begin
-                    PreviousLine.SetRange("User ID", Rec."User ID");
+                    PreviousLine.SetRange("Worksheet Code", Rec."Worksheet Code");
                     PreviousLine.SetFilter("Sequence", '<%1', Rec."Sequence");
-                    PreviousLine.SetCurrentKey("User ID", "Sequence");
+                    PreviousLine.SetCurrentKey("Worksheet Code", "Sequence");
 
                     if PreviousLine.FindLast() then begin
                         CurrentSequence := Rec."Sequence";
@@ -76,9 +76,9 @@ page 50109 "Price Selection Lines Subpart"
                     NextLine: Record "Price List Print Line";
                     CurrentSequence: Integer;
                 begin
-                    NextLine.SetRange("User ID", Rec."User ID");
+                    NextLine.SetRange("Worksheet Code", Rec."Worksheet Code");
                     NextLine.SetFilter("Sequence", '>%1', Rec."Sequence");
-                    NextLine.SetCurrentKey("User ID", "Sequence");
+                    NextLine.SetCurrentKey("Worksheet Code", "Sequence");
 
                     if NextLine.FindFirst() then begin
                         CurrentSequence := Rec."Sequence";
@@ -92,10 +92,4 @@ page 50109 "Price Selection Lines Subpart"
             }
         }
     }
-
-    procedure TriggerPopulate()
-    begin
-        Rec.PopulatePriceLists(UserId());
-        CurrPage.Update(false);
-    end;
 }

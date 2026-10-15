@@ -11,7 +11,7 @@ table 50105 "Price List Print Line"
 
     fields
     {
-        field(1; "User ID"; Code[50]) { Caption = 'User ID'; DataClassification = SystemMetadata; }
+        field(1; "Worksheet Code"; Code[10]) { Caption = 'Worksheet Code'; DataClassification = SystemMetadata; }
         field(2; "Line No."; Integer) { Caption = 'Line No.'; }
         field(3; "Price List Code"; Code[20])
         {
@@ -32,11 +32,11 @@ table 50105 "Price List Print Line"
 
     keys
     {
-        key(PK; "User ID", "Line No.") { Clustered = true; }
-        key(SortKey; "User ID", "Sequence") { }
+        key(PK; "Worksheet Code", "Line No.") { Clustered = true; }
+        key(SortKey; "Worksheet Code", "Sequence") { }
     }
 
-    procedure PopulatePriceLists(CurrentUserId: Code[20])
+    procedure PopulatePriceLists()
     var
         PriceListHeader: Record "Price List Header";
         PrintLine: Record "Price List Print Line";
@@ -44,7 +44,7 @@ table 50105 "Price List Print Line"
         NextLineNo: Integer;
         NextSequence: Integer;
     begin
-        PrintLine.SetRange("User ID", CurrentUserId);
+        PrintLine.SetRange("Worksheet Code", 'GLOBAL');
         if not PrintLine.IsEmpty() then
             PrintLine.DeleteAll(false);
 
@@ -63,7 +63,7 @@ table 50105 "Price List Print Line"
 
             repeat
                 PrintLine.Init();
-                PrintLine."User ID" := CurrentUserId;
+                PrintLine."Worksheet Code" := 'GLOBAL';
                 PrintLine."Line No." := NextLineNo;
                 PrintLine."Price List Code" := PriceListHeader.Code;
                 PrintLine.Description := PriceListHeader.Description;

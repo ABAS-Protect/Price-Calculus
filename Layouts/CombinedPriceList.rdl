@@ -522,7 +522,6 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <rd:Selected>true</rd:Selected>
                         <Textbox Name="Textbox33">
                           <rd:DefaultName>Textbox33</rd:DefaultName>
                           <CanGrow>true</CanGrow>
@@ -712,8 +711,8 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.44384cm</Top>
-              <Left>24.05903cm</Left>
+              <Top>0.40856cm</Top>
+              <Left>24.47764cm</Left>
               <Height>0.61736cm</Height>
               <Width>2.52236cm</Width>
               <ZIndex>1</ZIndex>
@@ -732,7 +731,6 @@
               <Value>ABAS_logo_trygginramningmedomtanke</Value>
               <Sizing>FitProportional</Sizing>
               <Top>0.44384cm</Top>
-              <Left>0.37606cm</Left>
               <Height>0.61736cm</Height>
               <Width>2.69055cm</Width>
               <ZIndex>2</ZIndex>

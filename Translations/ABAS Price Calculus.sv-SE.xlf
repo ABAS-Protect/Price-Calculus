@@ -57,11 +57,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Price List Print Line - Field Sequence - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 2254797092 - Field 2708250016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>User ID</source>
-          <target>Användar-ID</target>
+        <trans-unit id="Table 2254797092 - Field 1558222909 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Worksheet Code</source>
+          <target>Arbetsbladskod</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Print Line - Field User ID - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Print Line - Field Worksheet Code - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2786183315 - Field 126676326 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Mode</source>
@@ -159,6 +159,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action CommitPriceList - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2760247076 - Action 3355619282 - Method 1377591017 - NamedType 347117348" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Publish non-zero lines to the Price List?</source>
+          <target>Publicera nollskilda rader till prislista?</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action CommitPriceList - Method OnAction - NamedType PublishMsg</note>
+        </trans-unit>
         <trans-unit id="Page 2760247076 - Action 205341522 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Print Price List</source>
           <target>Skriv ut prislista</target>
@@ -170,12 +176,6 @@
           <target>ABAS Skriv ut prislista</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3440184819 - Action 4258429956 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fetch Active Price Lists</source>
-          <target>Hämta aktiva prislistor</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Action FetchPriceLists - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3440184819 - Action 3987590790 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Generate PDF Catalog</source>

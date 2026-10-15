@@ -8,7 +8,7 @@ page 50108 "Price List Selection Worksheet"
 {
     PageType = Worksheet;
     SourceTable = "Price List Print Line";
-    SourceTableView = sorting("User ID", "Sequence");
+    SourceTableView = sorting("Worksheet Code", "Sequence");
     UsageCategory = Tasks;
     ApplicationArea = All;
     Caption = 'ABAS Print Price List';
@@ -20,6 +20,7 @@ page 50108 "Price List Selection Worksheet"
             part(CatalogLines; "Price Selection Lines Subpart")
             {
                 ApplicationArea = All;
+                SubPageLink = "Worksheet Code" = field("Worksheet Code");
             }
         }
     }
@@ -28,21 +29,6 @@ page 50108 "Price List Selection Worksheet"
     {
         area(Processing)
         {
-            action(FetchPriceLists)
-            {
-                Caption = 'Fetch Active Price Lists';
-                Image = RefreshLines;
-                ApplicationArea = All;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedOnly = true;
-
-                trigger OnAction()
-                begin
-                    CurrPage.CatalogLines.PAGE.TriggerPopulate();
-                end;
-            }
-
             action(PrintCatalog)
             {
                 Caption = 'Generate PDF Catalog';
@@ -57,7 +43,7 @@ page 50108 "Price List Selection Worksheet"
                     PrintSelection: Record "Price List Print Line";
                 begin
                     PrintSelection.Reset();
-                    PrintSelection.SetRange("User ID", UserId());
+                    PrintSelection.SetRange("Worksheet Code", 'GLOBAL');
 
                     if not PrintSelection.IsEmpty() then
                         Report.Run(Report::"Combined Price List Report", true, false, PrintSelection)
@@ -67,4 +53,20 @@ page 50108 "Price List Selection Worksheet"
             }
         }
     }
+    trigger OnOpenPage()
+    var
+        SetupCheck: Record "Price List Print Line";
+    begin
+        begin
+            Rec.FilterGroup(2);
+            Rec.SetRange("Worksheet Code", 'GLOBAL');
+            Rec.FilterGroup(0);
+        end;
+
+        SetupCheck.SetRange("Worksheet Code", 'GLOBAL');
+        if SetupCheck.IsEmpty() then begin
+            Rec.PopulatePriceLists();
+            CurrPage.Update(false);
+        end;
+    end;
 }

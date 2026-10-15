@@ -118,28 +118,16 @@ page 50106 "ABAS Price List Worksheet"
                 PromotedCategory = Process;
 
                 trigger OnAction()
+                var
+                    PublishMsg: Label 'Publish non-zero lines to the Price List?';
                 begin
                     Rec.TestField("Price List Code");
-                    if Confirm('Publish non-zero lines to the Price List?', false) then begin
+                    if Confirm(PublishMsg, false) then begin
                         CurrPage.PriceLines.PAGE.UpdateActualPriceList(Rec."Price List Code");
                         CurrPage.Update(false);
                     end;
                 end;
             }
-            action(CloseWorksheet)
-            {
-                Caption = 'Close';
-                ApplicationArea = All;
-                Image = Close;
-                Promoted = true;
-                PromotedCategory = Process;
-
-                trigger OnAction()
-                begin
-                    CurrPage.Close();
-                end;
-            }
-
             action(OpenCatalogBuilder)
             {
                 Caption = 'Print Price List';
