@@ -6,9 +6,10 @@
 
 report 50100 "Combined Price List Report"
 {
-    UsageCategory = None;
+    UsageCategory = ReportsAndAnalysis;
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/CombinedPriceList.rdl';
+    EnableHyperlinks = true;
     Caption = 'Combined System Price Catalog';
 
     dataset
