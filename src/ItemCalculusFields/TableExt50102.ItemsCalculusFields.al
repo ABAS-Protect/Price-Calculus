@@ -74,6 +74,8 @@ tableextension 50102 ItemsCalculusFields extends Item
 
         Rebate_Markup: Decimal;
         Markup: Decimal;
+        RawNetPrice: Decimal;
+        RawSalesPrice: Decimal;
     begin
         if Const.Get() then begin
             PRODUCTION_MARKUP := Const."Production Markup %" / 100;
@@ -114,11 +116,28 @@ tableextension 50102 ItemsCalculusFields extends Item
             else
                 Rebate_Markup := 100;
 
-            Rec."COMP Sales Price" := BaseCost * (1 + (Rec."COMP Markup" / 100) + Markup) * Rebate_Markup;
-            Rec."COMP Net Price" := Rec."COMP Sales Price" / Rebate_Markup;
+            RawNetPrice := BaseCost * (1 + (Rec."COMP Markup" / 100) + Markup);
+            RawSalesPrice := RawNetPrice * Rebate_Markup;
+
+            Rec."COMP Sales Price" := RoundCalculatedPrice(RawSalesPrice);
+            Rec."COMP Net Price" := RoundCalculatedPrice(RawNetPrice);
         end else begin
             Rec."COMP Sales Price" := 0;
             Rec."COMP Net Price" := 0;
         end;
+    end;
+
+    local procedure RoundCalculatedPrice(InputPrice: Decimal): Decimal
+    begin
+        if InputPrice = 0 then
+            exit(0);
+
+        if InputPrice < 10 then
+            exit(Round(InputPrice, 0.01, '>'));
+
+        if InputPrice < 100 then
+            exit(Round(InputPrice, 0.50, '>'));
+
+        exit(Round(InputPrice, 1.00, '>'));
     end;
 }
