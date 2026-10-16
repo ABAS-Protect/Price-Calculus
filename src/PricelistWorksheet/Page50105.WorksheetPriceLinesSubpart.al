@@ -61,8 +61,20 @@ page 50105 "Worksheet Price Lines Subpart"
                         end;
                     end;
                 }
-                field(ItemSalesPrice; ItemSalesPrice) { ApplicationArea = All; Caption = 'Sales Price (Calc.)'; Editable = false; }
-                field(ItemNetPrice; ItemNetPrice) { ApplicationArea = All; Caption = 'Net Price (Calc.)'; Editable = false; }
+                field(ItemSalesPrice; ItemSalesPrice)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Sales Price (Calc.)';
+                    Editable = false;
+                    Visible = SalesPriceVisible;
+                }
+                field(ItemNetPrice; ItemNetPrice)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Net Price (Calc.)';
+                    Editable = false;
+                    Visible = NetPriceVisible;
+                }
                 field(ItemComment; ItemComment)
                 {
                     ApplicationArea = All;
@@ -90,6 +102,7 @@ page 50105 "Worksheet Price Lines Subpart"
                     begin
                         SavePriceToMemory(Rec."Line No.", WorkingUnitPrice);
                         CalculateDifferences();
+                        CurrPage.Update(false);
                     end;
                 }
                 field("Unit Price"; Rec."Unit Price")
@@ -115,12 +128,14 @@ page 50105 "Worksheet Price Lines Subpart"
                 Caption = 'Sales Price ➡️ Unit Price';
                 Image = CopyFromTask;
                 Scope = Repeater;
+                Visible = SalesPriceVisible;
 
                 trigger OnAction()
                 begin
                     if ItemSalesPrice <> 0 then begin
                         WorkingUnitPrice := ItemSalesPrice;
                         SavePriceToMemory(Rec."Line No.", WorkingUnitPrice);
+                        CalculateDifferences();
                     end;
                 end;
             }
@@ -132,12 +147,14 @@ page 50105 "Worksheet Price Lines Subpart"
                 Caption = 'Net Price ➡️ Unit Price';
                 Image = CopyFromTask;
                 Scope = Repeater;
+                Visible = NetPriceVisible;
 
                 trigger OnAction()
                 begin
                     if ItemNetPrice <> 0 then begin
                         WorkingUnitPrice := ItemNetPrice;
                         SavePriceToMemory(Rec."Line No.", WorkingUnitPrice);
+                        CalculateDifferences();
                     end;
                 end;
             }
@@ -155,6 +172,8 @@ page 50105 "Worksheet Price Lines Subpart"
         DifferenceStyle: Text;
         CurrentBaseline: Option "Sales Price","Net Price";
         WorkingUnitPrice: Decimal;
+        SalesPriceVisible: Boolean;
+        NetPriceVisible: Boolean;
         StagedPricesMap: Dictionary of [Integer, Decimal];
 
     trigger OnAfterGetRecord()
@@ -165,6 +184,8 @@ page 50105 "Worksheet Price Lines Subpart"
 
         if not TryGetPriceFromMemory(Rec."Line No.", WorkingUnitPrice) then
             WorkingUnitPrice := Rec."Unit Price";
+
+        EvaluateLayoutVisibility();
 
         if (Rec."Price List Code" = '') or (Rec."Asset No." = '') then
             exit;
@@ -190,12 +211,27 @@ page 50105 "Worksheet Price Lines Subpart"
         DifferenceStyle := 'None';
     end;
 
+    local procedure EvaluateLayoutVisibility()
+    var
+        PriceListHeader: Record "Price List Header";
+    begin
+        SalesPriceVisible := false;
+        NetPriceVisible := false;
+
+        if Rec."Price List Code" <> '' then begin
+            if PriceListHeader.Get(Rec."Price List Code") then begin
+                SalesPriceVisible := PriceListHeader."Amount Type" = PriceListHeader."Amount Type"::Price;
+                NetPriceVisible := PriceListHeader."Amount Type" = PriceListHeader."Amount Type"::Any;
+            end;
+        end;
+    end;
+
     // Calculate difference between calculated and actual price, using sales or net price.
     local procedure CalculateDifferences()
     var
         TargetBaselinePrice: Decimal;
     begin
-        if CurrentBaseline = CurrentBaseline::"Net Price" then
+        if NetPriceVisible then
             TargetBaselinePrice := ItemNetPrice
         else
             TargetBaselinePrice := ItemSalesPrice;
@@ -282,14 +318,16 @@ page 50105 "Worksheet Price Lines Subpart"
         LineNo: Integer;
         StagedPrice: Decimal;
     begin
-        CurrPage.Update(true);
-
         if PriceListCode = '' then
             exit;
+
+        ActualPriceListLine.LockTable();
 
         foreach LineNo in StagedPricesMap.Keys() do begin
             StagedPricesMap.Get(LineNo, StagedPrice);
             if StagedPrice <> 0 then begin
+                ActualPriceListLine.SetRange("Price List Code", PriceListCode);
+                ActualPriceListLine.SetRange("Line No.", LineNo);
                 if ActualPriceListLine.Get(PriceListCode, LineNo) then begin
                     ActualPriceListLine.Validate("Unit Price", StagedPrice);
                     ActualPriceListLine.Modify(true);
@@ -313,8 +351,8 @@ page 50105 "Worksheet Price Lines Subpart"
 
             // Set Pricelist to Draft if necessary.
             if PriceListHeader.Status = PriceListHeader.Status::Active then begin
-                PriceListHeader.Status := PriceListHeader.Status::Draft;
-                PriceListHeader.Modify(false);
+                PriceListHeader.Validate(Status, PriceListHeader.Status::Draft);
+                PriceListHeader.Modify(true);
             end;
 
             // Remove blanks.
@@ -344,10 +382,16 @@ page 50105 "Worksheet Price Lines Subpart"
             // Reactivate lines.
             PriceListManagement.ActivateDraftLines(PriceListHeader, true);
 
+            PriceListLine.Reset();
+            PriceListLine.SetRange("Price List Code", PriceListCode);
+            PriceListLine.SetRange(Status, PriceListLine.Status::Draft);
+            if not PriceListLine.IsEmpty() then
+                PriceListManagement.VerifyLines(PriceListLine);
+
             // Reactivate price list.
             if OriginalStatus = OriginalStatus::Active then begin
-                PriceListHeader.Status := PriceListHeader.Status::Active;
-                PriceListHeader.Modify(false);
+                PriceListHeader.Validate(Status, PriceListHeader.Status::Active);
+                PriceListHeader.Modify(true);
 
                 PriceListLine.Reset();
                 PriceListLine.SetRange("Price List Code", PriceListCode);
@@ -355,8 +399,10 @@ page 50105 "Worksheet Price Lines Subpart"
                 if not PriceListLine.IsEmpty() then
                     PriceListLine.ModifyAll(Status, PriceListLine.Status::Active, false);
             end else begin
-                PriceListHeader.Status := OriginalStatus;
-                PriceListHeader.Modify(false);
+                if PriceListHeader.Status <> OriginalStatus then begin
+                    PriceListHeader.Validate(Status, OriginalStatus);
+                    PriceListHeader.Modify(true);
+                end;
             end;
 
             Message(PublishMessage, PriceListCode);
@@ -368,17 +414,21 @@ page 50105 "Worksheet Price Lines Subpart"
     end;
 
 
-    local procedure SavePriceToMemory(LineNo: Integer; Price: Decimal)
+    local procedure SavePriceToMemory(LineNo: Integer; NewUnitPrice: Decimal)
     begin
         if StagedPricesMap.ContainsKey(LineNo) then
-            StagedPricesMap.Set(LineNo, Price)
+            StagedPricesMap.Set(LineNo, NewUnitPrice)
         else
-            StagedPricesMap.Add(LineNo, Price);
+            StagedPricesMap.Add(LineNo, NewUnitPrice);
     end;
 
-    local procedure TryGetPriceFromMemory(LineNo: Integer; var Price: Decimal): Boolean
+    local procedure TryGetPriceFromMemory(LineNo: Integer; var StagedUnitPrice: Decimal): Boolean
     begin
-        exit(StagedPricesMap.Get(LineNo, Price));
+        if StagedPricesMap.ContainsKey(LineNo) then begin
+            StagedUnitPrice := StagedPricesMap.Get(LineNo);
+            exit(true);
+        end;
+        exit(false);
     end;
 
     procedure ClearStagedPrices()

@@ -38,29 +38,19 @@ page 50106 "ABAS Price List Worksheet"
                         if Page.RunModal(Page::"Sales Price Lists", PriceListHeader) = Action::LookupOK then begin
                             Rec.Validate("Price List Code", PriceListHeader.Code);
                             Rec.Modify();
-                            SyncSubpageState();
+                            EvaluateActionVisibility();
                         end;
                     end;
 
                     trigger OnValidate()
                     begin
                         Rec.Modify();
-                        SyncSubpageState();
+                        EvaluateActionVisibility();
                     end;
                 }
                 field("Price List Description"; Rec."Price List Description")
                 {
                     ApplicationArea = All;
-                }
-                field("Comparison Baseline"; Rec."Comparison Baseline")
-                {
-                    ApplicationArea = All;
-
-                    trigger OnValidate()
-                    begin
-                        Rec.Modify();
-                        SyncSubpageState();
-                    end;
                 }
             }
 
@@ -84,6 +74,7 @@ page 50106 "ABAS Price List Worksheet"
                 Image = CopyDimensions;
                 Promoted = true;
                 PromotedCategory = Process;
+                Visible = SalesPriceVisible;
 
                 trigger OnAction()
                 begin
@@ -100,6 +91,7 @@ page 50106 "ABAS Price List Worksheet"
                 Image = CopyDimensions;
                 Promoted = true;
                 PromotedCategory = Process;
+                Visible = NetPriceVisible;
 
                 trigger OnAction()
                 begin
@@ -146,7 +138,8 @@ page 50106 "ABAS Price List Worksheet"
 
     var
         LastPriceListCode: Code[20];
-
+        SalesPriceVisible: Boolean;
+        NetPriceVisible: Boolean;
 
     trigger OnOpenPage()
     begin
@@ -165,11 +158,22 @@ page 50106 "ABAS Price List Worksheet"
             LastPriceListCode := Rec."Price List Code";
         end;
 
-        SyncSubpageState();
+        EvaluateActionVisibility();
     end;
 
-    local procedure SyncSubpageState()
+    local procedure EvaluateActionVisibility()
+    var
+        PriceListHeader: Record "Price List Header";
     begin
-        CurrPage.PriceLines.PAGE.SetComparisonBaseline(Rec."Comparison Baseline");
+        // Reset visibility variables by default
+        SalesPriceVisible := false;
+        NetPriceVisible := false;
+
+        if Rec."Price List Code" <> '' then begin
+            if PriceListHeader.Get(Rec."Price List Code") then begin
+                SalesPriceVisible := PriceListHeader."Amount Type" = PriceListHeader."Amount Type"::Price;
+                NetPriceVisible := PriceListHeader."Amount Type" = PriceListHeader."Amount Type"::Any;
+            end;
+        end;
     end;
 }
