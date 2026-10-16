@@ -37,6 +37,21 @@ page 50105 "Worksheet Price Lines Subpart"
                 }
                 field(Description; Rec.Description) { ApplicationArea = All; Editable = false; }
                 field("Variant Code"; Rec."Variant Code") { ApplicationArea = All; Editable = false; }
+                field(ItemReplenishmentSystem; ItemReplenishmentSystem)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Replenishment System';
+                    Editable = false;
+                    StyleExpr = CostStyle;
+                }
+
+                field(ItemCost; ItemCost)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Cost';
+                    Editable = false;
+                    StyleExpr = CostStyle;
+                }
 
                 // Main calculus parameter, triggers changes in sales and net prices on validation.
                 field(ItemMarkup; ItemMarkup)
@@ -175,6 +190,9 @@ page 50105 "Worksheet Price Lines Subpart"
         SalesPriceVisible: Boolean;
         NetPriceVisible: Boolean;
         StagedPricesMap: Dictionary of [Integer, Decimal];
+        ItemCost: Decimal;
+        ItemReplenishmentSystem: Enum "Replenishment System";
+        CostStyle: Text;
 
     trigger OnAfterGetRecord()
     var
@@ -196,6 +214,22 @@ page 50105 "Worksheet Price Lines Subpart"
             ItemSalesPrice := Item."COMP Sales Price";
             ItemNetPrice := Item."COMP Net Price";
             ItemComment := Item."COMP Comment";
+
+            ItemReplenishmentSystem := Item."Replenishment System";
+            case Item."Replenishment System" of
+                Item."Replenishment System"::Purchase:
+                    ItemCost := Item."Unit Cost";
+                Item."Replenishment System"::"Prod. Order", Item."Replenishment System"::Assembly:
+                    ItemCost := Item."Standard Cost";
+                else
+                    ItemCost := 0;
+            end;
+
+            if (ItemCost = 0) or (ItemReplenishmentSystem = ItemReplenishmentSystem::" ") then
+                CostStyle := 'Unfavorable'
+            else
+                CostStyle := 'None';
+
             CalculateDifferences();
         end;
     end;
@@ -209,6 +243,9 @@ page 50105 "Worksheet Price Lines Subpart"
         PriceDifferencePct := 0;
         IsItemAsset := false;
         DifferenceStyle := 'None';
+        ItemCost := 0;
+        Clear(ItemReplenishmentSystem);
+        CostStyle := 'None';
     end;
 
     local procedure EvaluateLayoutVisibility()
@@ -351,7 +388,7 @@ page 50105 "Worksheet Price Lines Subpart"
 
             // Set Pricelist to Draft if necessary.
             if PriceListHeader.Status = PriceListHeader.Status::Active then begin
-                PriceListHeader.Validate(Status, PriceListHeader.Status::Draft);
+                PriceListHeader.Status := PriceListHeader.Status::Draft;
                 PriceListHeader.Modify(true);
             end;
 
@@ -380,27 +417,22 @@ page 50105 "Worksheet Price Lines Subpart"
             end;
 
             // Reactivate lines.
+            PriceListHeader.Get(PriceListCode);
             PriceListManagement.ActivateDraftLines(PriceListHeader, true);
 
-            PriceListLine.Reset();
-            PriceListLine.SetRange("Price List Code", PriceListCode);
-            PriceListLine.SetRange(Status, PriceListLine.Status::Draft);
-            if not PriceListLine.IsEmpty() then
-                PriceListManagement.VerifyLines(PriceListLine);
-
-            // Reactivate price list.
             if OriginalStatus = OriginalStatus::Active then begin
-                PriceListHeader.Validate(Status, PriceListHeader.Status::Active);
-                PriceListHeader.Modify(true);
+                PriceListHeader.Get(PriceListCode);
+                PriceListHeader.Status := PriceListHeader.Status::Active;
+                PriceListHeader.Modify(true); // Call true here to re-verify the full list layout seamlessly
 
                 PriceListLine.Reset();
                 PriceListLine.SetRange("Price List Code", PriceListCode);
                 PriceListLine.SetRange(Status, PriceListLine.Status::Draft);
                 if not PriceListLine.IsEmpty() then
-                    PriceListLine.ModifyAll(Status, PriceListLine.Status::Active, false);
+                    PriceListLine.ModifyAll(Status, PriceListLine.Status::Active, true);
             end else begin
                 if PriceListHeader.Status <> OriginalStatus then begin
-                    PriceListHeader.Validate(Status, OriginalStatus);
+                    PriceListHeader.Status := OriginalStatus;
                     PriceListHeader.Modify(true);
                 end;
             end;

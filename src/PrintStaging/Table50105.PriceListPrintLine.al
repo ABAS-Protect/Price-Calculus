@@ -7,11 +7,11 @@
 table 50105 "Price List Print Line"
 {
     Caption = 'ABAS Print Price List';
-    DataClassification = ToBeClassified;
+    DataClassification = CustomerContent;
 
     fields
     {
-        field(1; "Worksheet Code"; Code[10]) { Caption = 'Worksheet Code'; DataClassification = SystemMetadata; }
+        field(1; "Worksheet Code"; Code[10]) { Caption = 'Worksheet Code'; }
         field(2; "Line No."; Integer) { Caption = 'Line No.'; }
         field(3; "Price List Code"; Code[20])
         {

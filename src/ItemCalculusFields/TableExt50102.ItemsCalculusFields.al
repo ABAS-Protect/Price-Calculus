@@ -18,12 +18,14 @@ tableextension 50102 ItemsCalculusFields extends Item
                 Rec.CalculateSalesPrice();
             end;
         }
+
         field(50105; "COMP Sales Price"; Decimal)
         {
             Caption = 'Sales Price (Calc.)';
             DataClassification = CustomerContent;
             Editable = false;
         }
+
         field(50106; "COMP Net Price"; Decimal)
         {
             Caption = 'Net Price (Calc.)';
@@ -80,9 +82,9 @@ tableextension 50102 ItemsCalculusFields extends Item
         end else begin
             PRODUCTION_MARKUP := 0.05;
             PURCHASE_MARKUP := 0.00;
-            REBATE_MARKUP := 0.52;
+            REBATE_BASE := 0.52;
         end;
-        ;
+
         if Rec."COMP Markup" = 0 then begin
             Rec."COMP Sales Price" := 0;
             Rec."COMP Net Price" := 0;
@@ -107,10 +109,13 @@ tableextension 50102 ItemsCalculusFields extends Item
         end;
 
         if BaseCost > 0 then begin
-            Rebate_Markup := 1 / (1 - REBATE_BASE);
+            if REBATE_BASE <> 1 then
+                Rebate_Markup := 1 / (1 - REBATE_BASE)
+            else
+                Rebate_Markup := 100;
 
             Rec."COMP Sales Price" := BaseCost * (1 + (Rec."COMP Markup" / 100) + Markup) * Rebate_Markup;
-            Rec."COMP Net Price" := (1 - REBATE_BASE) * Rec."COMP Sales Price";
+            Rec."COMP Net Price" := Rec."COMP Sales Price" / Rebate_Markup;
         end else begin
             Rec."COMP Sales Price" := 0;
             Rec."COMP Net Price" := 0;

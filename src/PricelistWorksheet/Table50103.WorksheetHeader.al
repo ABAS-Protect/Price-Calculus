@@ -6,7 +6,7 @@
 
 table 50103 "Worksheet Header"
 {
-    DataClassification = ToBeClassified;
+    DataClassification = CustomerContent;
     InherentPermissions = R;
 
     fields

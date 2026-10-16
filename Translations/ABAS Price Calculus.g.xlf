@@ -3,6 +3,21 @@
   <file datatype="xml" source-language="en-US" target-language="en-US" original="ABAS Price Calculus">
     <body>
       <group id="body">
+        <trans-unit id="Table 460930530 - NamedType 546599934" size-unit="char" translate="yes" xml:space="preserve">
+          <source>must be non-negative</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price Calculus Setup Table - NamedType ProductionMarkupErrorMsg</note>
+        </trans-unit>
+        <trans-unit id="Table 460930530 - NamedType 59097238" size-unit="char" translate="yes" xml:space="preserve">
+          <source>must be non-negative</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price Calculus Setup Table - NamedType PurchaseMarkupErrorMsg</note>
+        </trans-unit>
+        <trans-unit id="Table 460930530 - NamedType 1358778704" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rebate Base Percentage must be between 0 and 99.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price Calculus Setup Table - NamedType RebateErrorMsg</note>
+        </trans-unit>
         <trans-unit id="Table 460930530 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Primary Key</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -178,6 +193,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemComment - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 2180019962 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cost</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemCost - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1786770511 - Control 64142375 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overhead Markup %</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -187,6 +207,11 @@
           <source>Net Price (Calc.)</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemNetPrice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 15740660 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Replenishment System</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemReplenishmentSystem - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Control 1725357500 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Price (Calc.)</source>

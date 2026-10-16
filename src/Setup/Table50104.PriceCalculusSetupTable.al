@@ -7,35 +7,46 @@
 table 50104 "Price Calculus Setup Table"
 {
     DataClassification = CustomerContent;
-    InherentPermissions = R;
 
     fields
     {
-        field(1; "Primary Key"; Code[10])
-        {
-            DataClassification = CustomerContent;
-        }
+        field(1; "Primary Key"; Code[10]) { }
         field(10; "Rebate Base %"; Decimal)
         {
-            DataClassification = CustomerContent;
             Caption = 'Rebate Base %';
             DecimalPlaces = 0 : 2;
             MinValue = 0;
-            MaxValue = 100;
+            MaxValue = 99;
+
+            trigger OnValidate()
+            begin
+                if (Rec."Rebate Base %" < 0) or (Rec."Rebate Base %" > 99) then
+                    Error(RebateErrorMsg);
+            end;
         }
         field(11; "Production Markup %"; Decimal)
         {
-            DataClassification = CustomerContent;
             Caption = 'Production Markup %';
             DecimalPlaces = 0 : 2;
             MinValue = 0;
+
+            trigger OnValidate()
+            begin
+                if (Rec."Production Markup %" < 0) then
+                    FieldError("Production Markup %", ProductionMarkupErrorMsg);
+            end;
         }
         field(12; "Purchase Markup %"; Decimal)
         {
-            DataClassification = CustomerContent;
             Caption = 'Purchase Markup %';
             DecimalPlaces = 0 : 2;
             MinValue = 0;
+
+            trigger OnValidate()
+            begin
+                if (Rec."Purchase Markup %" < 0) then
+                    FieldError("Purchase Markup %", PurchaseMarkupErrorMsg);
+            end;
         }
     }
 
@@ -46,4 +57,9 @@ table 50104 "Price Calculus Setup Table"
             Clustered = true;
         }
     }
+
+    var
+        RebateErrorMsg: Label 'Rebate Base Percentage must be between 0 and 99.';
+        ProductionMarkupErrorMsg: Label 'must be non-negative';
+        PurchaseMarkupErrorMsg: Label 'must be non-negative';
 }
