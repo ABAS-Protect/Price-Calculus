@@ -18,6 +18,11 @@ pageextension 50111 "Item Card Permission Lock" extends "Item Card"
             Visible = IsCalculationAdmin;
             Editable = IsCalculationAdmin;
         }
+
+        modify("COMP Markup Category")
+        {
+            Editable = IsCalculationAdmin;
+        }
     }
 
     var

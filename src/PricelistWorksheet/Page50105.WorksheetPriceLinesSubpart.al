@@ -445,7 +445,6 @@ page 50105 "Worksheet Price Lines Subpart"
         end;
     end;
 
-
     local procedure SavePriceToMemory(LineNo: Integer; NewUnitPrice: Decimal)
     begin
         if StagedPricesMap.ContainsKey(LineNo) then

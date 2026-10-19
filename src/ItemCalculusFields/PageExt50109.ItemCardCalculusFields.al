@@ -10,6 +10,12 @@ pageextension 50109 ItemCardCalculusFields extends "Item Card"
     {
         addafter("Unit Price")
         {
+            field("COMP Markup Category"; Rec."COMP Markup Category")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the markup category for this item.';
+
+            }
             field("COMP Markup"; Rec."COMP Markup")
             {
                 ApplicationArea = All;

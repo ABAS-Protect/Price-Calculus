@@ -39,6 +39,25 @@ tableextension 50102 ItemsCalculusFields extends Item
             DataClassification = CustomerContent;
         }
 
+        field(50108; "COMP Markup Category"; Code[20])
+        {
+            Caption = 'Markup Category';
+            DataClassification = CustomerContent;
+            TableRelation = "COMP Markup Category";
+            InitValue = 'STANDARD';
+
+            trigger OnValidate()
+            var
+                MarkupCategory: Record "COMP Markup Category";
+            begin
+                if Rec."COMP Markup Category" <> '' then begin
+                    if MarkupCategory.Get(Rec."COMP Markup Category") then begin
+                        Rec.Validate("COMP Markup", MarkupCategory."Markup %");
+                    end;
+                end;
+            end;
+        }
+
         modify("Standard Cost")
         {
             trigger OnAfterValidate()

@@ -3,6 +3,60 @@
   <file datatype="xml" source-language="en-US" target-language="sv-SE" original="ABAS Price Calculus.g.xlf">
     <body>
       <group id="body">
+        <trans-unit id="Table 2428213275 - Method 3152277940 - NamedType 2727245130" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The STANDARD markup category is a core system default and cannot be deleted.</source>
+          <target>Kategorin STANDARD är systemspecifik och kan inte tas bort.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table COMP Markup Category - Method OnDelete - NamedType CannotDeleteStandardErr</note>
+        </trans-unit>
+        <trans-unit id="Table 2428213275 - Method 804474859 - NamedType 1040749049" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The STANDARD markup category is a core system default and cannot be renamed.</source>
+          <target>Kategorin STANDARD är systemspecifik och kan inte ändras.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table COMP Markup Category - Method OnRename - NamedType CannotRenameStandardErr</note>
+        </trans-unit>
+        <trans-unit id="Table 2428213275 - Field 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Code</source>
+          <target>Kod</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table COMP Markup Category - Field Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2428213275 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target>Beskrivning</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table COMP Markup Category - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2428213275 - Field 3261267911 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Markup %</source>
+          <target>Affo %</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table COMP Markup Category - Field Markup % - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4215589909 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ABAS Markup Category Translation</source>
+          <target>Översättning av ABAS affokategorier</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table COMP Markup Category Trans - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4215589909 - Field 3877927551 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Category Code</source>
+          <target>Kategorikod</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table COMP Markup Category Trans - Field Category Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4215589909 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target>Beskrivning</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table COMP Markup Category Trans - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4215589909 - Field 2273653569 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Language Code</source>
+          <target>Språkkod</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table COMP Markup Category Trans - Field Language Code - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 460930530 - NamedType 546599934" size-unit="char" translate="yes" xml:space="preserve">
           <source>must be non-negative</source>
           <target>får inte vara ickenegativ</target>
@@ -182,6 +236,30 @@
           <target>Skriv ut prislista</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action OpenCatalogBuilder - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4116177993 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ABAS Markup Category Translations</source>
+          <target>ABAS affokategoriöversättningar</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page COMP Markup Cat. Trans Sub - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 221258417 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ABAS Markup Categories</source>
+          <target>ABAS affokategorier</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page COMP Markup Categories - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 221258417 - Action 2653012956 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Define descriptions in other languages.</source>
+          <target>Definiera beskrivningar i andra språk.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page COMP Markup Categories - Action Translations - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 221258417 - Action 2653012956 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Translations</source>
+          <target>Översättningar</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page COMP Markup Categories - Action Translations - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3440184819 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ABAS Print Price List</source>
@@ -369,6 +447,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - ReportLabel VariantLbl</note>
         </trans-unit>
+        <trans-unit id="PageExtension 1104936830 - Control 2428213275 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
+          <source>Specifies the markup category for this item.</source>
+          <target>Anger affokategori för denna artikel.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemCardCalculusFields - Control COMP Markup Category - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
           <source>Scan lists and count conflicting lines with standard price list.</source>
           <target>Avsök listor och räkna rader med konflikt i standardprislista.</target>
@@ -428,6 +512,12 @@
           <target>Affo %</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension ItemsCalculusFields - Field COMP Markup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 4100265751 - Field 2428213275 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
+          <source>Markup Category</source>
+          <target>Affokategori</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension ItemsCalculusFields - Field COMP Markup Category - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 4100265751 - Field 93464285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
           <source>Net Price (Calc.)</source>
