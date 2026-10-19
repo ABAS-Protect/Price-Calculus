@@ -16,14 +16,8 @@ page 50111 "COMP Markup Cat. Trans Sub"
         {
             repeater(Control1)
             {
-                field("Language Code"; Rec."Language Code")
-                {
-                    ApplicationArea = All;
-                }
-                field(Description; Rec.Description)
-                {
-                    ApplicationArea = All;
-                }
+                field("Language Code"; Rec."Language Code") { ApplicationArea = All; }
+                field(Description; Rec.Description) { ApplicationArea = All; }
             }
         }
     }

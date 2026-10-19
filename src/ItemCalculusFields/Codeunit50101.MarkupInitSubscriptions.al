@@ -4,7 +4,7 @@
     Description: Install Markup Category.
 */
 
-codeunit 50110 "COMP Markup Init Subscriptions"
+codeunit 50101 "COMP Markup Init Subscriptions"
 {
     Subtype = Install;
 

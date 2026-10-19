@@ -17,18 +17,9 @@ page 50109 "Price Selection Lines Subpart"
         {
             repeater(Control1)
             {
-                field("Sequence"; Rec."Sequence")
-                {
-                    ApplicationArea = All;
-                }
-                field("Price List Code"; Rec."Price List Code")
-                {
-                    ApplicationArea = All;
-                }
-                field(Description; Rec.Description)
-                {
-                    ApplicationArea = All;
-                }
+                field("Sequence"; Rec."Sequence") { ApplicationArea = All; }
+                field("Price List Code"; Rec."Price List Code") { ApplicationArea = All; }
+                field(Description; Rec.Description) { ApplicationArea = All; }
             }
         }
     }

@@ -1,13 +1,14 @@
 /*
     Author: Niklas Dougherty <nd@abas.se>
     Date: 2026-10-01
-    Description: Add fields to Item table.
+    Description: Add fields to Item table, perform price calculus.
 */
 
 tableextension 50102 ItemsCalculusFields extends Item
 {
     fields
     {
+        // The preeminent parameter for price calculation.
         field(50104; "COMP Markup"; Integer)
         {
             Caption = 'Overhead Markup %';
@@ -19,6 +20,7 @@ tableextension 50102 ItemsCalculusFields extends Item
             end;
         }
 
+        // Calculate sales price.
         field(50105; "COMP Sales Price"; Decimal)
         {
             Caption = 'Sales Price (Calc.)';
@@ -26,6 +28,7 @@ tableextension 50102 ItemsCalculusFields extends Item
             Editable = false;
         }
 
+        // Calculate net sales price.
         field(50106; "COMP Net Price"; Decimal)
         {
             Caption = 'Net Price (Calc.)';
@@ -33,12 +36,14 @@ tableextension 50102 ItemsCalculusFields extends Item
             Editable = false;
         }
 
+        // Comment field for notes during the process.
         field(50107; "COMP Comment"; Text[100])
         {
             Caption = 'Comment';
             DataClassification = CustomerContent;
         }
 
+        // Dropdown with calculus categories holding a common markup percentage.
         field(50108; "COMP Markup Category"; Code[20])
         {
             Caption = 'Markup Category';
@@ -58,6 +63,7 @@ tableextension 50102 ItemsCalculusFields extends Item
             end;
         }
 
+        // Calculate sales price whenever standard cost, unit cost or replenishemtn system changes.
         modify("Standard Cost")
         {
             trigger OnAfterValidate()
@@ -82,6 +88,8 @@ tableextension 50102 ItemsCalculusFields extends Item
             end;
         }
     }
+
+    // The actual price calculus.
     procedure CalculateSalesPrice()
     var
         Const: Record "Price Calculus Setup Table";
@@ -146,6 +154,7 @@ tableextension 50102 ItemsCalculusFields extends Item
         end;
     end;
 
+    // Round off prices.
     local procedure RoundCalculatedPrice(InputPrice: Decimal): Decimal
     begin
         if InputPrice = 0 then

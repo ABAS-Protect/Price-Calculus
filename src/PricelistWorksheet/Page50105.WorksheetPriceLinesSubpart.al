@@ -67,10 +67,6 @@ page 50105 "Worksheet Price Lines Subpart"
                         if Item.Get(Rec."Asset No.") then begin
                             Item.Validate("COMP Markup Category", MarkupCategoryCode);
                             Item.Modify(true);
-
-                            if MarkupCategory.Get(MarkupCategoryCode) then begin
-                                // Put any price calculation adjustments here if needed
-                            end;
                         end;
 
                         CurrPage.Update(false);

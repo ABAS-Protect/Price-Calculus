@@ -30,9 +30,6 @@ table 50107 "COMP Markup Category Trans"
 
     keys
     {
-        key(PK; "Category Code", "Language Code")
-        {
-            Clustered = true;
-        }
+        key(PK; "Category Code", "Language Code") { Clustered = true; }
     }
 }

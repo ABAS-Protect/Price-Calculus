@@ -1,7 +1,7 @@
 /*
     Author: Niklas Dougherty <nd@abas.se>
     Date: 2026-10-19
-    Description: Define Markup Category list.
+    Description: Define Markup Category list in dropdown.
 */
 
 table 50106 "COMP Markup Category"

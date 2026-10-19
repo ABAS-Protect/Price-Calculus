@@ -22,18 +22,9 @@ pageextension 50109 ItemCardCalculusFields extends "Item Card"
                 ApplicationArea = All;
                 Style = Subordinate;
             }
-            field("COMP Sales Price"; Rec."COMP Sales Price")
-            {
-                ApplicationArea = All;
-            }
-            field("COMP Net Price"; Rec."COMP Net Price")
-            {
-                ApplicationArea = All;
-            }
-            field("COMP Comment"; Rec."COMP Comment")
-            {
-                ApplicationArea = All;
-            }
+            field("COMP Sales Price"; Rec."COMP Sales Price") { ApplicationArea = All; }
+            field("COMP Net Price"; Rec."COMP Net Price") { ApplicationArea = All; }
+            field("COMP Comment"; Rec."COMP Comment") { ApplicationArea = All; }
         }
     }
 

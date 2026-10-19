@@ -33,7 +33,7 @@ table 50104 "Price Calculus Setup Table"
             trigger OnValidate()
             begin
                 if (Rec."Production Markup %" < 0) then
-                    FieldError("Production Markup %", ProductionMarkupErrorMsg);
+                    FieldError("Production Markup %", MarkupErrorMsg);
             end;
         }
         field(12; "Purchase Markup %"; Decimal)
@@ -45,21 +45,17 @@ table 50104 "Price Calculus Setup Table"
             trigger OnValidate()
             begin
                 if (Rec."Purchase Markup %" < 0) then
-                    FieldError("Purchase Markup %", PurchaseMarkupErrorMsg);
+                    FieldError("Purchase Markup %", MarkupErrorMsg);
             end;
         }
     }
 
     keys
     {
-        key(PK; "Primary Key")
-        {
-            Clustered = true;
-        }
+        key(PK; "Primary Key") { Clustered = true; }
     }
 
     var
         RebateErrorMsg: Label 'Rebate Base Percentage must be between 0 and 99.';
-        ProductionMarkupErrorMsg: Label 'must be non-negative';
-        PurchaseMarkupErrorMsg: Label 'must be non-negative';
+        MarkupErrorMsg: Label 'must be non-negative';
 }

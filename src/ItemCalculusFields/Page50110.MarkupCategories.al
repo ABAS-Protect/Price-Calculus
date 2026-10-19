@@ -19,18 +19,9 @@ page 50110 "COMP Markup Categories"
         {
             repeater(GroupName)
             {
-                field(Code; Rec.Code)
-                {
-                    ApplicationArea = All;
-                }
-                field(Description; Rec.Description)
-                {
-                    ApplicationArea = All;
-                }
-                field("Markup %"; Rec."Markup %")
-                {
-                    ApplicationArea = All;
-                }
+                field(Code; Rec.Code) { ApplicationArea = All; }
+                field(Description; Rec.Description) { ApplicationArea = All; }
+                field("Markup %"; Rec."Markup %") { ApplicationArea = All; }
             }
         }
     }
