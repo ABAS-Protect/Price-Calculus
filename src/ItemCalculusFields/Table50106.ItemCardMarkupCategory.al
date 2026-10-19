@@ -18,7 +18,7 @@ table 50106 "COMP Markup Category"
             Caption = 'Code';
             NotBlank = true;
         }
-        field(2; Description; Text[50])
+        field(2; Description; Text[100])
         {
             Caption = 'Description';
         }
@@ -31,15 +31,13 @@ table 50106 "COMP Markup Category"
 
     keys
     {
-        key(PK; "Code")
-        {
-            Clustered = true;
-        }
+        key(PK; "Code") { Clustered = true; }
+        key(SortByPercentage; "Markup %") { }
     }
 
     fieldgroups
     {
-        fieldgroup(DropDown; "Code", Description) { }
+        fieldgroup(DropDown; Code, Description, "Markup %") { }
     }
 
     trigger OnModify()

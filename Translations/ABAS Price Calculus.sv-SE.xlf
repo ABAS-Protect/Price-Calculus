@@ -303,6 +303,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control Asset No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 2428213275 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Markup Category</source>
+          <target>Affokategori</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control COMP Markup Category - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1786770511 - Control 2798413794 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Comment</source>
           <target>Kommentar</target>

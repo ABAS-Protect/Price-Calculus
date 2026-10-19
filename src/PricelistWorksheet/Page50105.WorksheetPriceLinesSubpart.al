@@ -53,7 +53,29 @@ page 50105 "Worksheet Price Lines Subpart"
                     StyleExpr = CostStyle;
                 }
 
-                // Main calculus parameter, triggers changes in sales and net prices on validation.
+                field("COMP Markup Category"; MarkupCategoryCode)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Markup Category';
+                    TableRelation = "COMP Markup Category";
+
+                    trigger OnValidate()
+                    var
+                        Item: Record Item;
+                        MarkupCategory: Record "COMP Markup Category";
+                    begin
+                        if Item.Get(Rec."Asset No.") then begin
+                            Item.Validate("COMP Markup Category", MarkupCategoryCode);
+                            Item.Modify(true);
+
+                            if MarkupCategory.Get(MarkupCategoryCode) then begin
+                                // Put any price calculation adjustments here if needed
+                            end;
+                        end;
+
+                        CurrPage.Update(false);
+                    end;
+                }
                 field(ItemMarkup; ItemMarkup)
                 {
                     ApplicationArea = All;
@@ -193,6 +215,7 @@ page 50105 "Worksheet Price Lines Subpart"
         ItemCost: Decimal;
         ItemReplenishmentSystem: Enum "Replenishment System";
         CostStyle: Text;
+        MarkupCategoryCode: Code[20];
 
     trigger OnAfterGetRecord()
     var
@@ -214,6 +237,7 @@ page 50105 "Worksheet Price Lines Subpart"
             ItemSalesPrice := Item."COMP Sales Price";
             ItemNetPrice := Item."COMP Net Price";
             ItemComment := Item."COMP Comment";
+            MarkupCategoryCode := Item."COMP Markup Category";
 
             ItemReplenishmentSystem := Item."Replenishment System";
             case Item."Replenishment System" of
@@ -245,6 +269,7 @@ page 50105 "Worksheet Price Lines Subpart"
         DifferenceStyle := 'None';
         ItemCost := 0;
         Clear(ItemReplenishmentSystem);
+        Clear(MarkupCategoryCode);
         CostStyle := 'None';
     end;
 

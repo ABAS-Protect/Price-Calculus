@@ -11,6 +11,7 @@ page 50110 "COMP Markup Categories"
     UsageCategory = Lists;
     SourceTable = "COMP Markup Category";
     Caption = 'ABAS Markup Categories';
+    SourceTableView = sorting("Markup %") order(ascending);
 
     layout
     {

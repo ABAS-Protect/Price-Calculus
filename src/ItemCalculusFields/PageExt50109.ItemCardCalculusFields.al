@@ -10,6 +10,7 @@ pageextension 50109 ItemCardCalculusFields extends "Item Card"
     {
         addafter("Unit Price")
         {
+
             field("COMP Markup Category"; Rec."COMP Markup Category")
             {
                 ApplicationArea = All;
@@ -35,4 +36,19 @@ pageextension 50109 ItemCardCalculusFields extends "Item Card"
             }
         }
     }
+
+    trigger OnAfterGetRecord()
+    var
+        MarkupCategory: Record "COMP Markup Category";
+    begin
+        Clear(CategoryText);
+        if Rec."COMP Markup Category" <> '' then begin
+            if MarkupCategory.Get(Rec."COMP Markup Category") then begin
+                CategoryText := MarkupCategory.GetTranslatedDescription();
+            end;
+        end;
+    end;
+
+    var
+        CategoryText: Text;
 }
