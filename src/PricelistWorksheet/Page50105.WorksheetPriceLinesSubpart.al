@@ -330,11 +330,8 @@ page 50105 "Worksheet Price Lines Subpart"
             repeat
                 if (PriceListLineLoop."Asset Type" = PriceListLineLoop."Asset Type"::Item) and
                    Item.Get(PriceListLineLoop."Asset No.") and
-                   (Item."COMP Sales Price" <> 0) then begin
-
-                    // Save directly to our isolated execution memory map
+                   (Item."COMP Sales Price" <> 0) then
                     SavePriceToMemory(PriceListLineLoop."Line No.", Item."COMP Sales Price");
-                end;
             until PriceListLineLoop.Next() = 0;
 
         CurrPage.Update(false);
@@ -444,7 +441,7 @@ page 50105 "Worksheet Price Lines Subpart"
             if OriginalStatus = OriginalStatus::Active then begin
                 PriceListHeader.Get(PriceListCode);
                 PriceListHeader.Status := PriceListHeader.Status::Active;
-                PriceListHeader.Modify(true); // Call true here to re-verify the full list layout seamlessly
+                PriceListHeader.Modify(true);
 
                 PriceListLine.Reset();
                 PriceListLine.SetRange("Price List Code", PriceListCode);

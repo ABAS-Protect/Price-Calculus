@@ -165,7 +165,6 @@ page 50106 "ABAS Price List Worksheet"
     var
         PriceListHeader: Record "Price List Header";
     begin
-        // Reset visibility variables by default
         SalesPriceVisible := false;
         NetPriceVisible := false;
 
