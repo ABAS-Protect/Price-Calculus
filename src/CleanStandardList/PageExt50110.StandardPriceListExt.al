@@ -33,6 +33,7 @@ pageextension 50110 "StandardPriceListExt" extends "Sales Price Lists"
                     SalesReceivablesSetup.Get();
                     TargetPriceListCode := SalesReceivablesSetup."Default Price List Code";
 
+                    // Select standard price list if not set up in Sales & Receivables.
                     if TargetPriceListCode = '' then begin
                         PriceListHeader.Reset();
                         if Page.RunModal(Page::"Sales Price Lists", PriceListHeader) = Action::LookupOK then
@@ -72,6 +73,7 @@ pageextension 50110 "StandardPriceListExt" extends "Sales Price Lists"
                     SalesReceivablesSetup.Get();
                     TargetPriceListCode := SalesReceivablesSetup."Default Price List Code";
 
+                    // Select standard price list if not set up in Sales & Receivables.
                     if TargetPriceListCode = '' then begin
                         PriceListHeader.Reset();
                         if Page.RunModal(Page::"Sales Price Lists", PriceListHeader) = Action::LookupOK then

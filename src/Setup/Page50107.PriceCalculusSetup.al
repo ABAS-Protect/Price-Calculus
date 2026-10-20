@@ -43,18 +43,19 @@ page 50107 "ABAS Price Calculus Setup"
         }
     }
 
-    trigger OnOpenPage()
-    begin
-        Rec.Reset();
-        if not Rec.Get() then begin
-            Rec.Init();
-            Rec."Primary Key" := '';
+    // Install page takes care of this once and for all.
+    // trigger OnOpenPage()
+    // begin
+    //     Rec.Reset();
+    //     if not Rec.Get() then begin
+    //         Rec.Init();
+    //         Rec."Primary Key" := '';
 
-            Rec."Rebate Base %" := 52;
-            Rec."Production Markup %" := 5;
-            Rec."Purchase Markup %" := 0;
+    //         Rec."Rebate Base %" := 52;
+    //         Rec."Production Markup %" := 5;
+    //         Rec."Purchase Markup %" := 0;
 
-            Rec.Insert();
-        end;
-    end;
+    //         Rec.Insert();
+    //     end;
+    // end;
 }

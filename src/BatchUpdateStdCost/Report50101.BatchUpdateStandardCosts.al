@@ -17,6 +17,7 @@ report 50101 BatchUpdateStandardCosts
         {
             RequestFilterFields = "No.", "Item Category Code";
 
+            // Collect non-blocked items with production order or assembly replenishment system.
             trigger OnPreDataItem()
             begin
                 Item.SetFilter("Replenishment System", '%1|%2',
@@ -29,11 +30,13 @@ report 50101 BatchUpdateStandardCosts
                     Window.Open('Collecting items...\#1####################');
             end;
 
+            // Collect item numbers to be calculated.
             trigger OnAfterGetRecord()
             var
                 ProdBOMHeader: Record "Production BOM Header";
                 BOMComponent: Record "BOM Component";
             begin
+                // Skip SKUs with empty or uncertifird BOM headers and non.existing assembly BOMs.
                 if Item."Replenishment System" = Enum::"Replenishment System"::"Prod. Order" then begin
                     if Item."Production BOM No." = '' then
                         CurrReport.Skip();
@@ -62,6 +65,7 @@ report 50101 BatchUpdateStandardCosts
                 ItemNoCollection.Add(Item."No.");
             end;
 
+            // Calculate standard cost for each item number in collected list.
             trigger OnPostDataItem()
             var
                 TargetItem: Code[20];
@@ -99,8 +103,8 @@ report 50101 BatchUpdateStandardCosts
         HeadlessStdCostRunner.SetItemNo(ItemNo);
 
         if HeadlessStdCostRunner.Run() then begin
-
             if TargetItem.Get(ItemNo) then begin
+                // Iterate over SKUs.
                 if TargetItem."Replenishment System" = Enum::"Replenishment System"::"Prod. Order" then begin
                     StockkeepingUnit.SetRange("Item No.", ItemNo);
                     if StockkeepingUnit.FindSet() then

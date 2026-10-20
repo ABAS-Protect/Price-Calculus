@@ -48,15 +48,10 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table COMP Markup Category Trans - Field Language Code - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 460930530 - NamedType 546599934" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Table 460930530 - NamedType 961367083" size-unit="char" translate="yes" xml:space="preserve">
           <source>must be non-negative</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Price Calculus Setup Table - NamedType ProductionMarkupErrorMsg</note>
-        </trans-unit>
-        <trans-unit id="Table 460930530 - NamedType 59097238" size-unit="char" translate="yes" xml:space="preserve">
-          <source>must be non-negative</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Price Calculus Setup Table - NamedType PurchaseMarkupErrorMsg</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price Calculus Setup Table - NamedType MarkupErrorMsg</note>
         </trans-unit>
         <trans-unit id="Table 460930530 - NamedType 1358778704" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rebate Base Percentage must be between 0 and 99.</source>
