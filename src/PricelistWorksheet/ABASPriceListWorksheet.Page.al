@@ -4,6 +4,11 @@
     Description: Handle price lines in custom worksheet.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
+using Microsoft.Pricing.PriceList;
+using Microsoft.Sales.Pricing;
+
 page 50106 "ABAS Price List Worksheet"
 {
     PageType = Worksheet;
@@ -27,6 +32,7 @@ page 50106 "ABAS Price List Worksheet"
                 field("Price List Code"; Rec."Price List Code")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Price List Code';
 
                     trigger OnLookup(var Text: Text): Boolean
                     var
@@ -38,19 +44,20 @@ page 50106 "ABAS Price List Worksheet"
                         if Page.RunModal(Page::"Sales Price Lists", PriceListHeader) = Action::LookupOK then begin
                             Rec.Validate("Price List Code", PriceListHeader.Code);
                             Rec.Modify();
-                            EvaluateActionVisibility();
+                            this.EvaluateActionVisibility();
                         end;
                     end;
 
                     trigger OnValidate()
                     begin
                         Rec.Modify();
-                        EvaluateActionVisibility();
+                        this.EvaluateActionVisibility();
                     end;
                 }
                 field("Price List Description"; Rec."Price List Description")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Price List Description';
                 }
             }
 
@@ -71,10 +78,12 @@ page 50106 "ABAS Price List Worksheet"
             {
                 Caption = 'Sales Price ➡️ Unit Price';
                 ApplicationArea = All;
+                ToolTip = 'Copy calculated sales prices to price list new unit prices';
                 Image = CopyDimensions;
                 Promoted = true;
+                PromotedOnly = true;
                 PromotedCategory = Process;
-                Visible = SalesPriceVisible;
+                Visible = this.SalesPriceVisible;
 
                 trigger OnAction()
                 begin
@@ -83,15 +92,18 @@ page 50106 "ABAS Price List Worksheet"
                     CurrPage.Update(false);
                 end;
             }
+
             // Copy calculated net prices to price list unit prices (worksheet only).
             action(ApplyNetPrice)
             {
                 Caption = 'Net Price ➡️ Unit Price';
                 ApplicationArea = All;
+                ToolTip = 'Copy calculated net prices to price list new unit prices';
                 Image = CopyDimensions;
                 Promoted = true;
+                PromotedOnly = true;
                 PromotedCategory = Process;
-                Visible = NetPriceVisible;
+                Visible = this.NetPriceVisible;
 
                 trigger OnAction()
                 begin
@@ -100,11 +112,13 @@ page 50106 "ABAS Price List Worksheet"
                     CurrPage.Update(false);
                 end;
             }
+
             // Commit price list unit prices (worksheet) to actual price list lines.
             action(CommitPriceList)
             {
                 Caption = 'Publish Updates to Price List';
                 ApplicationArea = All;
+                ToolTip = 'Commit price list unit prices (worksheet) to actual price list lines';
                 Image = PostOrder;
                 Promoted = true;
                 PromotedCategory = Process;
@@ -120,10 +134,12 @@ page 50106 "ABAS Price List Worksheet"
                     end;
                 end;
             }
+
             action(OpenCatalogBuilder)
             {
                 Caption = 'Print Price List';
                 ApplicationArea = All;
+                ToolTip = 'Open worksheet';
                 Image = Report;
                 Promoted = true;
                 PromotedCategory = Process;
@@ -143,7 +159,7 @@ page 50106 "ABAS Price List Worksheet"
 
     trigger OnOpenPage()
     begin
-        Clear(LastPriceListCode);
+        Clear(this.LastPriceListCode);
         if not Rec.Get() then begin
             Rec.Init();
             Rec.Insert();
@@ -153,26 +169,25 @@ page 50106 "ABAS Price List Worksheet"
     // Fetch price list lines.
     trigger OnAfterGetRecord()
     begin
-        if (Rec."Price List Code" <> LastPriceListCode) then begin
+        if (Rec."Price List Code" <> this.LastPriceListCode) then begin
             CurrPage.PriceLines.PAGE.ClearStagedPrices();
-            LastPriceListCode := Rec."Price List Code";
+            this.LastPriceListCode := Rec."Price List Code";
         end;
 
-        EvaluateActionVisibility();
+        this.EvaluateActionVisibility();
     end;
 
     local procedure EvaluateActionVisibility()
     var
         PriceListHeader: Record "Price List Header";
     begin
-        SalesPriceVisible := false;
-        NetPriceVisible := false;
+        this.SalesPriceVisible := false;
+        this.NetPriceVisible := false;
 
-        if Rec."Price List Code" <> '' then begin
+        if Rec."Price List Code" <> '' then
             if PriceListHeader.Get(Rec."Price List Code") then begin
-                SalesPriceVisible := PriceListHeader."Amount Type" = PriceListHeader."Amount Type"::Price;
-                NetPriceVisible := PriceListHeader."Amount Type" = PriceListHeader."Amount Type"::Any;
+                this.SalesPriceVisible := PriceListHeader."Amount Type" = PriceListHeader."Amount Type"::Price;
+                this.NetPriceVisible := PriceListHeader."Amount Type" = PriceListHeader."Amount Type"::Any;
             end;
-        end;
     end;
 }

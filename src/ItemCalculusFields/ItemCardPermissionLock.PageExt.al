@@ -4,6 +4,11 @@
     Description: Prevent modification of Item Card fields for unauthorized users.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
+using Microsoft.Inventory.Item;
+using System.Security.User;
+
 pageextension 50111 "Item Card Permission Lock" extends "Item Card"
 {
     layout

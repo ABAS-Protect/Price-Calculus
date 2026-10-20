@@ -4,8 +4,16 @@
     Description: PDF printout RDLC data structure.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
+using Microsoft.Foundation.UOM;
+using Microsoft.Inventory.Item;
+using Microsoft.Pricing.PriceList;
+using System.Globalization;
+
 report 50100 "Combined Price List Report"
 {
+    ApplicationArea = All;
     UsageCategory = ReportsAndAnalysis;
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/CombinedPriceList.rdl';
@@ -27,12 +35,12 @@ report 50100 "Combined Price List Report"
                 DataItemTableView = sorting("Price List Code", "Asset No.");
 
                 column(Item_No_; "Asset No.") { }
-                column(Item_Description; ReportDescription) { }
+                column(Item_Description; this.ReportDescription) { }
                 column(Unit_Price; "Unit Price") { }
                 column(Variant_Code; "Variant Code") { }
-                column(Unit_of_Measure_Code; ReportUOMText) { }
-                column(Description_2; ReportDescription2) { }
-                column(IsPriceAndDiscount; IsPriceAndDiscount) { }
+                column(Unit_of_Measure_Code; this.ReportUOMText) { }
+                column(Description_2; this.ReportDescription2) { }
+                column(IsPriceAndDiscount; this.IsPriceAndDiscount) { }
 
                 trigger OnAfterGetRecord()
                 var
@@ -44,22 +52,21 @@ report 50100 "Combined Price List Report"
                     LanguageCodeunit: Codeunit Language;
                     UserLanguageCode: Code[10];
                 begin
-                    IsPriceAndDiscount := false;
+                    this.IsPriceAndDiscount := false;
 
-                    ReportDescription := PriceLines.Description;
-                    ReportDescription2 := '';
-                    ReportUOMText := PriceLines."Unit of Measure Code";
+                    this.ReportDescription := PriceLines.Description;
+                    this.ReportDescription2 := '';
+                    this.ReportUOMText := PriceLines."Unit of Measure Code";
 
-                    if PriceListHeader.Get(PriceLines."Price List Code") then begin
+                    if PriceListHeader.Get(PriceLines."Price List Code") then
                         if PriceListHeader."Amount Type" = "Price Amount Type"::Any then
-                            IsPriceAndDiscount := true;
-                    end;
+                            this.IsPriceAndDiscount := true;
 
-                    if (PriceLines."Asset Type" = PriceLines."Asset Type"::Item) and (PriceLines."Asset No." <> '') then begin
+                    if (PriceLines."Asset Type" = PriceLines."Asset Type"::Item) and (PriceLines."Asset No." <> '') then
                         if Item.Get(PriceLines."Asset No.") then begin
-                            if ReportDescription = '' then
-                                ReportDescription := Item.Description;
-                            ReportDescription2 := Item."Description 2";
+                            if this.ReportDescription = '' then
+                                this.ReportDescription := Item.Description;
+                            this.ReportDescription2 := Item."Description 2";
 
                             UserLanguageCode := LanguageCodeunit.GetLanguageCode(GlobalLanguage());
 
@@ -69,29 +76,26 @@ report 50100 "Combined Price List Report"
                                 ItemTranslation.SetRange("Variant Code", PriceLines."Variant Code");
                                 if ItemTranslation.FindFirst() then begin
                                     if ItemTranslation.Description <> '' then
-                                        ReportDescription := ItemTranslation.Description;
+                                        this.ReportDescription := ItemTranslation.Description;
                                     if ItemTranslation."Description 2" <> '' then
-                                        ReportDescription2 := ItemTranslation."Description 2";
+                                        this.ReportDescription2 := ItemTranslation."Description 2";
                                     if ItemTranslation."Variant Code" <> '' then
-                                        ReportDescription2 := ItemTranslation."Variant Code";
+                                        this.ReportDescription2 := ItemTranslation."Variant Code";
                                 end;
                             end;
                         end;
-                    end;
 
                     if PriceLines."Unit of Measure Code" <> '' then begin
-                        if UnitOfMeasure.Get(PriceLines."Unit of Measure Code") then begin
+                        if UnitOfMeasure.Get(PriceLines."Unit of Measure Code") then
                             if UnitOfMeasure.Description <> '' then
-                                ReportUOMText := UnitOfMeasure.Description;
-                        end;
+                                this.ReportUOMText := UnitOfMeasure.Description;
 
                         if UserLanguageCode <> '' then begin
                             UnitOfMeasureTranslation.SetRange(Code, PriceLines."Unit of Measure Code");
                             UnitOfMeasureTranslation.SetRange("Language Code", UserLanguageCode);
-                            if UnitOfMeasureTranslation.FindFirst() then begin
+                            if UnitOfMeasureTranslation.FindFirst() then
                                 if UnitOfMeasureTranslation.Description <> '' then
-                                    ReportUOMText := UnitOfMeasureTranslation.Description;
-                            end;
+                                    this.ReportUOMText := UnitOfMeasureTranslation.Description;
                         end;
                     end;
                 end;

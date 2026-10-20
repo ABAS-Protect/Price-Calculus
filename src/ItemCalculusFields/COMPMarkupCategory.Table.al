@@ -4,9 +4,14 @@
     Description: Define Markup Category list in dropdown.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
+using System.Globalization;
+
 table 50106 "COMP Markup Category"
 {
     DataClassification = CustomerContent;
+    AllowInCustomizations = AsReadWrite;
     LookupPageId = "COMP Markup Categories";
     DrillDownPageId = "COMP Markup Categories";
     InherentPermissions = R;
@@ -18,7 +23,7 @@ table 50106 "COMP Markup Category"
             Caption = 'Code';
             NotBlank = true;
         }
-        field(2; Description; Text[100])
+        field(2; Description; Text[250])
         {
             Caption = 'Description';
         }
@@ -42,33 +47,30 @@ table 50106 "COMP Markup Category"
 
     trigger OnModify()
     var
-        Item: Record Item;
+        Item: Record Microsoft.Inventory.Item.Item;
     begin
         Item.SetRange("COMP Markup Category", Rec.Code);
-        if not Item.IsEmpty() then begin
+        if not Item.IsEmpty() then
             Item.ModifyAll("COMP Markup", Rec."Markup %", true);
-        end;
     end;
 
     trigger OnDelete()
     var
         CannotDeleteStandardErr: Label 'The STANDARD markup category is a core system default and cannot be deleted.';
     begin
-        if Rec.Code = 'STANDARD' then begin
+        if Rec.Code = 'STANDARD' then
             Error(CannotDeleteStandardErr);
-        end;
     end;
 
     trigger OnRename()
     var
         CannotRenameStandardErr: Label 'The STANDARD markup category is a core system default and cannot be renamed.';
     begin
-        if xRec.Code = 'STANDARD' then begin
+        if xRec.Code = 'STANDARD' then
             Error(CannotRenameStandardErr);
-        end;
     end;
 
-    procedure GetTranslatedDescription(): Text
+    procedure GetTranslatedDescription(): Text[250]
     var
         CategoryTranslation: Record "COMP Markup Category Trans";
         LanguageRecord: Record "Language";
@@ -76,17 +78,16 @@ table 50106 "COMP Markup Category"
         TargetLanguageCode: Code[10];
     begin
         LanguageRecord.SetRange("Windows Language ID", GlobalLanguageMgt.GetLanguageIdOrDefault(GlobalLanguageMgt.GetUserLanguageCode()));
-        if LanguageRecord.FindFirst() then begin
-            TargetLanguageCode := LanguageRecord.Code;
-        end else begin
+        if LanguageRecord.FindFirst() then
+            TargetLanguageCode := LanguageRecord.Code
+        else begin
             LanguageRecord.SetRange(Code, CopyStr(GlobalLanguageMgt.GetUserLanguageCode(), 1, MaxStrLen(LanguageRecord.Code)));
             if LanguageRecord.FindFirst() then
                 TargetLanguageCode := LanguageRecord.Code;
         end;
 
-        if (TargetLanguageCode <> '') and CategoryTranslation.Get(Rec.Code, TargetLanguageCode) then begin
+        if (TargetLanguageCode <> '') and CategoryTranslation.Get(Rec.Code, TargetLanguageCode) then
             exit(CategoryTranslation.Description);
-        end;
 
         exit(Rec.Description);
     end;

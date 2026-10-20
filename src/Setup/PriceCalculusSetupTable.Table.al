@@ -4,15 +4,22 @@
     Description: Table data for setup page.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
 table 50104 "Price Calculus Setup Table"
 {
     DataClassification = CustomerContent;
 
     fields
     {
-        field(1; "Primary Key"; Code[10]) { }
+        field(1; "Primary Key"; Code[10])
+        {
+            AllowInCustomizations = AsReadWrite;
+        }
+
         field(10; "Rebate Base %"; Decimal)
         {
+            AllowInCustomizations = AsReadWrite;
             Caption = 'Rebate Base %';
             DecimalPlaces = 0 : 2;
             MinValue = 0;
@@ -24,8 +31,10 @@ table 50104 "Price Calculus Setup Table"
                     Error(RebateErrorMsg);
             end;
         }
+
         field(11; "Production Markup %"; Decimal)
         {
+            AllowInCustomizations = AsReadWrite;
             Caption = 'Production Markup %';
             DecimalPlaces = 0 : 2;
             MinValue = 0;
@@ -36,8 +45,10 @@ table 50104 "Price Calculus Setup Table"
                     FieldError("Production Markup %", MarkupErrorMsg);
             end;
         }
+
         field(12; "Purchase Markup %"; Decimal)
         {
+            AllowInCustomizations = AsReadWrite;
             Caption = 'Purchase Markup %';
             DecimalPlaces = 0 : 2;
             MinValue = 0;

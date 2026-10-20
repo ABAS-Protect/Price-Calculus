@@ -4,6 +4,10 @@
     Description: Add fields to Item Card.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
+using Microsoft.Inventory.Item;
+
 pageextension 50109 ItemCardCalculusFields extends "Item Card"
 {
     layout
@@ -20,11 +24,24 @@ pageextension 50109 ItemCardCalculusFields extends "Item Card"
             field("COMP Markup"; Rec."COMP Markup")
             {
                 ApplicationArea = All;
+                ToolTip = 'Overhead Markup';
                 Style = Subordinate;
             }
-            field("COMP Sales Price"; Rec."COMP Sales Price") { ApplicationArea = All; }
-            field("COMP Net Price"; Rec."COMP Net Price") { ApplicationArea = All; }
-            field("COMP Comment"; Rec."COMP Comment") { ApplicationArea = All; }
+            field("COMP Sales Price"; Rec."COMP Sales Price")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Calculates Sales Price';
+            }
+            field("COMP Net Price"; Rec."COMP Net Price")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Calculated Net Price';
+            }
+            field("COMP Comment"; Rec."COMP Comment")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Price Calculus Comment';
+            }
         }
     }
 
@@ -33,11 +50,9 @@ pageextension 50109 ItemCardCalculusFields extends "Item Card"
         MarkupCategory: Record "COMP Markup Category";
     begin
         Clear(CategoryText);
-        if Rec."COMP Markup Category" <> '' then begin
-            if MarkupCategory.Get(Rec."COMP Markup Category") then begin
+        if Rec."COMP Markup Category" <> '' then
+            if MarkupCategory.Get(Rec."COMP Markup Category") then
                 CategoryText := MarkupCategory.GetTranslatedDescription();
-            end;
-        end;
     end;
 
     var

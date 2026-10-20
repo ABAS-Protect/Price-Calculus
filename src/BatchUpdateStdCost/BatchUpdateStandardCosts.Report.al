@@ -4,6 +4,14 @@
     Description: Batch calculate Standard Cost and add to Item Card.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
+using Microsoft.Inventory.BOM;
+using Microsoft.Inventory.Item;
+using Microsoft.Inventory.Location;
+using Microsoft.Manufacturing.ProductionBOM;
+using Microsoft.Manufacturing.StandardCost;
+
 report 50101 BatchUpdateStandardCosts
 {
     UsageCategory = Tasks;
@@ -27,7 +35,7 @@ report 50101 BatchUpdateStandardCosts
                 Item.SetRange(Blocked, false);
 
                 if GuiAllowed then
-                    Window.Open('Collecting items...\#1####################');
+                    this.Window.Open('Collecting items...\#1####################');
             end;
 
             // Collect item numbers to be calculated.
@@ -41,7 +49,7 @@ report 50101 BatchUpdateStandardCosts
                     if Item."Production BOM No." = '' then
                         CurrReport.Skip();
 
-                    if not TryCheckBomHeader(Item."Production BOM No.") then begin
+                    if not this.TryCheckBomHeader(Item."Production BOM No.") then begin
                         ClearLastError();
                         CurrReport.Skip();
                     end;
@@ -60,9 +68,9 @@ report 50101 BatchUpdateStandardCosts
                 end;
 
                 if GuiAllowed then
-                    Window.Update(1, Item."No.");
+                    this.Window.Update(1, Item."No.");
 
-                ItemNoCollection.Add(Item."No.");
+                this.ItemNoCollection.Add(Item."No.");
             end;
 
             // Calculate standard cost for each item number in collected list.
@@ -71,17 +79,17 @@ report 50101 BatchUpdateStandardCosts
                 TargetItem: Code[20];
             begin
                 if GuiAllowed then
-                    Window.Open('Processing...\#1####################');
+                    this.Window.Open('Processing...\#1####################');
 
-                foreach TargetItem in ItemNoCollection do begin
+                foreach TargetItem in this.ItemNoCollection do begin
                     if GuiAllowed then
-                        Window.Update(1, TargetItem);
+                        this.Window.Update(1, TargetItem);
 
-                    ExecuteHeadlessTransaction(TargetItem);
+                    this.ExecuteHeadlessTransaction(TargetItem);
                 end;
 
                 if GuiAllowed then begin
-                    Window.Close();
+                    this.Window.Close();
                     Message('Standard costs updated.');
                 end;
             end;
@@ -94,16 +102,16 @@ report 50101 BatchUpdateStandardCosts
 
     local procedure ExecuteHeadlessTransaction(ItemNo: Code[20])
     var
-        HeadlessStdCostRunner: Codeunit "HeadlessStdCostRunner";
-        CalcProdStdCost: Codeunit "Calculate Standard Cost";
         StockkeepingUnit: Record "Stockkeeping Unit";
         TargetItem: Record Item;
+        HeadlessStdCostRunner: Codeunit "HeadlessStdCostRunner";
+        CalcProdStdCost: Codeunit "Calculate Standard Cost";
     begin
         Clear(HeadlessStdCostRunner);
         HeadlessStdCostRunner.SetItemNo(ItemNo);
 
         if HeadlessStdCostRunner.Run() then begin
-            if TargetItem.Get(ItemNo) then begin
+            if TargetItem.Get(ItemNo) then
                 // Iterate over SKUs.
                 if TargetItem."Replenishment System" = Enum::"Replenishment System"::"Prod. Order" then begin
                     StockkeepingUnit.SetRange("Item No.", ItemNo);
@@ -119,7 +127,6 @@ report 50101 BatchUpdateStandardCosts
                             );
                         until StockkeepingUnit.Next() = 0;
                 end;
-            end;
 
             Commit();
         end;

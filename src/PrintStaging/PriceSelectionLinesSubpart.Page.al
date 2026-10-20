@@ -4,6 +4,8 @@
     Description: Sorting price lists.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
 page 50109 "Price Selection Lines Subpart"
 {
     PageType = ListPart;
@@ -17,9 +19,21 @@ page 50109 "Price Selection Lines Subpart"
         {
             repeater(Control1)
             {
-                field("Sequence"; Rec."Sequence") { ApplicationArea = All; }
-                field("Price List Code"; Rec."Price List Code") { ApplicationArea = All; }
-                field(Description; Rec.Description) { ApplicationArea = All; }
+                field("Sequence"; Rec."Sequence")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Price List Sequence';
+                }
+                field("Price List Code"; Rec."Price List Code")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Price List Code';
+                }
+                field(Description; Rec.Description)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Price List Description';
+                }
             }
         }
     }
@@ -33,6 +47,7 @@ page 50109 "Price Selection Lines Subpart"
                 Caption = 'Move Up';
                 Image = MoveUp;
                 ApplicationArea = All;
+                ToolTip = 'Move price list item upwards.';
                 Scope = Repeater;
 
                 trigger OnAction()
@@ -60,6 +75,7 @@ page 50109 "Price Selection Lines Subpart"
                 Caption = 'Move Down';
                 Image = MoveDown;
                 ApplicationArea = All;
+                ToolTip = 'Move price list item downwards.';
                 Scope = Repeater;
 
                 trigger OnAction()

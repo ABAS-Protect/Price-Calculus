@@ -4,6 +4,11 @@
     Description: Bypass modal dialog Top Levels / All Levels in Standard Cost calculation.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
+using Microsoft.Inventory.Item;
+using Microsoft.Manufacturing.StandardCost;
+
 codeunit 50105 SilenceStdCostDialog
 {
     SingleInstance = true;

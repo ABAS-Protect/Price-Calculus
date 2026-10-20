@@ -4,6 +4,8 @@
     Description: Define list with Markup Categories, with translation.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
 page 50110 "COMP Markup Categories"
 {
     PageType = List;
@@ -19,9 +21,21 @@ page 50110 "COMP Markup Categories"
         {
             repeater(GroupName)
             {
-                field(Code; Rec.Code) { ApplicationArea = All; }
-                field(Description; Rec.Description) { ApplicationArea = All; }
-                field("Markup %"; Rec."Markup %") { ApplicationArea = All; }
+                field(Code; Rec.Code)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Price Calculus Group Code';
+                }
+                field(Description; Rec.Description)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Price Calculus Group Description';
+                }
+                field("Markup %"; Rec."Markup %")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Price Calculus Group Markup Percentage';
+                }
             }
         }
     }
@@ -37,6 +51,7 @@ page 50110 "COMP Markup Categories"
                 Image = Translations;
                 Promoted = true;
                 PromotedCategory = Process;
+                PromotedOnly = true;
                 ToolTip = 'Define descriptions in other languages.';
 
                 trigger OnAction()

@@ -4,9 +4,12 @@
     Description: Define Markup Category translation.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
 table 50107 "COMP Markup Category Trans"
 {
     DataClassification = CustomerContent;
+    AllowInCustomizations = AsReadWrite;
     Caption = 'ABAS Markup Category Translation';
     InherentPermissions = R;
 
@@ -20,9 +23,9 @@ table 50107 "COMP Markup Category Trans"
         field(2; "Language Code"; Code[10])
         {
             Caption = 'Language Code';
-            TableRelation = Language;
+            TableRelation = System.Globalization.Language;
         }
-        field(3; Description; Text[100])
+        field(3; Description; Text[250])
         {
             Caption = 'Description';
         }

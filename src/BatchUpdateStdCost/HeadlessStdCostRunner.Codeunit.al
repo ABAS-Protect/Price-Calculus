@@ -4,6 +4,11 @@
     Description: Calculate Standard Cost isolated from batch (avoid DB error).
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
+using Microsoft.Inventory.Item;
+using Microsoft.Manufacturing.StandardCost;
+
 codeunit 50106 HeadlessStdCostRunner
 {
     var
@@ -11,7 +16,7 @@ codeunit 50106 HeadlessStdCostRunner
 
     procedure SetItemNo(ItemNo: Code[20])
     begin
-        GlobalItemNo := ItemNo;
+        this.GlobalItemNo := ItemNo;
     end;
 
     trigger OnRun()

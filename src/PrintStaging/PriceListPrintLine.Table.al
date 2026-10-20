@@ -4,6 +4,11 @@
     Description: Table definitions for price list worksheet.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
+using Microsoft.Pricing.PriceList;
+using Microsoft.Sales.Setup;
+
 table 50105 "Price List Print Line"
 {
     Caption = 'ABAS Print Price List';
@@ -11,10 +16,20 @@ table 50105 "Price List Print Line"
 
     fields
     {
-        field(1; "Worksheet Code"; Code[10]) { Caption = 'Worksheet Code'; }
-        field(2; "Line No."; Integer) { Caption = 'Line No.'; }
+        field(1; "Worksheet Code"; Code[10])
+        {
+            AllowInCustomizations = AsReadWrite;
+            Caption = 'Worksheet Code';
+        }
+        field(2; "Line No."; Integer)
+        {
+            AllowInCustomizations = AsReadWrite;
+            Caption = 'Line No.';
+        }
+
         field(3; "Price List Code"; Code[20])
         {
+            AllowInCustomizations = AsReadWrite;
             Caption = 'Price List Code';
             TableRelation = "Price List Header".Code;
 
@@ -26,8 +41,17 @@ table 50105 "Price List Print Line"
                     "Description" := PriceListHeader.Description;
             end;
         }
-        field(4; "Description"; Text[100]) { Caption = 'Description'; Editable = false; }
-        field(5; "Sequence"; Integer) { Caption = 'Sequence Order'; }
+
+        field(4; "Description"; Text[250])
+        {
+            Caption = 'Description';
+            Editable = false;
+        }
+        field(5; "Sequence"; Integer)
+        {
+            AllowInCustomizations = AsReadWrite;
+            Caption = 'Sequence Order';
+        }
     }
 
     keys
@@ -52,10 +76,9 @@ table 50105 "Price List Print Line"
         PriceListHeader.SetFilter(Status, '%1|%2', PriceListHeader.Status::Active, PriceListHeader.Status::Draft);
         PriceListHeader.SetFilter("Amount Type", '<>%1', PriceListHeader."Amount Type"::Discount);
 
-        if SalesReceivablesSetup.Get() then begin
+        if SalesReceivablesSetup.Get() then
             if SalesReceivablesSetup."Default Price List Code" <> '' then
                 PriceListHeader.SetFilter(Code, '<>%1', SalesReceivablesSetup."Default Price List Code");
-        end;
 
         if PriceListHeader.FindSet() then begin
             NextLineNo := 10000;

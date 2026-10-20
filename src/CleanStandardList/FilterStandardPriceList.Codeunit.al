@@ -4,6 +4,10 @@
     Description: Keep items from other price lists off the standard price list.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
+using Microsoft.Pricing.PriceList;
+
 codeunit 50107 "Filter Standard Price List"
 {
     procedure FilterStandardPriceList(SelectedPriceListCode: Code[20]; DryRun: Boolean) DeletedCount: Integer
@@ -19,7 +23,7 @@ codeunit 50107 "Filter Standard Price List"
 
         DeletedCount := 0;
 
-        if not DryRun then begin
+        if not DryRun then
             if PriceListHeader.Get(SelectedPriceListCode) then begin
                 if PriceListHeader.Status = PriceListHeader.Status::Active then begin
                     PriceListHeader.Status := PriceListHeader.Status::Draft;
@@ -27,7 +31,6 @@ codeunit 50107 "Filter Standard Price List"
                 end;
             end else
                 exit(0);
-        end;
 
         StandardLine.SetRange("Price List Code", SelectedPriceListCode);
         StandardLine.SetRange("Asset Type", StandardLine."Asset Type"::Item);
@@ -36,6 +39,7 @@ codeunit 50107 "Filter Standard Price List"
             repeat
                 ShouldDelete := false;
 
+                // Variant in common, delete variant.
                 SpecialLine.Reset();
                 SpecialLine.SetFilter("Price List Code", '<>%1', SelectedPriceListCode);
                 SpecialLine.SetRange("Asset Type", StandardLine."Asset Type"::Item);
@@ -44,6 +48,7 @@ codeunit 50107 "Filter Standard Price List"
                 if not SpecialLine.IsEmpty() then
                     ShouldDelete := true;
 
+                // Standard has variant, price list does not (general coverage); delete variant.
                 if (not ShouldDelete) and (StandardLine."Variant Code" <> '') then begin
                     SpecialLine.Reset();
                     SpecialLine.SetFilter("Price List Code", '<>%1', SelectedPriceListCode);
@@ -54,6 +59,7 @@ codeunit 50107 "Filter Standard Price List"
                         ShouldDelete := true;
                 end;
 
+                // Standard has general coverage but not actual variant, delete item number.
                 if (not ShouldDelete) and (StandardLine."Variant Code" = '') then begin
                     SpecialLine.Reset();
                     SpecialLine.SetFilter("Price List Code", '<>%1', SelectedPriceListCode);
@@ -67,10 +73,9 @@ codeunit 50107 "Filter Standard Price List"
                 if ShouldDelete then begin
                     DeletedCount += 1;
 
-                    if not DryRun then begin
+                    if not DryRun then
                         if StandardLineToDelete.Get(StandardLine."Price List Code", StandardLine."Line No.") then
                             StandardLineToDelete.Delete(true);
-                    end;
                 end;
             until StandardLine.Next() = 0;
 

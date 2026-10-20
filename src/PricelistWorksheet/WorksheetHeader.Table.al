@@ -4,6 +4,11 @@
     Description: Custom worksheet header.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
+using Microsoft.Pricing.PriceList;
+
+
 table 50103 "Worksheet Header"
 {
     DataClassification = CustomerContent;
@@ -11,9 +16,14 @@ table 50103 "Worksheet Header"
 
     fields
     {
-        field(1; "Primary Key"; Code[20]) { }
+        field(1; "Primary Key"; Code[20])
+        {
+            AllowInCustomizations = AsReadWrite;
+        }
+
         field(2; "Price List Code"; Code[20])
         {
+            AllowInCustomizations = AsReadWrite;
             Caption = 'Price List Code';
             TableRelation = "Price List Header".Code where(
                 "Price Type" = const(Sale),
@@ -30,13 +40,16 @@ table 50103 "Worksheet Header"
                     "Price List Description" := '';
             end;
         }
-        field(3; "Price List Description"; Text[100])
+
+        field(3; "Price List Description"; Text[250])
         {
             Caption = 'Price List Description';
             Editable = false;
         }
+
         field(4; "Comparison Baseline"; Option)
         {
+            AllowInCustomizations = AsReadWrite;
             Caption = 'Mode';
             OptionMembers = "Sales Price","Net Price";
             OptionCaption = 'Sales Price (Calc.),Net Price (Calc.)';

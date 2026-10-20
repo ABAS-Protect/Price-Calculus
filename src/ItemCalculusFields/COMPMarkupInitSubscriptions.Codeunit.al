@@ -4,6 +4,8 @@
     Description: Install Markup Category.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
 codeunit 50101 "COMP Markup Init Subscriptions"
 {
     Subtype = Install;

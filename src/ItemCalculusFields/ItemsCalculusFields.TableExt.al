@@ -4,6 +4,10 @@
     Description: Add fields to Item table, perform price calculus.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
+using Microsoft.Inventory.Item;
+
 tableextension 50102 ItemsCalculusFields extends Item
 {
     fields
@@ -13,6 +17,7 @@ tableextension 50102 ItemsCalculusFields extends Item
         {
             Caption = 'Overhead Markup %';
             DataClassification = CustomerContent;
+            AllowInCustomizations = AsReadWrite;
 
             trigger OnValidate()
             begin
@@ -25,6 +30,7 @@ tableextension 50102 ItemsCalculusFields extends Item
         {
             Caption = 'Sales Price (Calc.)';
             DataClassification = CustomerContent;
+            AllowInCustomizations = AsReadOnly;
             Editable = false;
         }
 
@@ -33,6 +39,7 @@ tableextension 50102 ItemsCalculusFields extends Item
         {
             Caption = 'Net Price (Calc.)';
             DataClassification = CustomerContent;
+            AllowInCustomizations = AsReadOnly;
             Editable = false;
         }
 
@@ -41,6 +48,7 @@ tableextension 50102 ItemsCalculusFields extends Item
         {
             Caption = 'Comment';
             DataClassification = CustomerContent;
+            AllowInCustomizations = AsReadWrite;
         }
 
         // Dropdown with calculus categories holding a common markup percentage.
@@ -48,6 +56,7 @@ tableextension 50102 ItemsCalculusFields extends Item
         {
             Caption = 'Markup Category';
             DataClassification = CustomerContent;
+            AllowInCustomizations = AsReadWrite;
             TableRelation = "COMP Markup Category";
             InitValue = 'STANDARD';
 
@@ -55,11 +64,9 @@ tableextension 50102 ItemsCalculusFields extends Item
             var
                 MarkupCategory: Record "COMP Markup Category";
             begin
-                if Rec."COMP Markup Category" <> '' then begin
-                    if MarkupCategory.Get(Rec."COMP Markup Category") then begin
+                if Rec."COMP Markup Category" <> '' then
+                    if MarkupCategory.Get(Rec."COMP Markup Category") then
                         Rec.Validate("COMP Markup", MarkupCategory."Markup %");
-                    end;
-                end;
             end;
         }
 

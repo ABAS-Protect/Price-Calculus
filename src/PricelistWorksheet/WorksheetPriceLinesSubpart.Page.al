@@ -4,6 +4,11 @@
     Description: Calculate work sheet lines, update Price List lines.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
+using Microsoft.Inventory.Item;
+using Microsoft.Pricing.PriceList;
+
 page 50105 "Worksheet Price Lines Subpart"
 {
     PageType = ListPart;
@@ -35,117 +40,155 @@ page 50105 "Worksheet Price Lines Subpart"
                             Page.Run(Page::"Item Card", Item);
                     end;
                 }
-                field(Description; Rec.Description) { ApplicationArea = All; Editable = false; }
-                field("Variant Code"; Rec."Variant Code") { ApplicationArea = All; Editable = false; }
-                field(ItemReplenishmentSystem; ItemReplenishmentSystem)
+
+                field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Price list description.';
+                    Editable = false;
+                }
+                field("Variant Code"; Rec."Variant Code")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Price list variant code.';
+                    Editable = false;
+                }
+                field(ItemReplenishmentSystem; this.ItemReplenishmentSystem)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Price list item variant.';
                     Caption = 'Replenishment System';
                     Editable = false;
-                    StyleExpr = CostStyle;
+                    StyleExpr = this.CostStyle;
                 }
 
-                field(ItemCost; ItemCost)
+                field(ItemCost; this.ItemCost)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Item cost.';
                     Caption = 'Cost';
                     Editable = false;
-                    StyleExpr = CostStyle;
+                    StyleExpr = this.CostStyle;
                 }
 
-                field("COMP Markup Category"; MarkupCategoryCode)
+                field("COMP Markup Category"; this.MarkupCategoryCode)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Price list markup category.';
                     Caption = 'Markup Category';
                     TableRelation = "COMP Markup Category";
 
                     trigger OnValidate()
                     var
                         Item: Record Item;
-                        MarkupCategory: Record "COMP Markup Category";
                     begin
                         if Item.Get(Rec."Asset No.") then begin
-                            Item.Validate("COMP Markup Category", MarkupCategoryCode);
+                            Item.Validate("COMP Markup Category", this.MarkupCategoryCode);
                             Item.Modify(true);
                         end;
 
                         CurrPage.Update(false);
                     end;
                 }
-                field(ItemMarkup; ItemMarkup)
+
+                field(ItemMarkup; this.ItemMarkup)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Price list item markup.';
                     Caption = 'Overhead Markup %';
-                    Editable = IsItemAsset;
+                    Editable = this.IsItemAsset;
 
                     trigger OnValidate()
                     var
                         Item: Record Item;
                     begin
-                        if IsItemAsset and Item.Get(Rec."Asset No.") then begin
-                            Item.Validate("COMP Markup", ItemMarkup);
+                        if this.IsItemAsset and Item.Get(Rec."Asset No.") then begin
+                            Item.Validate("COMP Markup", this.ItemMarkup);
                             Item.Modify(true);
 
-                            ItemSalesPrice := Item."COMP Sales Price";
-                            ItemNetPrice := Item."COMP Net Price";
-                            CalculateDifferences();
+                            this.ItemSalesPrice := Item."COMP Sales Price";
+                            this.ItemNetPrice := Item."COMP Net Price";
+                            this.CalculateDifferences();
 
                             CurrPage.Update(false);
                         end;
                     end;
                 }
-                field(ItemSalesPrice; ItemSalesPrice)
+
+                field(ItemSalesPrice; this.ItemSalesPrice)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Price list calculated sales price.';
                     Caption = 'Sales Price (Calc.)';
                     Editable = false;
-                    Visible = SalesPriceVisible;
+                    Visible = this.SalesPriceVisible;
                 }
-                field(ItemNetPrice; ItemNetPrice)
+
+                field(ItemNetPrice; this.ItemNetPrice)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Price list calculated net price.';
                     Caption = 'Net Price (Calc.)';
                     Editable = false;
-                    Visible = NetPriceVisible;
+                    Visible = this.NetPriceVisible;
                 }
-                field(ItemComment; ItemComment)
+
+                field(ItemComment; this.ItemComment)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Price list comment.';
                     Caption = 'Comment';
 
                     trigger OnValidate()
                     var
                         Item: Record Item;
                     begin
-                        if IsItemAsset and Item.Get(Rec."Asset No.") then begin
-                            Item."COMP Comment" := ItemComment;
+                        if this.IsItemAsset and Item.Get(Rec."Asset No.") then begin
+                            Item."COMP Comment" := this.ItemComment;
                             Item.Modify(true);
 
                             CurrPage.Update(false);
                         end;
                     end;
                 }
-                field(WorkingUnitPrice; WorkingUnitPrice)
+
+                field(WorkingUnitPrice; this.WorkingUnitPrice)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Price list working unit price.';
                     Caption = 'New Unit Price (Draft)';
                     Editable = true;
 
                     trigger OnValidate()
                     begin
-                        SavePriceToMemory(Rec."Line No.", WorkingUnitPrice);
-                        CalculateDifferences();
+                        this.SavePriceToMemory(Rec."Line No.", this.WorkingUnitPrice);
+                        this.CalculateDifferences();
                         CurrPage.Update(false);
                     end;
                 }
+
                 field("Unit Price"; Rec."Unit Price")
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
 
-                field(PriceDifference; PriceDifference) { ApplicationArea = All; Caption = 'Diff.'; Editable = false; StyleExpr = DifferenceStyle; }
-                field(PriceDifferencePct; PriceDifferencePct) { ApplicationArea = All; Caption = 'Diff. (%)'; Editable = false; StyleExpr = DifferenceStyle; }
+                field(PriceDifference; this.PriceDifference)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Price list price difference between actual and calculated prices.';
+                    Caption = 'Diff.';
+                    Editable = false;
+                    StyleExpr = this.DifferenceStyle;
+                }
+                field(PriceDifferencePct; this.PriceDifferencePct)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Price list percentage difference between actual and calculated prices.';
+                    Caption = 'Diff. (%)';
+                    Editable = false;
+                    StyleExpr = this.DifferenceStyle;
+                }
             }
         }
     }
@@ -158,17 +201,18 @@ page 50105 "Worksheet Price Lines Subpart"
             action(CopyRowSalesPrice)
             {
                 ApplicationArea = All;
+                ToolTip = 'Copy calculated sales price to price list unit price, row only';
                 Caption = 'Sales Price ➡️ Unit Price';
                 Image = CopyFromTask;
                 Scope = Repeater;
-                Visible = SalesPriceVisible;
+                Visible = this.SalesPriceVisible;
 
                 trigger OnAction()
                 begin
-                    if ItemSalesPrice <> 0 then begin
-                        WorkingUnitPrice := ItemSalesPrice;
-                        SavePriceToMemory(Rec."Line No.", WorkingUnitPrice);
-                        CalculateDifferences();
+                    if this.ItemSalesPrice <> 0 then begin
+                        this.WorkingUnitPrice := this.ItemSalesPrice;
+                        this.SavePriceToMemory(Rec."Line No.", this.WorkingUnitPrice);
+                        this.CalculateDifferences();
                     end;
                 end;
             }
@@ -177,17 +221,18 @@ page 50105 "Worksheet Price Lines Subpart"
             action(CopyRowNetPrice)
             {
                 ApplicationArea = All;
+                ToolTip = 'Copy calculated net price to price list unit price, row only';
                 Caption = 'Net Price ➡️ Unit Price';
                 Image = CopyFromTask;
                 Scope = Repeater;
-                Visible = NetPriceVisible;
+                Visible = this.NetPriceVisible;
 
                 trigger OnAction()
                 begin
-                    if ItemNetPrice <> 0 then begin
-                        WorkingUnitPrice := ItemNetPrice;
-                        SavePriceToMemory(Rec."Line No.", WorkingUnitPrice);
-                        CalculateDifferences();
+                    if this.ItemNetPrice <> 0 then begin
+                        this.WorkingUnitPrice := this.ItemNetPrice;
+                        this.SavePriceToMemory(Rec."Line No.", this.WorkingUnitPrice);
+                        this.CalculateDifferences();
                     end;
                 end;
             }
@@ -217,71 +262,70 @@ page 50105 "Worksheet Price Lines Subpart"
     var
         Item: Record Item;
     begin
-        ClearFields();
+        this.ClearFields();
 
-        if not TryGetPriceFromMemory(Rec."Line No.", WorkingUnitPrice) then
-            WorkingUnitPrice := Rec."Unit Price";
+        if not this.TryGetPriceFromMemory(Rec."Line No.", this.WorkingUnitPrice) then
+            this.WorkingUnitPrice := Rec."Unit Price";
 
-        EvaluateLayoutVisibility();
+        this.EvaluateLayoutVisibility();
 
         if (Rec."Price List Code" = '') or (Rec."Asset No." = '') then
             exit;
 
-        IsItemAsset := Rec."Asset Type" = Rec."Asset Type"::Item;
-        if IsItemAsset and Item.Get(Rec."Asset No.") then begin
-            ItemMarkup := Item."COMP Markup";
-            ItemSalesPrice := Item."COMP Sales Price";
-            ItemNetPrice := Item."COMP Net Price";
-            ItemComment := Item."COMP Comment";
-            MarkupCategoryCode := Item."COMP Markup Category";
+        this.IsItemAsset := Rec."Asset Type" = Rec."Asset Type"::Item;
+        if this.IsItemAsset and Item.Get(Rec."Asset No.") then begin
+            this.ItemMarkup := Item."COMP Markup";
+            this.ItemSalesPrice := Item."COMP Sales Price";
+            this.ItemNetPrice := Item."COMP Net Price";
+            this.ItemComment := Item."COMP Comment";
+            this.MarkupCategoryCode := Item."COMP Markup Category";
 
-            ItemReplenishmentSystem := Item."Replenishment System";
+            this.ItemReplenishmentSystem := Item."Replenishment System";
             case Item."Replenishment System" of
                 Item."Replenishment System"::Purchase:
-                    ItemCost := Item."Unit Cost";
+                    this.ItemCost := Item."Unit Cost";
                 Item."Replenishment System"::"Prod. Order", Item."Replenishment System"::Assembly:
-                    ItemCost := Item."Standard Cost";
+                    this.ItemCost := Item."Standard Cost";
                 else
-                    ItemCost := 0;
+                    this.ItemCost := 0;
             end;
 
-            if (ItemCost = 0) or (ItemReplenishmentSystem = ItemReplenishmentSystem::" ") then
-                CostStyle := 'Unfavorable'
+            if (this.ItemCost = 0) or (this.ItemReplenishmentSystem = this.ItemReplenishmentSystem::" ") then
+                this.CostStyle := 'Unfavorable'
             else
-                CostStyle := 'None';
+                this.CostStyle := 'None';
 
-            CalculateDifferences();
+            this.CalculateDifferences();
         end;
     end;
 
     local procedure ClearFields()
     begin
-        ItemMarkup := 0;
-        ItemSalesPrice := 0;
-        ItemNetPrice := 0;
-        PriceDifference := 0;
-        PriceDifferencePct := 0;
-        IsItemAsset := false;
-        DifferenceStyle := 'None';
-        ItemCost := 0;
-        Clear(ItemReplenishmentSystem);
-        Clear(MarkupCategoryCode);
-        CostStyle := 'None';
+        this.ItemMarkup := 0;
+        this.ItemSalesPrice := 0;
+        this.ItemNetPrice := 0;
+        this.PriceDifference := 0;
+        this.PriceDifferencePct := 0;
+        this.IsItemAsset := false;
+        this.DifferenceStyle := 'None';
+        this.ItemCost := 0;
+        Clear(this.ItemReplenishmentSystem);
+        Clear(this.MarkupCategoryCode);
+        this.CostStyle := 'None';
     end;
 
     local procedure EvaluateLayoutVisibility()
     var
         PriceListHeader: Record "Price List Header";
     begin
-        SalesPriceVisible := false;
-        NetPriceVisible := false;
+        this.SalesPriceVisible := false;
+        this.NetPriceVisible := false;
 
-        if Rec."Price List Code" <> '' then begin
+        if Rec."Price List Code" <> '' then
             if PriceListHeader.Get(Rec."Price List Code") then begin
-                SalesPriceVisible := PriceListHeader."Amount Type" = PriceListHeader."Amount Type"::Price;
-                NetPriceVisible := PriceListHeader."Amount Type" = PriceListHeader."Amount Type"::Any;
+                this.SalesPriceVisible := PriceListHeader."Amount Type" = PriceListHeader."Amount Type"::Price;
+                this.NetPriceVisible := PriceListHeader."Amount Type" = PriceListHeader."Amount Type"::Any;
             end;
-        end;
     end;
 
     // Calculate difference between calculated and actual price, using sales or net price.
@@ -289,31 +333,32 @@ page 50105 "Worksheet Price Lines Subpart"
     var
         TargetBaselinePrice: Decimal;
     begin
-        if NetPriceVisible then
-            TargetBaselinePrice := ItemNetPrice
+        if this.NetPriceVisible then
+            TargetBaselinePrice := this.ItemNetPrice
         else
-            TargetBaselinePrice := ItemSalesPrice;
+            TargetBaselinePrice := this.ItemSalesPrice;
 
-        if (WorkingUnitPrice <> 0) and (TargetBaselinePrice <> 0) then begin
-            PriceDifference := WorkingUnitPrice - TargetBaselinePrice;
-            PriceDifferencePct := (PriceDifference / TargetBaselinePrice) * 100;
+        if (this.WorkingUnitPrice <> 0) and (TargetBaselinePrice <> 0) then begin
+            this.PriceDifference := this.WorkingUnitPrice - TargetBaselinePrice;
+            this.PriceDifferencePct := (this.PriceDifference / TargetBaselinePrice) * 100;
         end else begin
-            PriceDifference := 0;
-            PriceDifferencePct := 0;
+            this.PriceDifference := 0;
+            this.PriceDifferencePct := 0;
         end;
 
-        if PriceDifference > 0 then
-            DifferenceStyle := 'Favorable'
-        else if PriceDifference < 0 then
-            DifferenceStyle := 'Unfavorable'
+        if this.PriceDifference > 0 then
+            this.DifferenceStyle := 'Favorable'
         else
-            DifferenceStyle := 'None';
+            if this.PriceDifference < 0 then
+                this.DifferenceStyle := 'Unfavorable'
+            else
+                this.DifferenceStyle := 'None';
     end;
 
     // Baseline sales/net price for difference comparisons.
     procedure SetComparisonBaseline(NewBaseline: Option "Sales Price","Net Price")
     begin
-        CurrentBaseline := NewBaseline;
+        this.CurrentBaseline := NewBaseline;
         CurrPage.Update(false);
     end;
 
@@ -331,7 +376,7 @@ page 50105 "Worksheet Price Lines Subpart"
                 if (PriceListLineLoop."Asset Type" = PriceListLineLoop."Asset Type"::Item) and
                    Item.Get(PriceListLineLoop."Asset No.") and
                    (Item."COMP Sales Price" <> 0) then
-                    SavePriceToMemory(PriceListLineLoop."Line No.", Item."COMP Sales Price");
+                    this.SavePriceToMemory(PriceListLineLoop."Line No.", Item."COMP Sales Price");
             until PriceListLineLoop.Next() = 0;
 
         CurrPage.Update(false);
@@ -350,10 +395,8 @@ page 50105 "Worksheet Price Lines Subpart"
             repeat
                 if (PriceListLineLoop."Asset Type" = PriceListLineLoop."Asset Type"::Item) and
                    Item.Get(PriceListLineLoop."Asset No.") and
-                   (Item."COMP Net Price" <> 0) then begin
-
-                    SavePriceToMemory(PriceListLineLoop."Line No.", Item."COMP Net Price");
-                end;
+                   (Item."COMP Net Price" <> 0) then
+                    this.SavePriceToMemory(PriceListLineLoop."Line No.", Item."COMP Net Price");
             until PriceListLineLoop.Next() = 0;
 
         CurrPage.Update(false);
@@ -362,14 +405,14 @@ page 50105 "Worksheet Price Lines Subpart"
     // Publish changes to price list.
     procedure UpdateActualPriceList(PriceListCode: Code[20])
     var
+        Item: Record Item;
         PriceListHeader: Record "Price List Header";
         PriceListLine: Record "Price List Line";
         ActualPriceListLine: Record "Price List Line";
-        DuplicatePriceLine: Record "Duplicate Price Line";
+        TempDuplicatePriceLine: Record "Duplicate Price Line";
         PriceListManagement: Codeunit "Price List Management";
-        Item: Record Item;
         OriginalStatus: Enum "Price Status";
-        PublishMessage: Label 'Price lines successfully published.';
+        PublishMsg: Label 'Price lines successfully published.';
         LineNo: Integer;
         StagedPrice: Decimal;
     begin
@@ -378,8 +421,8 @@ page 50105 "Worksheet Price Lines Subpart"
 
         ActualPriceListLine.LockTable();
 
-        foreach LineNo in StagedPricesMap.Keys() do begin
-            StagedPricesMap.Get(LineNo, StagedPrice);
+        foreach LineNo in this.StagedPricesMap.Keys() do begin
+            this.StagedPricesMap.Get(LineNo, StagedPrice);
             if StagedPrice <> 0 then begin
                 ActualPriceListLine.SetRange("Price List Code", PriceListCode);
                 ActualPriceListLine.SetRange("Line No.", LineNo);
@@ -388,18 +431,17 @@ page 50105 "Worksheet Price Lines Subpart"
                     ActualPriceListLine.Modify(true);
 
                     // Update Item Card if applicable
-                    if (ActualPriceListLine."Asset Type" = ActualPriceListLine."Asset Type"::Item) and (ActualPriceListLine."Asset No." <> '') then begin
+                    if (ActualPriceListLine."Asset Type" = ActualPriceListLine."Asset Type"::Item) and (ActualPriceListLine."Asset No." <> '') then
                         if Item.Get(ActualPriceListLine."Asset No.") then begin
                             Item.Validate("Unit Price", StagedPrice);
                             Item.Modify(true);
                         end;
-                    end;
                 end;
             end;
         end;
 
-        Clear(StagedPricesMap);
-        Clear(WorkingUnitPrice);
+        Clear(this.StagedPricesMap);
+        Clear(this.WorkingUnitPrice);
 
         if PriceListHeader.Get(PriceListCode) then begin
             OriginalStatus := PriceListHeader.Status;
@@ -421,17 +463,16 @@ page 50105 "Worksheet Price Lines Subpart"
             PriceListLine.SetRange(Status, PriceListLine.Status::Draft);
 
             // Remove duplicates.
-            if PriceListManagement.FindDuplicatePrices(PriceListHeader, PriceListLine, true, DuplicatePriceLine) then begin
-                DuplicatePriceLine.Reset();
-                DuplicatePriceLine.SetRange("Price List Code", PriceListCode);
-                DuplicatePriceLine.SetRange(Remove, true);
+            if PriceListManagement.FindDuplicatePrices(PriceListHeader, PriceListLine, true, TempDuplicatePriceLine) then begin
+                TempDuplicatePriceLine.Reset();
+                TempDuplicatePriceLine.SetRange("Price List Code", PriceListCode);
+                TempDuplicatePriceLine.SetRange(Remove, true);
 
-                if DuplicatePriceLine.FindSet() then begin
+                if TempDuplicatePriceLine.FindSet() then
                     repeat
-                        if PriceListLine.Get(DuplicatePriceLine."Price List Code", DuplicatePriceLine."Line No.") then
+                        if PriceListLine.Get(TempDuplicatePriceLine."Price List Code", TempDuplicatePriceLine."Line No.") then
                             PriceListLine.Delete(false);
-                    until DuplicatePriceLine.Next() = 0;
-                end;
+                    until TempDuplicatePriceLine.Next() = 0;
             end;
 
             // Reactivate lines.
@@ -448,33 +489,32 @@ page 50105 "Worksheet Price Lines Subpart"
                 PriceListLine.SetRange(Status, PriceListLine.Status::Draft);
                 if not PriceListLine.IsEmpty() then
                     PriceListLine.ModifyAll(Status, PriceListLine.Status::Active, true);
-            end else begin
+            end else
                 if PriceListHeader.Status <> OriginalStatus then begin
                     PriceListHeader.Status := OriginalStatus;
                     PriceListHeader.Modify(true);
                 end;
-            end;
 
-            Message(PublishMessage, PriceListCode);
+            Message(PublishMsg);
 
-            Clear(StagedPricesMap);
-            Clear(WorkingUnitPrice);
+            Clear(this.StagedPricesMap);
+            Clear(this.WorkingUnitPrice);
             CurrPage.Update(false);
         end;
     end;
 
     local procedure SavePriceToMemory(LineNo: Integer; NewUnitPrice: Decimal)
     begin
-        if StagedPricesMap.ContainsKey(LineNo) then
-            StagedPricesMap.Set(LineNo, NewUnitPrice)
+        if this.StagedPricesMap.ContainsKey(LineNo) then
+            this.StagedPricesMap.Set(LineNo, NewUnitPrice)
         else
-            StagedPricesMap.Add(LineNo, NewUnitPrice);
+            this.StagedPricesMap.Add(LineNo, NewUnitPrice);
     end;
 
     local procedure TryGetPriceFromMemory(LineNo: Integer; var StagedUnitPrice: Decimal): Boolean
     begin
-        if StagedPricesMap.ContainsKey(LineNo) then begin
-            StagedUnitPrice := StagedPricesMap.Get(LineNo);
+        if this.StagedPricesMap.ContainsKey(LineNo) then begin
+            StagedUnitPrice := this.StagedPricesMap.Get(LineNo);
             exit(true);
         end;
         exit(false);
@@ -482,8 +522,8 @@ page 50105 "Worksheet Price Lines Subpart"
 
     procedure ClearStagedPrices()
     begin
-        Clear(StagedPricesMap);
-        Clear(WorkingUnitPrice);
+        Clear(this.StagedPricesMap);
+        Clear(this.WorkingUnitPrice);
         CurrPage.Update(false);
     end;
 }

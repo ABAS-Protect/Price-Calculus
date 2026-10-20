@@ -4,6 +4,8 @@
     Description: Setup page for ABAS price calculus.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
 page 50107 "ABAS Price Calculus Setup"
 {
     PageType = Card;
@@ -29,11 +31,13 @@ page 50107 "ABAS Price Calculus Setup"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the base percentage used for rebate calculations (default 52%).';
                 }
+
                 field("Production Markup %"; Rec."Production Markup %")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the markup percentage applied to production costs (default 5%).';
                 }
+
                 field("Purchase Markup %"; Rec."Purchase Markup %")
                 {
                     ApplicationArea = All;

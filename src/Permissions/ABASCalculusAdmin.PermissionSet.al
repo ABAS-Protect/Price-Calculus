@@ -4,6 +4,8 @@
     Description: Permission set for ABAS Price Calculus objects.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
 permissionset 50100 "ABAS Calculus Admin"
 {
     Assignable = true;

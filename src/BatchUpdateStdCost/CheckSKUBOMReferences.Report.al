@@ -4,6 +4,11 @@
     Description: Clean out ghost BOMs.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
+using Microsoft.Inventory.Location;
+using Microsoft.Manufacturing.ProductionBOM;
+
 report 50102 "Check SKU BOM References"
 {
     UsageCategory = Tasks;
@@ -11,8 +16,7 @@ report 50102 "Check SKU BOM References"
     ProcessingOnly = true;
     Caption = 'ABAS Check SKU BOM References';
 
-    dataset
-    { }
+    dataset { }
 
     requestpage
     {
@@ -43,8 +47,8 @@ report 50102 "Check SKU BOM References"
         TotalSKUsChecked: Integer;
         FixedBOMsCount: Integer;
         ClearedKeysList: Text;
-        CheckCompleteMsg: Label 'Cleanup Complete.\\Checked %1 SKUs.\\No ghost Production BOM references found to clear.';
-        FixCompleteMsg: Label 'Cleanup Complete.\\Checked %1 SKUs.\\Successfully erased %2 ghost references.\\Fixed SKU Keys: %3';
+        CheckCompleteMsg: Label 'Cleanup Complete.\\Checked %1 SKUs.\\No ghost Production BOM references found to clear.', Comment = '%1 = TotalSKUsChecked';
+        FixCompleteMsg: Label 'Cleanup Complete.\\Checked %1 SKUs.\\Successfully erased %2 ghost references.\\Fixed SKU Keys: %3', Comment = '%1 = TotalSKUsChecked; %2 = FixedBOMsCount; %3 = ClearedKeysList';
     begin
         SKU.SetFilter("Production BOM No.", '<>%1', '');
 

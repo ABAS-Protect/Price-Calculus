@@ -4,6 +4,8 @@
     Description: Worksheet to select pricelists for inclusion in PDF printout.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
 page 50108 "Price List Selection Worksheet"
 {
     PageType = Worksheet;
@@ -32,6 +34,7 @@ page 50108 "Price List Selection Worksheet"
             action(PrintCatalog)
             {
                 Caption = 'Generate PDF Catalog';
+                ToolTip = 'Create a printable price list.';
                 Image = PrintReport;
                 ApplicationArea = All;
                 Promoted = true;
@@ -53,6 +56,7 @@ page 50108 "Price List Selection Worksheet"
             }
         }
     }
+
     trigger OnOpenPage()
     var
         SetupCheck: Record "Price List Print Line";

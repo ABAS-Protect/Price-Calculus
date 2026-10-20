@@ -4,6 +4,8 @@
     Description: Install page for ABAS price calculus.
 */
 
+namespace ABAS.ABAS_Price_Calculus;
+
 codeunit 50109 "Price Calculus Setup Install"
 {
     Subtype = Install;
