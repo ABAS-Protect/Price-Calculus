@@ -1,7 +1,7 @@
 /*
     Author: Niklas Dougherty <nd@abas.se>
     Date: 2026-10-01
-    Description: Batch calculate Standard Cost and add to Item Card.
+    Description: Batch calculate Standard Cost and add to Item Card. Run as a nightly cron job.
 */
 
 namespace ABAS.ABAS_Price_Calculus;
@@ -44,7 +44,7 @@ report 50101 BatchUpdateStandardCosts
                 ProdBOMHeader: Record "Production BOM Header";
                 BOMComponent: Record "BOM Component";
             begin
-                // Skip SKUs with empty or uncertifird BOM headers and non.existing assembly BOMs.
+                // Skip SKUs with empty or uncertified BOM headers and non-existing assembly BOMs.
                 if Item."Replenishment System" = Enum::"Replenishment System"::"Prod. Order" then begin
                     if Item."Production BOM No." = '' then
                         CurrReport.Skip();

@@ -61,11 +61,9 @@ page 50108 "Price List Selection Worksheet"
     var
         SetupCheck: Record "Price List Print Line";
     begin
-        begin
-            Rec.FilterGroup(2);
-            Rec.SetRange("Worksheet Code", 'GLOBAL');
-            Rec.FilterGroup(0);
-        end;
+        Rec.FilterGroup(2);
+        Rec.SetRange("Worksheet Code", 'GLOBAL');
+        Rec.FilterGroup(0);
 
         SetupCheck.SetRange("Worksheet Code", 'GLOBAL');
         if SetupCheck.IsEmpty() then begin

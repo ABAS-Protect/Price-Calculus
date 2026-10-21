@@ -123,6 +123,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Price List Print Line - Field Sequence - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2254797092 - Field 513339096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Status</source>
+          <target>Status</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Print Line - Field Status - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2254797092 - Field 1558222909 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Worksheet Code</source>
           <target>Arbetsbladskod</target>
@@ -362,6 +368,12 @@
           <target>Sekvens för prislista</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Price Selection Lines Subpart - Control Sequence - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2063830941 - Control 513339096 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price List Status</source>
+          <target>Status för prislista</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Selection Lines Subpart - Control Status - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2063830941 - Action 3069824669 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Move price list item downwards.</source>
@@ -632,6 +644,24 @@
           <target>Kod</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - ReportLabel VariantLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1987354672 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <target>Alternativ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1987354672 - Control 4293908892 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if you want draft price lists to show up in the printed catalog alongside active ones.</source>
+          <target>Anger om även prislistor med status utkast ska användas i prislistan.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - Control IncludeDraftsField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 1987354672 - Control 4293908892 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Include Draft Price Lists</source>
+          <target>Inkludera prislistor med status utkast</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - Control IncludeDraftsField - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 1104936830 - Control 3368186230 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
           <source>Price Calculus Comment</source>

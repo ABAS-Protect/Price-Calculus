@@ -45,7 +45,7 @@ pageextension 50111 "Item Card Permission Lock" extends "Item Card"
 
     local procedure CheckUserHasRole(PermissionSetID: Code[20]): Boolean
     var
-        AccessControl: Record 2000000053;
+        AccessControl: Record 2000000053; // System.Security.AccessControl."Access Control"
     begin
         AccessControl.SetRange("User Security ID", UserSecurityId());
         AccessControl.SetRange("Role ID", PermissionSetID);

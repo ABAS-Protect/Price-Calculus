@@ -80,7 +80,7 @@ codeunit 50107 "Filter Standard Price List"
                 end;
             until StandardLine.Next() = 0;
 
-        // Mass execution
+        // Mass execution.
         if (not DryRun) and (DeletedCount > 0) then begin
             LinesToDelete.MarkedOnly(true);
             LinesToDelete.DeleteAll(true);

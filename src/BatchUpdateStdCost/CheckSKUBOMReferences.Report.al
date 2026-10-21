@@ -1,7 +1,7 @@
 /*
     Author: Niklas Dougherty <nd@abas.se>
     Date: 2026-10-05
-    Description: Clean out ghost BOMs.
+    Description: Clean out ghost BOMs. Run before the Standard Cost update job.
 */
 
 namespace ABAS.ABAS_Price_Calculus;

@@ -52,6 +52,13 @@ table 50105 "Price List Print Line"
             AllowInCustomizations = AsReadWrite;
             Caption = 'Sequence Order';
         }
+        field(6; "Status"; Enum "Price Status")
+        {
+            Caption = 'Status';
+            FieldClass = FlowField;
+            CalcFormula = lookup("Price List Header".Status where(Code = field("Price List Code")));
+            Editable = false;
+        }
     }
 
     keys
@@ -73,8 +80,7 @@ table 50105 "Price List Print Line"
             PrintLine.DeleteAll(false);
 
         PriceListHeader.SetRange("Price Type", PriceListHeader."Price Type"::Sale);
-        PriceListHeader.SetRange(Status, PriceListHeader.Status::Active);
-        // PriceListHeader.SetFilter(Status, '%1|%2', PriceListHeader.Status::Active, PriceListHeader.Status::Draft);
+        PriceListHeader.SetFilter(Status, '%1|%2', PriceListHeader.Status::Active, PriceListHeader.Status::Draft);
         PriceListHeader.SetFilter("Amount Type", '<>%1', PriceListHeader."Amount Type"::Discount);
 
         if SalesReceivablesSetup.Get() then

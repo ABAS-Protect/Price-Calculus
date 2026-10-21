@@ -23,16 +23,25 @@ page 50109 "Price Selection Lines Subpart"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Price List Sequence';
+                    StyleExpr = this.LineStyle;
                 }
                 field("Price List Code"; Rec."Price List Code")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Price List Code';
+                    StyleExpr = this.LineStyle;
                 }
                 field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Price List Description';
+                    StyleExpr = this.LineStyle;
+                }
+                field(Status; Rec.Status)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Price List Status';
+                    StyleExpr = this.LineStyle;
                 }
             }
         }
@@ -66,6 +75,8 @@ page 50109 "Price Selection Lines Subpart"
 
                         PreviousLine."Sequence" := CurrentSequence;
                         PreviousLine.Modify();
+
+                        CurrPage.Update(false);
                     end;
                 end;
             }
@@ -94,9 +105,28 @@ page 50109 "Price Selection Lines Subpart"
 
                         NextLine."Sequence" := CurrentSequence;
                         NextLine.Modify();
+
+                        CurrPage.Update(false);
                     end;
                 end;
             }
         }
     }
+
+    trigger OnAfterGetRecord()
+    begin
+        Rec.CalcFields(Status);
+        this.SetLineStyle();
+    end;
+
+    var
+        LineStyle: Text;
+
+    local procedure SetLineStyle()
+    begin
+        if Rec.Status = Rec.Status::Draft then
+            this.LineStyle := 'Unfavorable'
+        else
+            this.LineStyle := 'None';
+    end;
 }

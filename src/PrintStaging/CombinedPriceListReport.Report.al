@@ -100,6 +100,35 @@ report 50100 "Combined Price List Report"
                     end;
                 end;
             }
+
+            trigger OnAfterGetRecord()
+            begin
+                SelectionLine.CalcFields(Status);
+
+                if not IncludeDrafts then
+                    if SelectionLine.Status = SelectionLine.Status::Draft then
+                        CurrReport.Skip();
+            end;
+        }
+    }
+
+    requestpage
+    {
+        layout
+        {
+            area(Content)
+            {
+                group(Options)
+                {
+                    Caption = 'Options';
+                    field(IncludeDraftsField; IncludeDrafts)
+                    {
+                        ApplicationArea = All;
+                        Caption = 'Include Draft Price Lists';
+                        ToolTip = 'Specifies if you want draft price lists to show up in the printed catalog alongside active ones.';
+                    }
+                }
+            }
         }
     }
 
@@ -119,4 +148,5 @@ report 50100 "Combined Price List Report"
         ReportDescription2: Text[100];
         ReportUOMText: Text;
         IsPriceAndDiscount: Boolean;
+        IncludeDrafts: Boolean;
 }
