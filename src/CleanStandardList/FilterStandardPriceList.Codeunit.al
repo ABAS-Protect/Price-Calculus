@@ -14,8 +14,9 @@ codeunit 50107 "Filter Standard Price List"
     var
         StandardLine: Record "Price List Line";
         SpecialLine: Record "Price List Line";
+        TempActiveSpecialLine: Record "Price List Line" temporary;
         PriceListHeader: Record "Price List Header";
-        StandardLineToDelete: Record "Price List Line";
+        LinesToDelete: Record "Price List Line";
         ShouldDelete: Boolean;
     begin
         if SelectedPriceListCode = '' then
@@ -32,6 +33,15 @@ codeunit 50107 "Filter Standard Price List"
             end else
                 exit(0);
 
+        SpecialLine.SetFilter("Price List Code", '<>%1', SelectedPriceListCode);
+        SpecialLine.SetRange(Status, SpecialLine.Status::Active);
+        SpecialLine.SetRange("Asset Type", SpecialLine."Asset Type"::Item);
+        if SpecialLine.FindSet(false) then
+            repeat
+                TempActiveSpecialLine.Copy(SpecialLine);
+                TempActiveSpecialLine.Insert();
+            until SpecialLine.Next() = 0;
+
         StandardLine.SetRange("Price List Code", SelectedPriceListCode);
         StandardLine.SetRange("Asset Type", StandardLine."Asset Type"::Item);
 
@@ -40,44 +50,41 @@ codeunit 50107 "Filter Standard Price List"
                 ShouldDelete := false;
 
                 // Variant in common, delete variant.
-                SpecialLine.Reset();
-                SpecialLine.SetFilter("Price List Code", '<>%1', SelectedPriceListCode);
-                SpecialLine.SetRange("Asset Type", StandardLine."Asset Type"::Item);
-                SpecialLine.SetRange("Asset No.", StandardLine."Asset No.");
-                SpecialLine.SetRange("Variant Code", StandardLine."Variant Code");
-                if not SpecialLine.IsEmpty() then
+                TempActiveSpecialLine.Reset();
+                TempActiveSpecialLine.SetRange("Asset No.", StandardLine."Asset No.");
+                TempActiveSpecialLine.SetRange("Variant Code", StandardLine."Variant Code");
+                if not TempActiveSpecialLine.IsEmpty() then
                     ShouldDelete := true;
 
                 // Standard has variant, price list does not (general coverage); delete variant.
                 if (not ShouldDelete) and (StandardLine."Variant Code" <> '') then begin
-                    SpecialLine.Reset();
-                    SpecialLine.SetFilter("Price List Code", '<>%1', SelectedPriceListCode);
-                    SpecialLine.SetRange("Asset Type", StandardLine."Asset Type"::Item);
-                    SpecialLine.SetRange("Asset No.", StandardLine."Asset No.");
-                    SpecialLine.SetRange("Variant Code", '');
-                    if not SpecialLine.IsEmpty() then
+                    TempActiveSpecialLine.SetRange("Variant Code", '');
+                    if not TempActiveSpecialLine.IsEmpty() then
                         ShouldDelete := true;
                 end;
 
                 // Standard has general coverage but not actual variant, delete item number.
                 if (not ShouldDelete) and (StandardLine."Variant Code" = '') then begin
-                    SpecialLine.Reset();
-                    SpecialLine.SetFilter("Price List Code", '<>%1', SelectedPriceListCode);
-                    SpecialLine.SetRange("Asset Type", StandardLine."Asset Type"::Item);
-                    SpecialLine.SetRange("Asset No.", StandardLine."Asset No.");
-                    SpecialLine.SetFilter("Variant Code", '<>%1', '');
-                    if not SpecialLine.IsEmpty() then
+                    TempActiveSpecialLine.SetFilter("Variant Code", '<>%1', '');
+                    if not TempActiveSpecialLine.IsEmpty() then
                         ShouldDelete := true;
                 end;
 
                 if ShouldDelete then begin
                     DeletedCount += 1;
 
-                    if not DryRun then
-                        if StandardLineToDelete.Get(StandardLine."Price List Code", StandardLine."Line No.") then
-                            StandardLineToDelete.Delete(true);
+                    if not DryRun then begin
+                        LinesToDelete.Get(StandardLine."Price List Code", StandardLine."Line No.");
+                        LinesToDelete.Mark(true);
+                    end;
                 end;
             until StandardLine.Next() = 0;
+
+        // Mass execution
+        if (not DryRun) and (DeletedCount > 0) then begin
+            LinesToDelete.MarkedOnly(true);
+            LinesToDelete.DeleteAll(true);
+        end;
 
         if not DryRun then begin
             PriceListHeader.Status := PriceListHeader.Status::Active;

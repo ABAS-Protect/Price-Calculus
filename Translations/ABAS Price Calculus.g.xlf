@@ -168,15 +168,40 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Control General - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2760247076 - Control 1737091078 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price List Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Control Price List Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2760247076 - Control 1621610075 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price List Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Control Price List Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2760247076 - Action 3904309618 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Copy calculated net prices to price list new unit prices</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action ApplyNetPrice - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 2760247076 - Action 3904309618 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Net Price ➡️ Unit Price</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action ApplyNetPrice - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2760247076 - Action 3094577355 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Copy calculated sales prices to price list new unit prices</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action ApplySalesPrice - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 2760247076 - Action 3094577355 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Price ➡️ Unit Price</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action ApplySalesPrice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2760247076 - Action 3355619282 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Commit price list unit prices (worksheet) to actual price list lines</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action CommitPriceList - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2760247076 - Action 3355619282 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Publish Updates to Price List</source>
@@ -188,6 +213,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action CommitPriceList - Method OnAction - NamedType PublishMsg</note>
         </trans-unit>
+        <trans-unit id="Page 2760247076 - Action 205341522 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open worksheet</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page ABAS Price List Worksheet - Action OpenCatalogBuilder - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 2760247076 - Action 205341522 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Print Price List</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -198,10 +228,35 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page COMP Markup Cat. Trans Sub - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 4116177993 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Calculus Group Code Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page COMP Markup Cat. Trans Sub - Control Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4116177993 - Control 2273653569 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Calculus Group Language Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page COMP Markup Cat. Trans Sub - Control Language Code - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 221258417 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ABAS Markup Categories</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page COMP Markup Categories - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 221258417 - Control 3004954119 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Calculus Group Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page COMP Markup Categories - Control Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 221258417 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Calculus Group Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page COMP Markup Categories - Control Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 221258417 - Control 3261267911 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Calculus Group Markup Percentage</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page COMP Markup Categories - Control Markup % - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 221258417 - Action 2653012956 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Define descriptions in other languages.</source>
@@ -218,6 +273,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3440184819 - Action 3987590790 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Create a printable price list.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Action PrintCatalog - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 3440184819 - Action 3987590790 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Generate PDF Catalog</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -228,80 +288,175 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Price Selection Lines Subpart - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2063830941 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price List Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Selection Lines Subpart - Control Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2063830941 - Control 1737091078 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price List Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Selection Lines Subpart - Control Price List Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2063830941 - Control 4154341761 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price List Sequence</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Selection Lines Subpart - Control Sequence - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2063830941 - Action 3069824669 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Move price list item downwards.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Selection Lines Subpart - Action MoveDown - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 2063830941 - Action 3069824669 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Move Down</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Price Selection Lines Subpart - Action MoveDown - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2063830941 - Action 2816622752 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Move price list item upwards.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Selection Lines Subpart - Action MoveUp - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2063830941 - Action 2816622752 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Move Up</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Price Selection Lines Subpart - Action MoveUp - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 1786770511 - Method 316912780 - NamedType 1048221670" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 1786770511 - Method 316912780 - NamedType 347117348" size-unit="char" translate="yes" xml:space="preserve">
           <source>Price lines successfully published.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Method UpdateActualPriceList - NamedType PublishMessage</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Method UpdateActualPriceList - NamedType PublishMsg</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Control 1634501393 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Item No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control Asset No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 2428213275 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price list markup category.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control COMP Markup Category - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 1786770511 - Control 2428213275 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Markup Category</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control COMP Markup Category - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price list description.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 2798413794 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price list comment.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemComment - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Control 2798413794 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Comment</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemComment - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 2180019962 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item cost.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemCost - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 1786770511 - Control 2180019962 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cost</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemCost - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 64142375 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price list item markup.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemMarkup - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Control 64142375 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overhead Markup %</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemMarkup - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 2266327937 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price list calculated net price.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemNetPrice - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 1786770511 - Control 2266327937 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Net Price (Calc.)</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemNetPrice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 15740660 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price list item variant.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemReplenishmentSystem - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Control 15740660 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Replenishment System</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemReplenishmentSystem - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 1725357500 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price list calculated sales price.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemSalesPrice - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 1786770511 - Control 1725357500 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Price (Calc.)</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control ItemSalesPrice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 2851143062 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price list price difference between actual and calculated prices.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control PriceDifference - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Control 2851143062 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Diff.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control PriceDifference - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 1592189799 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price list percentage difference between actual and calculated prices.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control PriceDifferencePct - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 1786770511 - Control 1592189799 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Diff. (%)</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control PriceDifferencePct - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 3450651614 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price list variant code.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control Variant Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Control 314389214 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price list working unit price.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control WorkingUnitPrice - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Control 314389214 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>New Unit Price (Draft)</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Control WorkingUnitPrice - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1786770511 - Action 2714439911 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Copy calculated net price to price list unit price, row only</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Action CopyRowNetPrice - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 1786770511 - Action 2714439911 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Net Price ➡️ Unit Price</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Action CopyRowNetPrice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1786770511 - Action 935294406 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Copy calculated sales price to price list unit price, row only</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Worksheet Price Lines Subpart - Action CopyRowSalesPrice - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1786770511 - Action 935294406 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Price ➡️ Unit Price</source>
@@ -320,12 +475,12 @@
         </trans-unit>
         <trans-unit id="Report 4237020421 - Method 1544076788 - NamedType 2584114778" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cleanup Complete.\\Checked %1 SKUs.\\No ghost Production BOM references found to clear.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">%1 = TotalSKUsChecked</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Check SKU BOM References - Method OnPreReport - NamedType CheckCompleteMsg</note>
         </trans-unit>
         <trans-unit id="Report 4237020421 - Method 1544076788 - NamedType 2029391097" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cleanup Complete.\\Checked %1 SKUs.\\Successfully erased %2 ghost references.\\Fixed SKU Keys: %3</source>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">%1 = TotalSKUsChecked; %2 = FixedBOMsCount; %3 = ClearedKeysList</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Check SKU BOM References - Method OnPreReport - NamedType FixCompleteMsg</note>
         </trans-unit>
         <trans-unit id="Report 4237020421 - Control 2731845899 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -373,10 +528,30 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Combined Price List Report - ReportLabel VariantLbl</note>
         </trans-unit>
+        <trans-unit id="PageExtension 1104936830 - Control 3368186230 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
+          <source>Price Calculus Comment</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemCardCalculusFields - Control COMP Comment - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1104936830 - Control 4236602011 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
+          <source>Overhead Markup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemCardCalculusFields - Control COMP Markup - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="PageExtension 1104936830 - Control 2428213275 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
           <source>Specifies the markup category for this item.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemCardCalculusFields - Control COMP Markup Category - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1104936830 - Control 93464285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
+          <source>Calculated Net Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemCardCalculusFields - Control COMP Net Price - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1104936830 - Control 3961945352 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
+          <source>Calculates Sales Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemCardCalculusFields - Control COMP Sales Price - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
           <source>Scan lists and count conflicting lines with standard price list.</source>
@@ -390,12 +565,12 @@
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Method 1377591017 - NamedType 2954980686" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
           <source>%1 conflicting lines would be deleted from Price List "%2".</source>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">%1 = LinesFound; %2 = TargetPriceListCode</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action AnalyzeConflicts - Method OnAction - NamedType LinesFoundMsg</note>
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Method 1377591017 - NamedType 1113046263" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
           <source>No conflicting lines found for Price List "%1".</source>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">%1 = TargetPriceListCode</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action AnalyzeConflicts - Method OnAction - NamedType NoLinesMsg</note>
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3825344675 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
@@ -410,13 +585,13 @@
         </trans-unit>
         <trans-unit id="PageExtension 3147209063 - Action 3825344675 - Method 1377591017 - NamedType 2909256695" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
           <source>Permanently delete conflicting lines from Price List "%1"?</source>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">%1 = TargetPriceListCode</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action ExcludeSpecialPrices - Method OnAction - NamedType ConfirmRunQst</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3147209063 - Action 3825344675 - Method 1377591017 - NamedType 3628567239" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
+        <trans-unit id="PageExtension 3147209063 - Action 3825344675 - Method 1377591017 - NamedType 1429192745" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
           <source>%1 lines successfully removed from Price List "%2".</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action ExcludeSpecialPrices - Method OnAction - NamedType RemoveMessage</note>
+          <note from="Developer" annotates="general" priority="2">%1 = LinesFound; %2 = TargetPriceListCode</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action ExcludeSpecialPrices - Method OnAction - NamedType RemoveMsg</note>
         </trans-unit>
         <trans-unit id="TableExtension 4100265751 - Field 3368186230 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
           <source>Comment</source>

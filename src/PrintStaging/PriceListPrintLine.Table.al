@@ -73,7 +73,8 @@ table 50105 "Price List Print Line"
             PrintLine.DeleteAll(false);
 
         PriceListHeader.SetRange("Price Type", PriceListHeader."Price Type"::Sale);
-        PriceListHeader.SetFilter(Status, '%1|%2', PriceListHeader.Status::Active, PriceListHeader.Status::Draft);
+        PriceListHeader.SetRange(Status, PriceListHeader.Status::Active);
+        // PriceListHeader.SetFilter(Status, '%1|%2', PriceListHeader.Status::Active, PriceListHeader.Status::Draft);
         PriceListHeader.SetFilter("Amount Type", '<>%1', PriceListHeader."Amount Type"::Discount);
 
         if SalesReceivablesSetup.Get() then
