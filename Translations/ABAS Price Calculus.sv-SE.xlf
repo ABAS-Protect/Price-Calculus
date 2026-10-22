@@ -93,6 +93,54 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Price Calculus Setup Table - Field Rebate Base % - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 1182529428 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price List Group</source>
+          <target>Prislistegrupp</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1182529428 - Method 1593094413 - NamedType 2821294898" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Standard Catalog Group</source>
+          <target>Standardgrupp</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Group - Method VerifyStandardGroupExists - NamedType StandardGroupLbl</note>
+        </trans-unit>
+        <trans-unit id="Table 1182529428 - Field 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Code</source>
+          <target>Kod</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Group - Field Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1182529428 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target>Beskrivning</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Group - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 662435597 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price List Group Translation</source>
+          <target>Översättning av prislistegrupp</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Group Translation - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 662435597 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Translated Description</source>
+          <target>Översatt benämning</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Group Translation - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 662435597 - Field 1663794414 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Group Code</source>
+          <target>Gruppkod</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Group Translation - Field Group Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 662435597 - Field 2273653569 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Language Code</source>
+          <target>Språkkod</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Group Translation - Field Language Code - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2254797092 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ABAS Print Price List</source>
           <target>ABAS Skriv ut prislista</target>
@@ -327,15 +375,93 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page COMP Markup Categories - Action Translations - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3906992942 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Group Translations</source>
+          <target>Översättning av prisgrupp</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Group Translations - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3906992942 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type the translated text expression to display for users in this locale.</source>
+          <target>Skriv in den översatta texten för användare med detta språk.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Group Translations - Control Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3906992942 - Control 2273653569 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Select the system language code mapping target.</source>
+          <target>Välj systemspråkkod.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Group Translations - Control Language Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4137359507 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price List Groups</source>
+          <target>Prislistegrupper</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Groups Lookup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4137359507 - Control 3004954119 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unique catalog group code.</source>
+          <target>Unik gruppkod för katalog.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Groups Lookup - Control Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4137359507 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Group description context.</source>
+          <target>Gruppbeskrivning.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Groups Lookup - Control Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4137359507 - Action 2653012956 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Define multi-language translations for the selected group description.</source>
+          <target>Översätt den valda gruppbeskrivningen till andra språk.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Groups Lookup - Action Translations - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4137359507 - Action 2653012956 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Translations</source>
+          <target>Översättningar</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Groups Lookup - Action Translations - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3440184819 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>ABAS Print Price List</source>
+          <source>ABAS Print Price List Builder</source>
           <target>ABAS Skriv ut prislista</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3440184819 - Control 2940273147 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Group Filter Selection</source>
+          <target>Gruppfilterval</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Control GroupSelectionPanel - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3440184819 - Control 3851000495 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Group description.</source>
+          <target>Gruppbeskrivning</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Control ActiveGroupDescription - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3440184819 - Control 3851000495 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Group Description</source>
+          <target>Gruppbeskrivning</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Control ActiveGroupDescription - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3440184819 - Control 917986634 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Choose which named layout group selection to manage or print.</source>
+          <target>Välj layoutgrupp för redigering eller utskrift.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Control SelectedGroupFilter - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3440184819 - Control 917986634 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Selected Catalog Group</source>
+          <target>Vald kataloggrupp</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Control SelectedGroupFilter - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3440184819 - Action 3987590790 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Create a printable price list.</source>
-          <target>Skapa en utskrivbar prislista.</target>
+          <source>Create a printable price list for the chosen group selection.</source>
+          <target>Skapa en utskrivbar prislista för detta gruppval.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Action PrintCatalog - Property ToolTip</note>
         </trans-unit>
@@ -344,6 +470,18 @@
           <target>Generera PDF-katalog</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Action PrintCatalog - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3440184819 - Action 1431255457 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Clear out and fetch active sales price list matches cleanly for this group context.</source>
+          <target>Rensa fält och hämta tillgängliga listor.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Action ResetGroupLines - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3440184819 - Action 1431255457 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reset Current Group Lines</source>
+          <target>Återställ grupprader.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Action ResetGroupLines - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2063830941 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source> Sorting</source>

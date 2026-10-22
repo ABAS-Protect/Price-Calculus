@@ -16,10 +16,11 @@ table 50105 "Price List Print Line"
 
     fields
     {
-        field(1; "Worksheet Code"; Code[10])
+        field(1; "Worksheet Code"; Code[20])
         {
             AllowInCustomizations = AsReadWrite;
             Caption = 'Worksheet Code';
+            TableRelation = "Price List Group".Code;
         }
         field(2; "Line No."; Integer)
         {
@@ -67,15 +68,19 @@ table 50105 "Price List Print Line"
         key(SortKey; "Worksheet Code", "Sequence") { }
     }
 
-    procedure PopulatePriceLists()
+    procedure PopulatePriceLists(TargetGroupCode: Code[20])
     var
         PriceListHeader: Record "Price List Header";
         PrintLine: Record "Price List Print Line";
+        GlobalLineCounter: Record "Price List Print Line";
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
         NextLineNo: Integer;
         NextSequence: Integer;
     begin
-        PrintLine.SetRange("Worksheet Code", 'GLOBAL');
+        if TargetGroupCode = '' then
+            exit;
+
+        PrintLine.SetRange("Worksheet Code", TargetGroupCode);
         if not PrintLine.IsEmpty() then
             PrintLine.DeleteAll(false);
 
@@ -88,12 +93,17 @@ table 50105 "Price List Print Line"
                 PriceListHeader.SetFilter(Code, '<>%1', SalesReceivablesSetup."Default Price List Code");
 
         if PriceListHeader.FindSet() then begin
-            NextLineNo := 10000;
+            GlobalLineCounter.Reset();
+            if GlobalLineCounter.FindLast() then
+                NextLineNo := GlobalLineCounter."Line No." + 10000
+            else
+                NextLineNo := 10000;
+
             NextSequence := 10;
 
             repeat
                 PrintLine.Init();
-                PrintLine."Worksheet Code" := 'GLOBAL';
+                PrintLine."Worksheet Code" := TargetGroupCode;
                 PrintLine."Line No." := NextLineNo;
                 PrintLine."Price List Code" := PriceListHeader.Code;
                 PrintLine.Description := PriceListHeader.Description;

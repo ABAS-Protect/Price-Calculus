@@ -13,6 +13,11 @@ page 50109 "Price Selection Lines Subpart"
     SourceTableView = sorting("Worksheet Code", "Sequence");
     Caption = ' Sorting';
 
+    InsertAllowed = false;
+    DeleteAllowed = true;
+    Editable = true;
+    DelayedInsert = true;
+
     layout
     {
         area(Content)
@@ -62,20 +67,26 @@ page 50109 "Price Selection Lines Subpart"
                 trigger OnAction()
                 var
                     PreviousLine: Record "Price List Print Line";
+                    CurrentLine: Record "Price List Print Line";
                     CurrentSequence: Integer;
                 begin
+                    PreviousLine.Reset();
+                    PreviousLine.SetCurrentKey("Worksheet Code", "Sequence");
                     PreviousLine.SetRange("Worksheet Code", Rec."Worksheet Code");
                     PreviousLine.SetFilter("Sequence", '<%1', Rec."Sequence");
-                    PreviousLine.SetCurrentKey("Worksheet Code", "Sequence");
 
                     if PreviousLine.FindLast() then begin
                         CurrentSequence := Rec."Sequence";
-                        Rec."Sequence" := PreviousLine."Sequence";
-                        Rec.Modify();
+
+                        if CurrentLine.Get(Rec."Worksheet Code", Rec."Line No.") then begin
+                            CurrentLine."Sequence" := PreviousLine."Sequence";
+                            CurrentLine.Modify();
+                        end;
 
                         PreviousLine."Sequence" := CurrentSequence;
                         PreviousLine.Modify();
 
+                        Rec.Get(Rec."Worksheet Code", Rec."Line No.");
                         CurrPage.Update(false);
                     end;
                 end;
@@ -92,20 +103,26 @@ page 50109 "Price Selection Lines Subpart"
                 trigger OnAction()
                 var
                     NextLine: Record "Price List Print Line";
+                    CurrentLine: Record "Price List Print Line";
                     CurrentSequence: Integer;
                 begin
+                    NextLine.Reset();
+                    NextLine.SetCurrentKey("Worksheet Code", "Sequence");
                     NextLine.SetRange("Worksheet Code", Rec."Worksheet Code");
                     NextLine.SetFilter("Sequence", '>%1', Rec."Sequence");
-                    NextLine.SetCurrentKey("Worksheet Code", "Sequence");
 
                     if NextLine.FindFirst() then begin
                         CurrentSequence := Rec."Sequence";
-                        Rec."Sequence" := NextLine."Sequence";
-                        Rec.Modify();
+
+                        if CurrentLine.Get(Rec."Worksheet Code", Rec."Line No.") then begin
+                            CurrentLine."Sequence" := NextLine."Sequence";
+                            CurrentLine.Modify();
+                        end;
 
                         NextLine."Sequence" := CurrentSequence;
                         NextLine.Modify();
 
+                        Rec.Get(Rec."Worksheet Code", Rec."Line No.");
                         CurrPage.Update(false);
                     end;
                 end;
@@ -128,5 +145,18 @@ page 50109 "Price Selection Lines Subpart"
             this.LineStyle := 'Unfavorable'
         else
             this.LineStyle := 'None';
+    end;
+
+    procedure FilterSubpageLines(TargetGroupCode: Code[20])
+    begin
+        Rec.Reset();
+
+        Rec.SetCurrentKey("Worksheet Code", "Sequence");
+
+        Rec.FilterGroup(2);
+        Rec.SetRange("Worksheet Code", TargetGroupCode);
+        Rec.FilterGroup(0);
+
+        CurrPage.Update(false);
     end;
 }
