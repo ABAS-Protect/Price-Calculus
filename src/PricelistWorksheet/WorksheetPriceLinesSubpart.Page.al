@@ -8,7 +8,6 @@ namespace ABAS.ABAS_Price_Calculus;
 
 using Microsoft.Inventory.Item;
 using Microsoft.Pricing.PriceList;
-using Microsoft.Pricing.Worksheet;
 
 page 50105 "Worksheet Price Lines Subpart"
 {
@@ -464,7 +463,6 @@ page 50105 "Worksheet Price Lines Subpart"
                         this.ItemCost := 0;
                 end;
 
-                // Add values cleanly to dictionaries
                 this.ItemCostCache.Add(ItemNo, this.ItemCost);
                 this.ItemReplSystemCache.Add(ItemNo, this.ItemReplenishmentSystem);
                 this.ItemMarkupCache.Add(ItemNo, this.ItemMarkup);
@@ -501,13 +499,10 @@ page 50105 "Worksheet Price Lines Subpart"
         if TargetItemNo = '' then
             exit;
 
-        // 1. Wipe the cache for this item so the next fetch reads fresh DB values
         this.InvalidateItemCache(TargetItemNo);
 
-        // 2. Temporarily preserve the current page position pointer
         PriceListLineBuffer.Copy(Rec);
 
-        // 3. Scan the page dataset filters to refresh sibling variant display values
         Rec.Reset();
         Rec.CopyFilters(PriceListLineBuffer);
         Rec.SetRange("Asset Type", Rec."Asset Type"::Item);
@@ -515,16 +510,15 @@ page 50105 "Worksheet Price Lines Subpart"
 
         if Rec.FindSet() then
             repeat
-                // Forcing OnAfterGetRecord execution logic across all visible matching items
                 this.ClearFields();
                 if not this.TryGetPriceFromMemory(Rec."Line No.", this.WorkingUnitPrice) then
                     this.WorkingUnitPrice := Rec."Unit Price";
+
                 this.EvaluateLayoutVisibility();
                 this.FetchItemDetailsCached(Rec."Asset No.");
                 this.CalculateDifferences();
             until Rec.Next() = 0;
 
-        // 4. Restore original cursor page row focus cleanly
         Rec.Copy(PriceListLineBuffer);
         CurrPage.Update(false);
     end;
@@ -610,12 +604,7 @@ page 50105 "Worksheet Price Lines Subpart"
             if (StagedPrice <> 0) and ActualPriceListLine.Get(PriceListCode, LineNo) then
                 if (ActualPriceListLine."Asset Type" = ActualPriceListLine."Asset Type"::Item) and (ActualPriceListLine."Asset No." <> '') then
                     if Item.Get(ActualPriceListLine."Asset No.") then begin
-                        // Validate base unit price on the card
                         Item.Validate("Unit Price", StagedPrice);
-
-                        // If you also want to update your custom fields, uncomment these lines:
-                        // Item.Validate("COMP Sales Price", StagedPrice);
-
                         Item.Modify(true);
                     end;
         end;

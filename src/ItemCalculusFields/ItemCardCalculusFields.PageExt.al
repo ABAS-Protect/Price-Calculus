@@ -19,7 +19,6 @@ pageextension 50109 ItemCardCalculusFields extends "Item Card"
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the markup category for this item.';
-
             }
             field("COMP Markup"; Rec."COMP Markup")
             {

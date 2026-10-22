@@ -8,7 +8,6 @@ namespace ABAS.ABAS_Price_Calculus;
 
 using Microsoft.Pricing.PriceList;
 
-
 table 50103 "Worksheet Header"
 {
     DataClassification = CustomerContent;
