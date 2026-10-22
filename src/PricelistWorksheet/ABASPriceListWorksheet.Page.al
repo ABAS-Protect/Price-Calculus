@@ -42,16 +42,24 @@ page 50106 "ABAS Price List Worksheet"
                         PriceListHeader.SetFilter("Amount Type", '<>%1', PriceListHeader."Amount Type"::Discount);
 
                         if Page.RunModal(Page::"Sales Price Lists", PriceListHeader) = Action::LookupOK then begin
+                            CurrPage.PriceLines.PAGE.ClearStagedPrices();
+
                             Rec.Validate("Price List Code", PriceListHeader.Code);
                             Rec.Modify();
+
                             this.EvaluateActionVisibility();
+                            CurrPage.Update(false);
                         end;
                     end;
 
                     trigger OnValidate()
                     begin
+                        CurrPage.PriceLines.PAGE.ClearStagedPrices();
+
                         Rec.Modify();
                         this.EvaluateActionVisibility();
+
+                        CurrPage.Update(false);
                     end;
                 }
                 field("Price List Description"; Rec."Price List Description")

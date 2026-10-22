@@ -105,7 +105,7 @@ report 50100 "Combined Price List Report"
             begin
                 SelectionLine.CalcFields(Status);
 
-                if not IncludeDrafts then
+                if not this.IncludeDrafts then
                     if SelectionLine.Status = SelectionLine.Status::Draft then
                         CurrReport.Skip();
             end;

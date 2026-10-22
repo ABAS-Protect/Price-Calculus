@@ -8,6 +8,7 @@ namespace ABAS.ABAS_Price_Calculus;
 
 using Microsoft.Inventory.Item;
 using Microsoft.Pricing.PriceList;
+using Microsoft.Pricing.Worksheet;
 
 page 50105 "Worksheet Price Lines Subpart"
 {
@@ -77,6 +78,7 @@ page 50105 "Worksheet Price Lines Subpart"
                     ToolTip = 'Price list markup category.';
                     Caption = 'Markup Category';
                     TableRelation = "COMP Markup Category";
+                    Lookup = true; // Remove auto-suggest.
 
                     trigger OnValidate()
                     var
@@ -410,11 +412,7 @@ page 50105 "Worksheet Price Lines Subpart"
         if PriceListCode = '' then
             exit;
 
-        if not this.TryExecutePriceUpdate(PriceListCode) then begin
-            Message('The update failed with the following error. Your working prices have been preserved.\n\nError: %1', GetLastErrorText());
-            ClearLastError();
-            exit;
-        end;
+        this.ExecutePriceUpdate(PriceListCode);
 
         Clear(this.StagedPricesMap);
         Clear(this.WorkingUnitPrice);
@@ -425,59 +423,45 @@ page 50105 "Worksheet Price Lines Subpart"
         CurrPage.Update(false);
     end;
 
-    [TryFunction]
-    local procedure TryExecutePriceUpdate(PriceListCode: Code[20])
+    local procedure ExecutePriceUpdate(PriceListCode: Code[20])
     var
-        Item: Record Item;
         PriceListHeader: Record "Price List Header";
         PriceListLine: Record "Price List Line";
         ActualPriceListLine: Record "Price List Line";
+        TempPriceListLine: Record "Price Worksheet Line" temporary;
         TempDuplicatePriceLine: Record "Duplicate Price Line";
         PriceListManagement: Codeunit "Price List Management";
-        OriginalStatus: Enum "Price Status";
         LineNo: Integer;
         StagedPrice: Decimal;
     begin
-        // Prevent race conditions
-        ActualPriceListLine.LockTable();
-        Item.LockTable();
+        if PriceListCode = '' then
+            exit;
 
         if not PriceListHeader.Get(PriceListCode) then
             exit;
 
-        OriginalStatus := PriceListHeader.Status;
-
-        if PriceListHeader.Status = PriceListHeader.Status::Active then begin
-            PriceListHeader.Status := PriceListHeader.Status::Draft;
-            PriceListHeader.Modify(true);
-        end;
-
         foreach LineNo in this.StagedPricesMap.Keys() do begin
             this.StagedPricesMap.Get(LineNo, StagedPrice);
-            if StagedPrice <> 0 then begin
-                if ActualPriceListLine.Get(PriceListCode, LineNo) then
-                    ActualPriceListLine.Validate("Unit Price", StagedPrice);
-                ActualPriceListLine.Modify(true);
-
-                if (ActualPriceListLine."Asset Type" = ActualPriceListLine."Asset Type"::Item) and (ActualPriceListLine."Asset No." <> '') then
-                    if Item.Get(ActualPriceListLine."Asset No.") then begin
-                        Item.Validate("Unit Price", StagedPrice);
-                        Item.Modify(true);
-                    end;
-            end;
+            if StagedPrice <> 0 then
+                if PriceListLine.Get(PriceListCode, LineNo) then begin
+                    TempPriceListLine.Init();
+                    TempPriceListLine.TransferFields(PriceListLine);
+                    TempPriceListLine."Unit Price" := StagedPrice;
+                    TempPriceListLine.Status := TempPriceListLine.Status::Draft;
+                    TempPriceListLine.Insert();
+                end;
         end;
 
         // Clean up empty configurations
+        PriceListLine.Reset();
         PriceListLine.SetRange("Price List Code", PriceListCode);
         PriceListLine.SetRange("Asset No.", '');
         if not PriceListLine.IsEmpty() then
-            PriceListLine.DeleteAll(false);
-
-        PriceListLine.Reset();
-        PriceListLine.SetRange("Price List Code", PriceListCode);
-        PriceListLine.SetRange(Status, PriceListLine.Status::Draft);
+            PriceListLine.DeleteAll(true);
 
         // Filter out duplicates
+        PriceListLine.Reset();
+        PriceListLine.SetRange("Price List Code", PriceListCode);
         if PriceListManagement.FindDuplicatePrices(PriceListHeader, PriceListLine, true, TempDuplicatePriceLine) then begin
             TempDuplicatePriceLine.Reset();
             TempDuplicatePriceLine.SetRange("Price List Code", PriceListCode);
@@ -486,28 +470,35 @@ page 50105 "Worksheet Price Lines Subpart"
             if TempDuplicatePriceLine.FindSet() then
                 repeat
                     if PriceListLine.Get(TempDuplicatePriceLine."Price List Code", TempDuplicatePriceLine."Line No.") then
-                        PriceListLine.Delete(false);
+                        PriceListLine.Delete(true);
                 until TempDuplicatePriceLine.Next() = 0;
         end;
 
+        TempPriceListLine.Reset();
+        if TempPriceListLine.FindSet() then
+            repeat
+                if ActualPriceListLine.Get(TempPriceListLine."Price List Code", TempPriceListLine."Line No.") then begin
+                    ActualPriceListLine.Validate("Unit Price", TempPriceListLine."Unit Price");
+                    ActualPriceListLine.Status := ActualPriceListLine.Status::Draft;
+                    ActualPriceListLine.Modify(false);
+                end;
+            until TempPriceListLine.Next() = 0;
+
+        PriceListLine.Reset();
+        PriceListLine.SetRange("Price List Code", PriceListCode);
+        PriceListLine.SetRange(Status, PriceListLine.Status::Draft);
+        if PriceListLine.FindSet() then
+            repeat
+                PriceListManagement.VerifyLines(PriceListLine);
+            until PriceListLine.Next() = 0;
+
+        PriceListLine.Reset();
+        PriceListLine.SetRange("Price List Code", PriceListCode);
+        if not PriceListLine.IsEmpty() then
+            PriceListLine.ModifyAll(Status, PriceListLine.Status::Active, false);
+
         PriceListHeader.Get(PriceListCode);
-        PriceListManagement.ActivateDraftLines(PriceListHeader, true);
-
-        if OriginalStatus = OriginalStatus::Active then begin
-            PriceListHeader.Get(PriceListCode);
-            PriceListHeader.Status := PriceListHeader.Status::Active;
-            PriceListHeader.Modify(true);
-
-            PriceListLine.Reset();
-            PriceListLine.SetRange("Price List Code", PriceListCode);
-            PriceListLine.SetRange(Status, PriceListLine.Status::Draft);
-            if not PriceListLine.IsEmpty() then
-                PriceListLine.ModifyAll(Status, PriceListLine.Status::Active, true);
-        end else
-            if PriceListHeader.Status <> OriginalStatus then begin
-                PriceListHeader.Status := OriginalStatus;
-                PriceListHeader.Modify(true);
-            end;
+        PriceListManagement.ActivateDraftLines(PriceListHeader, false);
     end;
 
     local procedure SavePriceToMemory(LineNo: Integer; NewUnitPrice: Decimal)
