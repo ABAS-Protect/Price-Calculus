@@ -28,7 +28,7 @@ codeunit 50107 "Filter Standard Price List"
             if PriceListHeader.Get(SelectedPriceListCode) then begin
                 if PriceListHeader.Status = PriceListHeader.Status::Active then begin
                     PriceListHeader.Status := PriceListHeader.Status::Draft;
-                    PriceListHeader.Modify(true);
+                    PriceListHeader.Modify(false);
                 end;
             end else
                 exit(0);
@@ -36,14 +36,18 @@ codeunit 50107 "Filter Standard Price List"
         SpecialLine.SetFilter("Price List Code", '<>%1', SelectedPriceListCode);
         SpecialLine.SetRange(Status, SpecialLine.Status::Active);
         SpecialLine.SetRange("Asset Type", SpecialLine."Asset Type"::Item);
+        SpecialLine.SetRange("Source Type", SpecialLine."Source Type"::"All Customers");
+
         if SpecialLine.FindSet(false) then
             repeat
-                TempActiveSpecialLine.Copy(SpecialLine);
+                TempActiveSpecialLine.Init();
+                TempActiveSpecialLine.TransferFields(SpecialLine);
                 TempActiveSpecialLine.Insert();
             until SpecialLine.Next() = 0;
 
         StandardLine.SetRange("Price List Code", SelectedPriceListCode);
         StandardLine.SetRange("Asset Type", StandardLine."Asset Type"::Item);
+        StandardLine.SetRange("Source Type", StandardLine."Source Type"::"All Customers");
 
         if StandardLine.FindSet(false) then
             repeat
@@ -86,9 +90,10 @@ codeunit 50107 "Filter Standard Price List"
             LinesToDelete.DeleteAll(true);
         end;
 
-        if not DryRun then begin
-            PriceListHeader.Status := PriceListHeader.Status::Active;
-            PriceListHeader.Modify(true);
-        end;
+        if not DryRun then
+            if PriceListHeader.Get(SelectedPriceListCode) then begin
+                PriceListHeader.Status := PriceListHeader.Status::Active;
+                PriceListHeader.Modify(false);
+            end;
     end;
 }

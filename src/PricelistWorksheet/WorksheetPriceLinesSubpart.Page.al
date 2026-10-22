@@ -84,12 +84,14 @@ page 50105 "Worksheet Price Lines Subpart"
                     var
                         Item: Record Item;
                     begin
+                        this.InvalidateItemCache(Rec."Asset No.");
+
                         if Item.Get(Rec."Asset No.") then begin
                             Item.Validate("COMP Markup Category", this.MarkupCategoryCode);
                             Item.Modify(true);
                         end;
 
-                        CurrPage.Update(false);
+                        this.RefreshVisibleRowsForItem(Rec."Asset No.");
                     end;
                 }
 
@@ -104,15 +106,19 @@ page 50105 "Worksheet Price Lines Subpart"
                     var
                         Item: Record Item;
                     begin
-                        if this.IsItemAsset and Item.Get(Rec."Asset No.") then begin
-                            Item.Validate("COMP Markup", this.ItemMarkup);
-                            Item.Modify(true);
+                        if this.IsItemAsset then begin
+                            this.InvalidateItemCache(Rec."Asset No.");
 
-                            this.ItemSalesPrice := Item."COMP Sales Price";
-                            this.ItemNetPrice := Item."COMP Net Price";
-                            this.CalculateDifferences();
+                            if Item.Get(Rec."Asset No.") then begin
+                                Item.Validate("COMP Markup", this.ItemMarkup);
+                                Item.Modify(true);
 
-                            CurrPage.Update(false);
+                                this.ItemSalesPrice := Item."COMP Sales Price";
+                                this.ItemNetPrice := Item."COMP Net Price";
+                                this.CalculateDifferences();
+                            end;
+
+                            this.RefreshVisibleRowsForItem(Rec."Asset No.");
                         end;
                     end;
                 }
@@ -145,11 +151,15 @@ page 50105 "Worksheet Price Lines Subpart"
                     var
                         Item: Record Item;
                     begin
-                        if this.IsItemAsset and Item.Get(Rec."Asset No.") then begin
-                            Item."COMP Comment" := this.ItemComment;
-                            Item.Modify(true);
+                        if this.IsItemAsset then begin
+                            this.InvalidateItemCache(Rec."Asset No.");
 
-                            CurrPage.Update(false);
+                            if Item.Get(Rec."Asset No.") then begin
+                                Item."COMP Comment" := this.ItemComment;
+                                Item.Modify(true);
+                            end;
+
+                            this.RefreshVisibleRowsForItem(Rec."Asset No.");
                         end;
                     end;
                 }
@@ -165,7 +175,6 @@ page 50105 "Worksheet Price Lines Subpart"
                     begin
                         this.SavePriceToMemory(Rec."Line No.", this.WorkingUnitPrice);
                         this.CalculateDifferences();
-                        CurrPage.Update(false);
                     end;
                 }
 
@@ -255,14 +264,19 @@ page 50105 "Worksheet Price Lines Subpart"
         SalesPriceVisible: Boolean;
         NetPriceVisible: Boolean;
         StagedPricesMap: Dictionary of [Integer, Decimal];
+        ItemCostCache: Dictionary of [Code[20], Decimal];
+        ItemReplSystemCache: Dictionary of [Code[20], Enum "Replenishment System"];
+        ItemMarkupCache: Dictionary of [Code[20], Integer];
+        ItemSalesPriceCache: Dictionary of [Code[20], Decimal];
+        ItemNetPriceCache: Dictionary of [Code[20], Decimal];
+        ItemCommentCache: Dictionary of [Code[20], Text[100]];
+        ItemMarkupCatCache: Dictionary of [Code[20], Code[20]];
         ItemCost: Decimal;
         ItemReplenishmentSystem: Enum "Replenishment System";
         CostStyle: Text;
         MarkupCategoryCode: Code[20];
 
     trigger OnAfterGetRecord()
-    var
-        Item: Record Item;
     begin
         this.ClearFields();
 
@@ -275,30 +289,27 @@ page 50105 "Worksheet Price Lines Subpart"
             exit;
 
         this.IsItemAsset := Rec."Asset Type" = Rec."Asset Type"::Item;
-        if this.IsItemAsset and Item.Get(Rec."Asset No.") then begin
-            this.ItemMarkup := Item."COMP Markup";
-            this.ItemSalesPrice := Item."COMP Sales Price";
-            this.ItemNetPrice := Item."COMP Net Price";
-            this.ItemComment := Item."COMP Comment";
-            this.MarkupCategoryCode := Item."COMP Markup Category";
-
-            this.ItemReplenishmentSystem := Item."Replenishment System";
-            case Item."Replenishment System" of
-                Item."Replenishment System"::Purchase:
-                    this.ItemCost := Item."Unit Cost";
-                Item."Replenishment System"::"Prod. Order", Item."Replenishment System"::Assembly:
-                    this.ItemCost := Item."Standard Cost";
-                else
-                    this.ItemCost := 0;
-            end;
-
-            if (this.ItemCost = 0) or (this.ItemReplenishmentSystem = this.ItemReplenishmentSystem::" ") then
-                this.CostStyle := 'Unfavorable'
-            else
-                this.CostStyle := 'None';
-
+        if this.IsItemAsset then begin
+            this.FetchItemDetailsCached(Rec."Asset No.");
             this.CalculateDifferences();
         end;
+    end;
+
+    trigger OnFindRecord(Which: Text): Boolean
+    begin
+        this.ClearCache();
+        exit(Rec.Find(Which));
+    end;
+
+    local procedure ClearCache()
+    begin
+        Clear(this.ItemCostCache);
+        Clear(this.ItemReplSystemCache);
+        Clear(this.ItemMarkupCache);
+        Clear(this.ItemSalesPriceCache);
+        Clear(this.ItemNetPriceCache);
+        Clear(this.ItemCommentCache);
+        Clear(this.ItemMarkupCatCache);
     end;
 
     local procedure ClearFields()
@@ -423,14 +434,110 @@ page 50105 "Worksheet Price Lines Subpart"
         CurrPage.Update(false);
     end;
 
+    local procedure FetchItemDetailsCached(ItemNo: Code[20])
+    var
+        Item: Record Item;
+    begin
+        if this.ItemCostCache.ContainsKey(ItemNo) then begin
+            this.ItemCostCache.Get(ItemNo, this.ItemCost);
+            this.ItemReplSystemCache.Get(ItemNo, this.ItemReplenishmentSystem);
+            this.ItemMarkupCache.Get(ItemNo, this.ItemMarkup);
+            this.ItemSalesPriceCache.Get(ItemNo, this.ItemSalesPrice);
+            this.ItemNetPriceCache.Get(ItemNo, this.ItemNetPrice);
+            this.ItemCommentCache.Get(ItemNo, this.ItemComment);
+            this.ItemMarkupCatCache.Get(ItemNo, this.MarkupCategoryCode);
+        end else
+            if Item.Get(ItemNo) then begin
+                this.ItemMarkup := Item."COMP Markup";
+                this.ItemSalesPrice := Item."COMP Sales Price";
+                this.ItemNetPrice := Item."COMP Net Price";
+                this.ItemComment := Item."COMP Comment";
+                this.MarkupCategoryCode := Item."COMP Markup Category";
+                this.ItemReplenishmentSystem := Item."Replenishment System";
+
+                case Item."Replenishment System" of
+                    Item."Replenishment System"::Purchase:
+                        this.ItemCost := Item."Unit Cost";
+                    Item."Replenishment System"::"Prod. Order", Item."Replenishment System"::Assembly:
+                        this.ItemCost := Item."Standard Cost";
+                    else
+                        this.ItemCost := 0;
+                end;
+
+                // Add values cleanly to dictionaries
+                this.ItemCostCache.Add(ItemNo, this.ItemCost);
+                this.ItemReplSystemCache.Add(ItemNo, this.ItemReplenishmentSystem);
+                this.ItemMarkupCache.Add(ItemNo, this.ItemMarkup);
+                this.ItemSalesPriceCache.Add(ItemNo, this.ItemSalesPrice);
+                this.ItemNetPriceCache.Add(ItemNo, this.ItemNetPrice);
+                this.ItemCommentCache.Add(ItemNo, this.ItemComment);
+                this.ItemMarkupCatCache.Add(ItemNo, this.MarkupCategoryCode);
+            end;
+
+        if (this.ItemCost = 0) or (this.ItemReplenishmentSystem = this.ItemReplenishmentSystem::" ") then
+            this.CostStyle := 'Unfavorable'
+        else
+            this.CostStyle := 'None';
+    end;
+
+    local procedure InvalidateItemCache(ItemNo: Code[20])
+    begin
+        if ItemNo = '' then
+            exit;
+
+        if this.ItemCostCache.ContainsKey(ItemNo) then this.ItemCostCache.Remove(ItemNo);
+        if this.ItemReplSystemCache.ContainsKey(ItemNo) then this.ItemReplSystemCache.Remove(ItemNo);
+        if this.ItemMarkupCache.ContainsKey(ItemNo) then this.ItemMarkupCache.Remove(ItemNo);
+        if this.ItemSalesPriceCache.ContainsKey(ItemNo) then this.ItemSalesPriceCache.Remove(ItemNo);
+        if this.ItemNetPriceCache.ContainsKey(ItemNo) then this.ItemNetPriceCache.Remove(ItemNo);
+        if this.ItemCommentCache.ContainsKey(ItemNo) then this.ItemCommentCache.Remove(ItemNo);
+        if this.ItemMarkupCatCache.ContainsKey(ItemNo) then this.ItemMarkupCatCache.Remove(ItemNo);
+    end;
+
+    local procedure RefreshVisibleRowsForItem(TargetItemNo: Code[20])
+    var
+        PriceListLineBuffer: Record "Price List Line";
+    begin
+        if TargetItemNo = '' then
+            exit;
+
+        // 1. Wipe the cache for this item so the next fetch reads fresh DB values
+        this.InvalidateItemCache(TargetItemNo);
+
+        // 2. Temporarily preserve the current page position pointer
+        PriceListLineBuffer.Copy(Rec);
+
+        // 3. Scan the page dataset filters to refresh sibling variant display values
+        Rec.Reset();
+        Rec.CopyFilters(PriceListLineBuffer);
+        Rec.SetRange("Asset Type", Rec."Asset Type"::Item);
+        Rec.SetRange("Asset No.", TargetItemNo);
+
+        if Rec.FindSet() then
+            repeat
+                // Forcing OnAfterGetRecord execution logic across all visible matching items
+                this.ClearFields();
+                if not this.TryGetPriceFromMemory(Rec."Line No.", this.WorkingUnitPrice) then
+                    this.WorkingUnitPrice := Rec."Unit Price";
+                this.EvaluateLayoutVisibility();
+                this.FetchItemDetailsCached(Rec."Asset No.");
+                this.CalculateDifferences();
+            until Rec.Next() = 0;
+
+        // 4. Restore original cursor page row focus cleanly
+        Rec.Copy(PriceListLineBuffer);
+        CurrPage.Update(false);
+    end;
+
     local procedure ExecutePriceUpdate(PriceListCode: Code[20])
     var
+        Item: Record Item;
         PriceListHeader: Record "Price List Header";
         PriceListLine: Record "Price List Line";
         ActualPriceListLine: Record "Price List Line";
-        TempPriceListLine: Record "Price Worksheet Line" temporary;
         TempDuplicatePriceLine: Record "Duplicate Price Line";
         PriceListManagement: Codeunit "Price List Management";
+        OriginalStatus: Enum "Price Status";
         LineNo: Integer;
         StagedPrice: Decimal;
     begin
@@ -440,15 +547,20 @@ page 50105 "Worksheet Price Lines Subpart"
         if not PriceListHeader.Get(PriceListCode) then
             exit;
 
+        OriginalStatus := PriceListHeader.Status;
+
+        if PriceListHeader.Status = PriceListHeader.Status::Active then begin
+            PriceListHeader.Status := PriceListHeader.Status::Draft;
+            PriceListHeader.Modify(false);
+        end;
+
         foreach LineNo in this.StagedPricesMap.Keys() do begin
             this.StagedPricesMap.Get(LineNo, StagedPrice);
             if StagedPrice <> 0 then
-                if PriceListLine.Get(PriceListCode, LineNo) then begin
-                    TempPriceListLine.Init();
-                    TempPriceListLine.TransferFields(PriceListLine);
-                    TempPriceListLine."Unit Price" := StagedPrice;
-                    TempPriceListLine.Status := TempPriceListLine.Status::Draft;
-                    TempPriceListLine.Insert();
+                if ActualPriceListLine.Get(PriceListCode, LineNo) then begin
+                    ActualPriceListLine.Validate("Unit Price", StagedPrice);
+                    ActualPriceListLine.Status := ActualPriceListLine.Status::Draft;
+                    ActualPriceListLine.Modify(false);
                 end;
         end;
 
@@ -474,16 +586,6 @@ page 50105 "Worksheet Price Lines Subpart"
                 until TempDuplicatePriceLine.Next() = 0;
         end;
 
-        TempPriceListLine.Reset();
-        if TempPriceListLine.FindSet() then
-            repeat
-                if ActualPriceListLine.Get(TempPriceListLine."Price List Code", TempPriceListLine."Line No.") then begin
-                    ActualPriceListLine.Validate("Unit Price", TempPriceListLine."Unit Price");
-                    ActualPriceListLine.Status := ActualPriceListLine.Status::Draft;
-                    ActualPriceListLine.Modify(false);
-                end;
-            until TempPriceListLine.Next() = 0;
-
         PriceListLine.Reset();
         PriceListLine.SetRange("Price List Code", PriceListCode);
         PriceListLine.SetRange(Status, PriceListLine.Status::Draft);
@@ -497,8 +599,34 @@ page 50105 "Worksheet Price Lines Subpart"
         if not PriceListLine.IsEmpty() then
             PriceListLine.ModifyAll(Status, PriceListLine.Status::Active, false);
 
-        PriceListHeader.Get(PriceListCode);
-        PriceListManagement.ActivateDraftLines(PriceListHeader, false);
+        if OriginalStatus = OriginalStatus::Active then
+            if PriceListHeader.Get(PriceListCode) then begin
+                PriceListHeader.Status := PriceListHeader.Status::Active;
+                PriceListHeader.Modify(false);
+            end;
+
+        foreach LineNo in this.StagedPricesMap.Keys() do begin
+            this.StagedPricesMap.Get(LineNo, StagedPrice);
+            if (StagedPrice <> 0) and ActualPriceListLine.Get(PriceListCode, LineNo) then
+                if (ActualPriceListLine."Asset Type" = ActualPriceListLine."Asset Type"::Item) and (ActualPriceListLine."Asset No." <> '') then
+                    if Item.Get(ActualPriceListLine."Asset No.") then begin
+                        // Validate base unit price on the card
+                        Item.Validate("Unit Price", StagedPrice);
+
+                        // If you also want to update your custom fields, uncomment these lines:
+                        // Item.Validate("COMP Sales Price", StagedPrice);
+
+                        Item.Modify(true);
+                    end;
+        end;
+    end;
+
+    procedure ClearStagedPrices()
+    begin
+        Clear(this.StagedPricesMap);
+        this.ClearCache();
+        Clear(this.WorkingUnitPrice);
+        CurrPage.Update(false);
     end;
 
     local procedure SavePriceToMemory(LineNo: Integer; NewUnitPrice: Decimal)
@@ -516,13 +644,6 @@ page 50105 "Worksheet Price Lines Subpart"
             exit(true);
         end;
         exit(false);
-    end;
-
-    procedure ClearStagedPrices()
-    begin
-        Clear(this.StagedPricesMap);
-        Clear(this.WorkingUnitPrice);
-        CurrPage.Update(false);
     end;
 
     // Clear out lingering journal lists
