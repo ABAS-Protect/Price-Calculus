@@ -534,6 +534,7 @@ page 50105 "Worksheet Price Lines Subpart"
         OriginalStatus: Enum "Price Status";
         LineNo: Integer;
         StagedPrice: Decimal;
+        TargetStatus: Enum "Price Status";
     begin
         if PriceListCode = '' then
             exit;
@@ -542,20 +543,33 @@ page 50105 "Worksheet Price Lines Subpart"
             exit;
 
         OriginalStatus := PriceListHeader.Status;
+        TargetStatus := OriginalStatus;
 
         if PriceListHeader.Status = PriceListHeader.Status::Active then begin
             PriceListHeader.Status := PriceListHeader.Status::Draft;
             PriceListHeader.Modify(false);
+            PriceListHeader.Get(PriceListCode);
         end;
 
         foreach LineNo in this.StagedPricesMap.Keys() do begin
             this.StagedPricesMap.Get(LineNo, StagedPrice);
             if StagedPrice <> 0 then
                 if ActualPriceListLine.Get(PriceListCode, LineNo) then begin
-                    ActualPriceListLine.Validate("Unit Price", StagedPrice);
+                    ActualPriceListLine."Unit Price" := StagedPrice;
                     ActualPriceListLine.Status := ActualPriceListLine.Status::Draft;
                     ActualPriceListLine.Modify(false);
                 end;
+        end;
+
+        // Sync Item Cards while in draft mode
+        foreach LineNo in this.StagedPricesMap.Keys() do begin
+            this.StagedPricesMap.Get(LineNo, StagedPrice);
+            if (StagedPrice <> 0) and ActualPriceListLine.Get(PriceListCode, LineNo) then
+                if (ActualPriceListLine."Asset Type" = ActualPriceListLine."Asset Type"::Item) and (ActualPriceListLine."Asset No." <> '') then
+                    if Item.Get(ActualPriceListLine."Asset No.") then begin
+                        Item.Validate("Unit Price", StagedPrice);
+                        Item.Modify(true);
+                    end;
         end;
 
         // Clean up empty configurations
@@ -591,23 +605,16 @@ page 50105 "Worksheet Price Lines Subpart"
         PriceListLine.Reset();
         PriceListLine.SetRange("Price List Code", PriceListCode);
         if not PriceListLine.IsEmpty() then
-            PriceListLine.ModifyAll(Status, PriceListLine.Status::Active, false);
+            if TargetStatus = TargetStatus::Active then
+                PriceListLine.ModifyAll(Status, PriceListLine.Status::Active, false)
+            else
+                PriceListLine.ModifyAll(Status, PriceListLine.Status::Draft, false);
 
-        if OriginalStatus = OriginalStatus::Active then
+        if TargetStatus = TargetStatus::Active then
             if PriceListHeader.Get(PriceListCode) then begin
-                PriceListHeader.Status := PriceListHeader.Status::Active;
-                PriceListHeader.Modify(false);
+                PriceListHeader.Validate(Status, TargetStatus);
+                PriceListHeader.Modify(true);
             end;
-
-        foreach LineNo in this.StagedPricesMap.Keys() do begin
-            this.StagedPricesMap.Get(LineNo, StagedPrice);
-            if (StagedPrice <> 0) and ActualPriceListLine.Get(PriceListCode, LineNo) then
-                if (ActualPriceListLine."Asset Type" = ActualPriceListLine."Asset Type"::Item) and (ActualPriceListLine."Asset No." <> '') then
-                    if Item.Get(ActualPriceListLine."Asset No.") then begin
-                        Item.Validate("Unit Price", StagedPrice);
-                        Item.Modify(true);
-                    end;
-        end;
     end;
 
     procedure ClearStagedPrices()
