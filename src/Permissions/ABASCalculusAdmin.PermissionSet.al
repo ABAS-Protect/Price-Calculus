@@ -33,6 +33,7 @@ permissionset 50100 "ABAS Calculus Admin"
         codeunit SilenceStdCostDialog = X,
         codeunit HeadlessStdCostRunner = X,
         codeunit "COMP Markup Init Subscriptions" = X,
+        codeunit "Suppress Activation Dialog" = X,
         report BatchUpdateStandardCosts = X,
         report "Check SKU BOM References" = X,
         report "Combined Price List Report" = X;

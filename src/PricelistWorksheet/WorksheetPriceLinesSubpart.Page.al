@@ -532,9 +532,9 @@ page 50105 "Worksheet Price Lines Subpart"
         TempDuplicatePriceLine: Record "Duplicate Price Line";
         PriceListManagement: Codeunit "Price List Management";
         OriginalStatus: Enum "Price Status";
+        TargetStatus: Enum "Price Status";
         LineNo: Integer;
         StagedPrice: Decimal;
-        TargetStatus: Enum "Price Status";
     begin
         if PriceListCode = '' then
             exit;

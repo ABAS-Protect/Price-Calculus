@@ -323,7 +323,7 @@
         </trans-unit>
         <trans-unit id="Page 4116177993 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ABAS Markup Category Translations</source>
-          <target>ABAS affokategoriöversättningar</target>
+          <target>ABAS Affokategoriöversättningar</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page COMP Markup Cat. Trans Sub - Property Caption</note>
         </trans-unit>
@@ -341,7 +341,7 @@
         </trans-unit>
         <trans-unit id="Page 221258417 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ABAS Markup Categories</source>
-          <target>ABAS affokategorier</target>
+          <target>ABAS Affokategorier</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page COMP Markup Categories - Property Caption</note>
         </trans-unit>
