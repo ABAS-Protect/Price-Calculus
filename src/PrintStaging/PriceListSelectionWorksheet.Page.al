@@ -136,7 +136,7 @@ page 50108 "Price List Selection Worksheet"
                 if GroupTranslation.Get(CurrentGroupCode, UserLanguageCode) then
                     this.CurrentGroupDescription := GroupTranslation.Description
                 else
-                    this.CurrentGroupDescription := GroupRec.Description; // Fallback to default
+                    this.CurrentGroupDescription := GroupRec.Description;
             end else
                 this.CurrentGroupDescription := '';
 

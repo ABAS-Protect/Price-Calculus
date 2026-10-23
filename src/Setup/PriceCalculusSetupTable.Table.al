@@ -28,7 +28,7 @@ table 50104 "Price Calculus Setup Table"
             trigger OnValidate()
             begin
                 if (Rec."Rebate Base %" < 0) or (Rec."Rebate Base %" > 99) then
-                    Error(RebateErrorMsg);
+                    Error(this.RebateErrorMsg);
             end;
         }
 
@@ -42,7 +42,7 @@ table 50104 "Price Calculus Setup Table"
             trigger OnValidate()
             begin
                 if (Rec."Production Markup %" < 0) then
-                    FieldError("Production Markup %", MarkupErrorMsg);
+                    this.FieldError("Production Markup %", this.MarkupErrorMsg);
             end;
         }
 
@@ -56,7 +56,7 @@ table 50104 "Price Calculus Setup Table"
             trigger OnValidate()
             begin
                 if (Rec."Purchase Markup %" < 0) then
-                    FieldError("Purchase Markup %", MarkupErrorMsg);
+                    this.FieldError("Purchase Markup %", this.MarkupErrorMsg);
             end;
         }
     }

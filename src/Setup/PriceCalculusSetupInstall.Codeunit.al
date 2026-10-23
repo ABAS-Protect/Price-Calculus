@@ -12,7 +12,7 @@ codeunit 50109 "Price Calculus Setup Install"
 
     trigger OnInstallAppPerCompany()
     begin
-        InitializeSetup();
+        this.InitializeSetup();
     end;
 
     [InherentPermissions(PermissionObjectType::TableData, Database::"Price Calculus Setup Table", 'RI')]
