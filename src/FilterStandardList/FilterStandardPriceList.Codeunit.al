@@ -63,7 +63,6 @@ codeunit 50107 "Filter Standard Price List"
                 ConflictReason := '';
                 CompetingPriceListCode := '';
 
-                // Variant in common, delete variant.
                 TempActiveSpecialLine.Reset();
                 TempActiveSpecialLine.SetRange("Asset No.", StandardLine."Asset No.");
 

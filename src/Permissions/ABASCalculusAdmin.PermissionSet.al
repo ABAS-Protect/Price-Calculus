@@ -26,6 +26,7 @@ permissionset 50100 "ABAS Calculus Admin"
         page "Price Selection Lines Subpart" = X,
         page "Price Group Translations" = X,
         page "Price List Groups Lookup" = X,
+        page "Price Conflict Audit Log" = X,
         page "COMP Markup Categories" = X,
         page "COMP Markup Cat. Trans Sub" = X,
         codeunit "Price Calculus Setup Install" = X,
