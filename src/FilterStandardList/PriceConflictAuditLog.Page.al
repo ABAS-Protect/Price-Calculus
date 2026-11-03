@@ -1,3 +1,9 @@
+/*
+    Author: Niklas Dougherty <nd@abas.se>
+    Date: 2026-11-03
+    Description: Print audit log for analyzing / filtering standard price list.
+*/
+
 namespace ABAS.ABAS_Price_Calculus;
 
 using Microsoft.Pricing.PriceList;
