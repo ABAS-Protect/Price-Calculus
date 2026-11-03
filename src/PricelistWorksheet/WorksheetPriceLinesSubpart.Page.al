@@ -648,7 +648,7 @@ page 50105 "Worksheet Price Lines Subpart"
         PriceListHeader: Record "Price List Header";
         PriceListLine: Record "Price List Line";
     begin
-        PriceListHeader.SetFilter(Code, 'J*');
+        PriceListHeader.SetFilter(Code, 'J0*|J1*|J2*|J3*|J4*|J5*|J6*|J7*|J8*|J9*');
 
         if PriceListHeader.FindSet() then
             repeat
