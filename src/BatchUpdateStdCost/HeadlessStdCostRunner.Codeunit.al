@@ -25,7 +25,7 @@ codeunit 50106 HeadlessStdCostRunner
         CalcProdStdCost: Codeunit "Calculate Standard Cost";
         IsAssembly: Boolean;
     begin
-        if not TargetItem.Get(GlobalItemNo) then
+        if not TargetItem.Get(this.GlobalItemNo) then
             exit;
 
         Clear(CalcProdStdCost);

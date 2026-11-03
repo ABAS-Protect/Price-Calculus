@@ -94,7 +94,7 @@ page 50108 "Price List Selection Worksheet"
                 var
                     PrintLineBuffer: Record "Price List Print Line";
                 begin
-                    if CurrentGroupCode = '' then
+                    if this.CurrentGroupCode = '' then
                         exit;
 
                     if Confirm('Completely rebuild entries for group alignment "%1"? This deletes custom sorting sequences.', false, this.CurrentGroupCode) then begin
@@ -116,7 +116,7 @@ page 50108 "Price List Selection Worksheet"
     begin
         GroupValidation.VerifyStandardGroupExists();
 
-        CurrentGroupCode := 'STANDARD';
+        this.CurrentGroupCode := 'STANDARD';
         this.SyncSubpageData();
     end;
 
@@ -128,7 +128,7 @@ page 50108 "Price List Selection Worksheet"
         LanguageCodeunit: Codeunit Language;
         UserLanguageCode: Code[10];
     begin
-        if CurrentGroupCode <> '' then begin
+        if this.CurrentGroupCode <> '' then begin
             if GroupRec.Get(this.CurrentGroupCode) then begin
                 UserLanguageCode := LanguageCodeunit.GetLanguageCode(GlobalLanguage());
 

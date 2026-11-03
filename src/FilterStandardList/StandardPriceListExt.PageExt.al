@@ -10,7 +10,7 @@ using Microsoft.Pricing.PriceList;
 using Microsoft.Sales.Pricing;
 using Microsoft.Sales.Setup;
 
-pageextension 50110 "StandardPriceListExt" extends "Sales Price Lists"
+pageextension 50110 "StandardPriceListExt" extends "ABAS Price List Worksheet"
 {
     actions
     {
@@ -20,7 +20,7 @@ pageextension 50110 "StandardPriceListExt" extends "Sales Price Lists"
             {
                 ApplicationArea = All;
                 Caption = 'Analyze Conflicting Prices';
-                ToolTip = 'Scan lists and count conflicting lines with standard price list.';
+                ToolTip = 'Scan lists and view a read-only descriptive log of conflicting lines.';
                 Image = ViewCheck;
                 Promoted = true;
                 PromotedCategory = Process;
@@ -30,10 +30,10 @@ pageextension 50110 "StandardPriceListExt" extends "Sales Price Lists"
                 var
                     PriceListHeader: Record "Price List Header";
                     SalesReceivablesSetup: Record "Sales & Receivables Setup";
+                    TempChangeLog: Record "Price List Line" temporary;
                     SalesPriceMgt: Codeunit "Filter Standard Price List";
                     TargetPriceListCode: Code[20];
                     LinesFound: Integer;
-                    LinesFoundMsg: Label '%1 conflicting lines would be deleted from Price List "%2".', Comment = '%1 = LinesFound; %2 = TargetPriceListCode';
                     NoLinesMsg: Label 'No conflicting lines found for Price List "%1".', Comment = '%1 = TargetPriceListCode';
                 begin
                     SalesReceivablesSetup.Get();
@@ -47,10 +47,12 @@ pageextension 50110 "StandardPriceListExt" extends "Sales Price Lists"
                     end;
 
                     if TargetPriceListCode <> '' then begin
-                        LinesFound := SalesPriceMgt.FilterStandardPriceList(TargetPriceListCode, true);
-                        if LinesFound > 0 then
-                            Message(LinesFoundMsg, LinesFound, TargetPriceListCode)
-                        else
+                        LinesFound := SalesPriceMgt.FilterStandardPriceList(TargetPriceListCode, true, TempChangeLog);
+
+                        if LinesFound > 0 then begin
+                            TempChangeLog.Reset();
+                            Page.RunModal(Page::"Price Conflict Audit Log", TempChangeLog);
+                        end else
                             Message(NoLinesMsg, TargetPriceListCode);
                     end;
                 end;
@@ -70,6 +72,7 @@ pageextension 50110 "StandardPriceListExt" extends "Sales Price Lists"
                 var
                     PriceListHeader: Record "Price List Header";
                     SalesReceivablesSetup: Record "Sales & Receivables Setup";
+                    TempChangeLog: Record "Price List Line" temporary;
                     SalesPriceMgt: Codeunit "Filter Standard Price List";
                     TargetPriceListCode: Code[20];
                     LinesFound: Integer;
@@ -88,8 +91,14 @@ pageextension 50110 "StandardPriceListExt" extends "Sales Price Lists"
 
                     if TargetPriceListCode <> '' then
                         if Confirm(StrSubstNo(ConfirmRunQst, TargetPriceListCode), false) then begin
-                            LinesFound := SalesPriceMgt.FilterStandardPriceList(TargetPriceListCode, false);
+                            LinesFound := SalesPriceMgt.FilterStandardPriceList(TargetPriceListCode, false, TempChangeLog);
                             Message(RemoveMsg, LinesFound, TargetPriceListCode);
+
+                            if LinesFound > 0 then begin
+                                TempChangeLog.Reset();
+                                Page.RunModal(Page::"Price Conflict Audit Log", TempChangeLog);
+                            end;
+
                             CurrPage.Update(false);
                         end;
                 end;

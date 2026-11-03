@@ -213,6 +213,30 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Worksheet Header - Field Primary Key - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Codeunit 2299701816 - Method 862679656 - NamedType 3363448228" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Exact item and variant match found in another price list.</source>
+          <target>Exakt artikel och variant finns i annan prislista.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Filter Standard Price List - Method FilterStandardPriceList - NamedType ExactItemVariantMsg</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2299701816 - Method 862679656 - NamedType 2797997257" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Exact item match (no variants) found in another price list.</source>
+          <target>Exakt artikel (utan variant) finns i annan prislista.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Filter Standard Price List - Method FilterStandardPriceList - NamedType ExactItemMsg</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2299701816 - Method 862679656 - NamedType 1382168305" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A global item price (no variant) exists in another list.</source>
+          <target>Global artikel (utan variant) finns i annan lista.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Filter Standard Price List - Method FilterStandardPriceList - NamedType GlobalItemMsg</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2299701816 - Method 862679656 - NamedType 3830661770" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specific variant prices exist for this item in another list.</source>
+          <target>Specifik variant finns i annan lista.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Filter Standard Price List - Method FilterStandardPriceList - NamedType SpecificVariantMsg</note>
+        </trans-unit>
         <trans-unit id="Page 3460745835 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ABAS Price Calculus Setup</source>
           <target>ABAS Priskalkylinställningar</target>
@@ -374,6 +398,66 @@
           <target>Översättningar</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page COMP Markup Categories - Action Translations - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3640649518 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Conflict Audit Log</source>
+          <target>Priskonfliktlogg</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Conflict Audit Log - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3640649518 - Control 1634501393 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the item identifier.</source>
+          <target>Artikelidentifierare</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Conflict Audit Log - Control Asset No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3640649518 - Control 1634501393 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item No.</source>
+          <target>Artikelnr</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Conflict Audit Log - Control Asset No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3640649518 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Details why this row conflicts with other pricing configurations.</source>
+          <target>Konfliktorsak, detaljerad</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Conflict Audit Log - Control Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3640649518 - Control 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Conflict Analysis Reason</source>
+          <target>Konfliktorsak</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Conflict Audit Log - Control Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3640649518 - Control 1882905478 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Identifies the active external price list housing the conflict rule.</source>
+          <target>Extern prislista som orssakar konflikt.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Conflict Audit Log - Control Source No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3640649518 - Control 1882905478 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Competing Price List</source>
+          <target>Konkurrerande prislista.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Conflict Audit Log - Control Source No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3640649518 - Control 2937233469 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Current Price</source>
+          <target>Nuvarande pris</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Conflict Audit Log - Control Unit Price - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3640649518 - Control 3450651614 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the item variant variant.</source>
+          <target>Artikelvariant.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Conflict Audit Log - Control Variant Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3640649518 - Control 3450651614 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Variant Code</source>
+          <target>Variantkod</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price Conflict Audit Log - Control Variant Code - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3906992942 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Price Group Translations</source>
@@ -831,49 +915,43 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemCardCalculusFields - Control COMP Sales Price - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
-          <source>Scan lists and count conflicting lines with standard price list.</source>
-          <target>Avsök listor och räkna rader med konflikt i standardprislista.</target>
+        <trans-unit id="Page 2760247076 - Action 3621142587 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2760247076">
+          <source>Scan lists and view a read-only descriptive log of conflicting lines.</source>
+          <target>Avsök listor och se rader med konflikt i standardprislista.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action AnalyzeConflicts - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
+        <trans-unit id="Page 2760247076 - Action 3621142587 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2760247076">
           <source>Analyze Conflicting Prices</source>
           <target>Analysera priskonflikter</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action AnalyzeConflicts - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Method 1377591017 - NamedType 2954980686" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
-          <source>%1 conflicting lines would be deleted from Price List "%2".</source>
-          <target>%1 rader med konflikt skulle raderas från prislista "%2".</target>
-          <note from="Developer" annotates="general" priority="2">%1 = LinesFound; %2 = TargetPriceListCode</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action AnalyzeConflicts - Method OnAction - NamedType LinesFoundMsg</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 3147209063 - Action 3621142587 - Method 1377591017 - NamedType 1113046263" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
+        <trans-unit id="Page 2760247076 - Action 3621142587 - Method 1377591017 - NamedType 1113046263" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
           <source>No conflicting lines found for Price List "%1".</source>
           <target>Inga rader med konflikt funna för prislista "%1".</target>
           <note from="Developer" annotates="general" priority="2">%1 = TargetPriceListCode</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action AnalyzeConflicts - Method OnAction - NamedType NoLinesMsg</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3147209063 - Action 3825344675 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
+        <trans-unit id="Page 2760247076 - Action 3825344675 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2760247076">
           <source>Permanently delete lines from standard price list that clash with other lists.</source>
           <target>Radera rader med konflikt från standardprislista.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action ExcludeSpecialPrices - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3147209063 - Action 3825344675 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4183282696">
+        <trans-unit id="Page 2760247076 - Action 3825344675 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2760247076">
           <source>Remove Conflicting Prices</source>
           <target>Radera priser med konflikt</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action ExcludeSpecialPrices - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3147209063 - Action 3825344675 - Method 1377591017 - NamedType 2909256695" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
+        <trans-unit id="Page 2760247076 - Action 3825344675 - Method 1377591017 - NamedType 2909256695" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
           <source>Permanently delete conflicting lines from Price List "%1"?</source>
           <target>Radera rader med konflikt från prislista "%1"?</target>
           <note from="Developer" annotates="general" priority="2">%1 = TargetPriceListCode</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension StandardPriceListExt - Action ExcludeSpecialPrices - Method OnAction - NamedType ConfirmRunQst</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3147209063 - Action 3825344675 - Method 1377591017 - NamedType 1429192745" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
+        <trans-unit id="Page 2760247076 - Action 3825344675 - Method 1377591017 - NamedType 1429192745" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3147209063">
           <source>%1 lines successfully removed from Price List "%2".</source>
           <target>%1 rader raderades från prislistan "%2".</target>
           <note from="Developer" annotates="general" priority="2">%1 = LinesFound; %2 = TargetPriceListCode</note>
