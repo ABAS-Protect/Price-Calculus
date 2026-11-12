@@ -6,6 +6,8 @@
 
 namespace ABAS.ABAS_Price_Calculus;
 
+using Microsoft.Pricing.PriceList;
+using Microsoft.Sales.Pricing;
 using System.Globalization;
 
 page 50108 "Price List Selection Worksheet"
@@ -81,6 +83,7 @@ page 50108 "Price List Selection Worksheet"
                         Message('The chosen group worksheet is empty. Click "Reset Current Group Lines" to populate.');
                 end;
             }
+
             action(ResetGroupLines)
             {
                 Caption = 'Reset Current Group Lines';
@@ -100,6 +103,66 @@ page 50108 "Price List Selection Worksheet"
                     if Confirm('Completely rebuild entries for group alignment "%1"? This deletes custom sorting sequences.', false, this.CurrentGroupCode) then begin
                         PrintLineBuffer.PopulatePriceLists(this.CurrentGroupCode);
                         CurrPage.Update(false);
+                    end;
+                end;
+            }
+
+            action(AddPriceLists)
+            {
+                Caption = 'Add Price Lists';
+                ToolTip = 'Select individual sales price lists to append to the current group.';
+                Image = Add;
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+
+                trigger OnAction()
+                var
+                    PriceListHeader: Record "Price List Header";
+                    PrintLineBuffer: Record "Price List Print Line";
+                    SalesPriceListsPage: Page "Sales Price Lists";
+                begin
+                    if this.CurrentGroupCode = '' then
+                        exit;
+
+                    PrintLineBuffer.ApplyEligiblePriceListFilters(PriceListHeader);
+                    this.FilterOutExistingPriceLists(PriceListHeader);
+
+                    SalesPriceListsPage.SetTableView(PriceListHeader);
+                    SalesPriceListsPage.LookupMode(true);
+
+                    if SalesPriceListsPage.RunModal() = Action::LookupOK then begin
+                        SalesPriceListsPage.SetSelectionFilter(PriceListHeader);
+                        PrintLineBuffer.AddSelectedPriceLists(this.CurrentGroupCode, PriceListHeader);
+                        CurrPage.CatalogLines.PAGE.FilterSubpageLines(this.CurrentGroupCode);
+                    end;
+                end;
+            }
+
+            action(DeleteGroup)
+            {
+                Caption = 'Delete Current Group';
+                ToolTip = 'Delete the currently selected catalog group and all of its lines.';
+                Image = Delete;
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                Enabled = this.CurrentGroupCode <> 'STANDARD';
+
+                trigger OnAction()
+                var
+                    GroupRec: Record "Price List Group";
+                begin
+                    if (this.CurrentGroupCode = '') or (this.CurrentGroupCode = 'STANDARD') then
+                        exit;
+
+                    if not Confirm('Delete catalog group "%1" and all its price list lines?', false, this.CurrentGroupCode) then
+                        exit;
+
+                    if GroupRec.Get(this.CurrentGroupCode) then begin
+                        GroupRec.Delete(true);
+                        this.CurrentGroupCode := 'STANDARD';
+                        this.SyncSubpageData();
                     end;
                 end;
             }
@@ -149,5 +212,22 @@ page 50108 "Price List Selection Worksheet"
             this.CurrentGroupDescription := '';
 
         CurrPage.Update(false);
+    end;
+
+    local procedure FilterOutExistingPriceLists(var PriceListHeader: Record "Price List Header")
+    var
+        ExistingPrintLine: Record "Price List Print Line";
+    begin
+        if PriceListHeader.FindSet() then
+            repeat
+                ExistingPrintLine.Reset();
+                ExistingPrintLine.SetRange("Worksheet Code", this.CurrentGroupCode);
+                ExistingPrintLine.SetRange("Price List Code", PriceListHeader.Code);
+
+                if ExistingPrintLine.IsEmpty() then
+                    PriceListHeader.Mark(true);
+            until PriceListHeader.Next() = 0;
+
+        PriceListHeader.MarkedOnly(true);
     end;
 }

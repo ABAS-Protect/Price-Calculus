@@ -15,7 +15,7 @@ table 50108 "Price List Group"
 
     fields
     {
-        field(1; "Code"; Code[10])
+        field(1; "Code"; Code[20])
         {
             AllowInCustomizations = AsReadWrite;
             Caption = 'Code';
@@ -35,11 +35,20 @@ table 50108 "Price List Group"
 
     trigger OnDelete()
     var
+        PrintLine: Record "Price List Print Line";
         GroupTranslation: Record "Price List Group Translation";
+        StandardCatalogMsg: Label 'The STANDARD catalog group cannot be deleted.';
     begin
+        if Rec.Code = 'STANDARD' then
+            Error(StandardCatalogMsg);
+
+        PrintLine.SetRange("Worksheet Code", Rec.Code);
+        if not PrintLine.IsEmpty() then
+            PrintLine.DeleteAll(false);
+
         GroupTranslation.SetRange("Group Code", Rec.Code);
         if not GroupTranslation.IsEmpty() then
-            GroupTranslation.DeleteAll(true);
+            GroupTranslation.DeleteAll(false);
     end;
 
     procedure VerifyStandardGroupExists()

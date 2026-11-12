@@ -543,6 +543,18 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Control SelectedGroupFilter - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3440184819 - Action 2324238351 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Select individual sales price lists to append to the current group.</source>
+          <target>Välj individuella prislistor att lägga till nuvarande grupp.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Action AddPriceLists - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3440184819 - Action 2324238351 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Add Price Lists</source>
+          <target>Lägg till prislistor</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Action AddPriceLists - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3440184819 - Action 3987590790 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Create a printable price list for the chosen group selection.</source>
           <target>Skapa en utskrivbar prislista för detta gruppval.</target>

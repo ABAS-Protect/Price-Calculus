@@ -68,12 +68,23 @@ table 50105 "Price List Print Line"
         key(SortKey; "Worksheet Code", "Sequence") { }
     }
 
+    procedure ApplyEligiblePriceListFilters(var PriceListHeader: Record "Price List Header")
+    var
+        SalesReceivablesSetup: Record "Sales & Receivables Setup";
+    begin
+        PriceListHeader.SetRange("Price Type", PriceListHeader."Price Type"::Sale);
+        PriceListHeader.SetFilter(Status, '%1|%2', PriceListHeader.Status::Active, PriceListHeader.Status::Draft);
+        PriceListHeader.SetFilter("Amount Type", '<>%1', PriceListHeader."Amount Type"::Discount);
+
+        if SalesReceivablesSetup.Get() then
+            if SalesReceivablesSetup."Default Price List Code" <> '' then
+                PriceListHeader.SetFilter(Code, '<>%1', SalesReceivablesSetup."Default Price List Code");
+    end;
+
     procedure PopulatePriceLists(TargetGroupCode: Code[20])
     var
         PriceListHeader: Record "Price List Header";
         PrintLine: Record "Price List Print Line";
-        GlobalLineCounter: Record "Price List Print Line";
-        SalesReceivablesSetup: Record "Sales & Receivables Setup";
         NextLineNo: Integer;
         NextSequence: Integer;
     begin
@@ -84,21 +95,10 @@ table 50105 "Price List Print Line"
         if not PrintLine.IsEmpty() then
             PrintLine.DeleteAll(false);
 
-        PriceListHeader.SetRange("Price Type", PriceListHeader."Price Type"::Sale);
-        PriceListHeader.SetFilter(Status, '%1|%2', PriceListHeader.Status::Active, PriceListHeader.Status::Draft);
-        PriceListHeader.SetFilter("Amount Type", '<>%1', PriceListHeader."Amount Type"::Discount);
-
-        if SalesReceivablesSetup.Get() then
-            if SalesReceivablesSetup."Default Price List Code" <> '' then
-                PriceListHeader.SetFilter(Code, '<>%1', SalesReceivablesSetup."Default Price List Code");
+        this.ApplyEligiblePriceListFilters(PriceListHeader);
 
         if PriceListHeader.FindSet() then begin
-            GlobalLineCounter.Reset();
-            if GlobalLineCounter.FindLast() then
-                NextLineNo := GlobalLineCounter."Line No." + 10000
-            else
-                NextLineNo := 10000;
-
+            NextLineNo := 10000;
             NextSequence := 10;
 
             repeat
@@ -114,5 +114,50 @@ table 50105 "Price List Print Line"
                 NextSequence += 10;
             until PriceListHeader.Next() = 0;
         end;
+    end;
+
+
+    procedure AddSelectedPriceLists(TargetGroupCode: Code[20]; var SelectedPriceListHeader: Record "Price List Header")
+    var
+        PrintLine: Record "Price List Print Line";
+        NextLineNo: Integer;
+        NextSequence: Integer;
+    begin
+        if TargetGroupCode = '' then
+            exit;
+
+        PrintLine.Reset();
+        PrintLine.SetRange("Worksheet Code", TargetGroupCode);
+        if PrintLine.FindLast() then
+            NextLineNo := PrintLine."Line No." + 10000
+        else
+            NextLineNo := 10000;
+
+        PrintLine.Reset();
+        PrintLine.SetCurrentKey("Worksheet Code", "Sequence");
+        PrintLine.SetRange("Worksheet Code", TargetGroupCode);
+        if PrintLine.FindLast() then
+            NextSequence := PrintLine."Sequence" + 10
+        else
+            NextSequence := 10;
+
+        if SelectedPriceListHeader.FindSet() then
+            repeat
+                PrintLine.Reset();
+                PrintLine.SetRange("Worksheet Code", TargetGroupCode);
+                PrintLine.SetRange("Price List Code", SelectedPriceListHeader.Code);
+
+                if PrintLine.IsEmpty() then begin
+                    PrintLine.Init();
+                    PrintLine."Worksheet Code" := TargetGroupCode;
+                    PrintLine."Line No." := NextLineNo;
+                    PrintLine.Validate("Price List Code", SelectedPriceListHeader.Code);
+                    PrintLine."Sequence" := NextSequence;
+                    PrintLine.Insert();
+
+                    NextLineNo += 10000;
+                    NextSequence += 10;
+                end;
+            until SelectedPriceListHeader.Next() = 0;
     end;
 }
