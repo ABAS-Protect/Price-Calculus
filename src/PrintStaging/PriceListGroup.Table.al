@@ -44,7 +44,7 @@ table 50108 "Price List Group"
 
         PrintLine.SetRange("Worksheet Code", Rec.Code);
         if not PrintLine.IsEmpty() then
-            PrintLine.DeleteAll(false);
+            PrintLine.DeleteAll(true);
 
         GroupTranslation.SetRange("Group Code", Rec.Code);
         if not GroupTranslation.IsEmpty() then
