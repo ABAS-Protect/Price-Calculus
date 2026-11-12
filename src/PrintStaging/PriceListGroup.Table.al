@@ -48,7 +48,7 @@ table 50108 "Price List Group"
 
         GroupTranslation.SetRange("Group Code", Rec.Code);
         if not GroupTranslation.IsEmpty() then
-            GroupTranslation.DeleteAll(false);
+            GroupTranslation.DeleteAll(true);
     end;
 
     procedure VerifyStandardGroupExists()

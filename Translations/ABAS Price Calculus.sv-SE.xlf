@@ -99,6 +99,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Price List Group - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 1182529428 - Method 3152277940 - NamedType 1319958355" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The STANDARD catalog group cannot be deleted.</source>
+          <target>Gruppen STANDARD kan inte raderas.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Price List Group - Method OnDelete - NamedType StandardCatalogMsg</note>
+        </trans-unit>
         <trans-unit id="Table 1182529428 - Method 1593094413 - NamedType 2821294898" size-unit="char" translate="yes" xml:space="preserve">
           <source>Standard Catalog Group</source>
           <target>Standardgrupp</target>
@@ -554,6 +560,18 @@
           <target>Lägg till prislistor</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Action AddPriceLists - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3440184819 - Action 565464954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delete the currently selected catalog group and all of its lines.</source>
+          <target>Radera vald grupp och dess rader.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Action DeleteGroup - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3440184819 - Action 565464954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delete Current Group</source>
+          <target>Radera grupp</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Price List Selection Worksheet - Action DeleteGroup - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3440184819 - Action 3987590790 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Create a printable price list for the chosen group selection.</source>
