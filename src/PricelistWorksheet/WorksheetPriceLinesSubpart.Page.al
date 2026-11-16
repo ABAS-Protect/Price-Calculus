@@ -535,6 +535,8 @@ page 50105 "Worksheet Price Lines Subpart"
         TargetStatus: Enum "Price Status";
         LineNo: Integer;
         StagedPrice: Decimal;
+        DuplicateKey: Text;
+        SeenKeys: List of [Text];
     begin
         if PriceListCode = '' then
             exit;
@@ -585,12 +587,23 @@ page 50105 "Worksheet Price Lines Subpart"
         if PriceListManagement.FindDuplicatePrices(PriceListHeader, PriceListLine, true, TempDuplicatePriceLine) then begin
             TempDuplicatePriceLine.Reset();
             TempDuplicatePriceLine.SetRange("Price List Code", PriceListCode);
-            TempDuplicatePriceLine.SetRange(Remove, true);
 
             if TempDuplicatePriceLine.FindSet() then
                 repeat
-                    if PriceListLine.Get(TempDuplicatePriceLine."Price List Code", TempDuplicatePriceLine."Line No.") then
-                        PriceListLine.Delete(true);
+                    if PriceListLine.Get(TempDuplicatePriceLine."Price List Code", TempDuplicatePriceLine."Price List Line No.") then begin
+                        DuplicateKey := StrSubstNo('%1|%2|%3|%4|%5|%6|%7',
+                            PriceListLine."Asset Type",
+                            PriceListLine."Asset No.",
+                            PriceListLine."Variant Code",
+                            PriceListLine."Unit of Measure Code",
+                            PriceListLine."Currency Code",
+                            PriceListLine."Starting Date",
+                            PriceListLine."Minimum Quantity");
+                        if SeenKeys.Contains(DuplicateKey) then
+                            PriceListLine.Delete(true)
+                        else
+                            SeenKeys.Add(DuplicateKey);
+                    end;
                 until TempDuplicatePriceLine.Next() = 0;
         end;
 
